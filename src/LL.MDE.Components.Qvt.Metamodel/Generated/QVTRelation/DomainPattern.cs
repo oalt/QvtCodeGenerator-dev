@@ -607,7 +607,7 @@ namespace LL.MDE.Components.Qvt.Metamodel.QVTRelation
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public RelationDomainProxy(IDomainPattern modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "RelationDomain")
             {
             }
             
@@ -630,19 +630,19 @@ namespace LL.MDE.Components.Qvt.Metamodel.QVTRelation
             /// Registers an event handler to subscribe specifically on the changed event for this property
             /// </summary>
             /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.RelationDomainChanged += handler;
-            }
+            //protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
+            //{
+            //    this.ModelElement.RelationDomainChanged += handler;
+            //}
             
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.RelationDomainChanged -= handler;
-            }
+            ///// <summary>
+            ///// Registers an event handler to subscribe specifically on the changed event for this property
+            ///// </summary>
+            ///// <param name="handler">The handler that should be unsubscribed from the property change event</param>
+            //protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
+            //{
+            //    this.ModelElement.RelationDomainChanged -= handler;
+            //}
         }
         
         /// <summary>
@@ -656,7 +656,7 @@ namespace LL.MDE.Components.Qvt.Metamodel.QVTRelation
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public TemplateExpressionProxy(IDomainPattern modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "TemplateExpression")
             {
             }
             
@@ -679,19 +679,19 @@ namespace LL.MDE.Components.Qvt.Metamodel.QVTRelation
             /// Registers an event handler to subscribe specifically on the changed event for this property
             /// </summary>
             /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TemplateExpressionChanged += handler;
-            }
+            //protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
+            //{
+            //    this.ModelElement.TemplateExpressionChanged += handler;
+            //}
             
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TemplateExpressionChanged -= handler;
-            }
+            ///// <summary>
+            ///// Registers an event handler to subscribe specifically on the changed event for this property
+            ///// </summary>
+            ///// <param name="handler">The handler that should be unsubscribed from the property change event</param>
+            //protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
+            //{
+            //    this.ModelElement.TemplateExpressionChanged -= handler;
+            //}
         }
     }
 }

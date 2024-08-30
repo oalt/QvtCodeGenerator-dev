@@ -48,7 +48,7 @@ namespace LL.MDE.Components.Qvt.Metamodel.EMOF
         public Enumeration()
         {
             this._ownedLiteral = new EnumerationOwnedLiteralCollection(this);
-            this._ownedLiteral.CollectionChanging += this.OwnedLiteralCollectionChanging;
+            //this._ownedLiteral.CollectionChanging += this.OwnedLiteralCollectionChanging;
             this._ownedLiteral.CollectionChanged += this.OwnedLiteralCollectionChanged;
         }
         
@@ -96,10 +96,10 @@ namespace LL.MDE.Components.Qvt.Metamodel.EMOF
         /// </summary>
         /// <param name="sender">The collection that raised the change</param>
         /// <param name="e">The original event data</param>
-        private void OwnedLiteralCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
-        {
-            this.OnCollectionChanging("OwnedLiteral", e);
-        }
+        //private void OwnedLiteralCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
+        //{
+        //    this.OnCollectionChanging("OwnedLiteral", e);
+        //}
         
         /// <summary>
         /// Forwards CollectionChanged notifications for the OwnedLiteral property to the parent model element

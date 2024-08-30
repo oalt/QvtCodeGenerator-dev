@@ -11,7 +11,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LL.MDE.DataModels.SimpleUML
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LL.MDE.DataModels.SimpleRDBMS-dev", "LL.MDE.DataModels.SimpleRDBMS\LL.MDE.DataModels.SimpleRDBMS-dev.csproj", "{E6FDE451-26A9-4E1A-8A9C-11B0AF15C319}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4_QVT", "4_QVT", "{B66D3FFC-C6AF-4B15-9973-3F01AE622FC5}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3_QVT", "3_QVT", "{B66D3FFC-C6AF-4B15-9973-3F01AE622FC5}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LL.MDE.Components.Qvt.CodeGenerator-dev", "LL.MDE.Components.Qvt.CodeGenerator\LL.MDE.Components.Qvt.CodeGenerator-dev.csproj", "{BF8F9083-4BA8-4120-9641-788779C3181E}"
 EndProject
@@ -24,6 +24,20 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LL.MDE.Components.Qvt.EnArInterface-dev", "LL.MDE.Components.Qvt.EnArInterface\LL.MDE.Components.Qvt.EnArInterface-dev.csproj", "{B7F225A9-E958-4EDB-8F71-8CA95860E5A5}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LL.MDE.Components.Qvt.Metamodel-dev", "LL.MDE.Components.Qvt.Metamodel\LL.MDE.Components.Qvt.Metamodel-dev.csproj", "{9E4AD66A-C4F5-4AAC-BAE2-0E39E6858985}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MDD4All.EAFacade.DataModels.Contracts-dev", "MDD4All.EAFacade.DataModels.Contracts\src\MDD4All.EAFacade.DataModels.Contracts\MDD4All.EAFacade.DataModels.Contracts-dev.csproj", "{FC5284B3-A130-4B5E-A852-ED74B590B607}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4_DataAccess", "4_DataAccess", "{16BC8988-C5D4-4829-9376-6B2D24052A9D}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MDD4All.EAFacade.DataAccess.Cached-dev", "MDD4All.EAFacade.DataAccess.Cached\src\MDD4All.EAFacade.DataAccess.Cached\MDD4All.EAFacade.DataAccess.Cached-dev.csproj", "{48FB968C-EC43-468F-881D-76E19C770E29}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2_EA", "2_EA", "{8B025947-5E3B-4A29-B26F-B7C1008CF598}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LL.MDE.Components.Common.EnArLoader-dev", "LL.MDE.Components.Common.EnArLoader\LL.MDE.Components.Common.EnArLoader-dev.csproj", "{219CA47B-2392-42EF-97EE-3790288BEEC6}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LL.MDE.Components.Common.Util-dev", "LL.MDE.Components.Common.Util\LL.MDE.Components.Common.Util-dev.csproj", "{30E7C342-9479-4FCF-9EF9-E33C826EF603}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "6_Util", "6_Util", "{0B3889B6-DF97-4DD0-A786-C6776B5F3200}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -67,6 +81,22 @@ Global
 		{9E4AD66A-C4F5-4AAC-BAE2-0E39E6858985}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9E4AD66A-C4F5-4AAC-BAE2-0E39E6858985}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9E4AD66A-C4F5-4AAC-BAE2-0E39E6858985}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FC5284B3-A130-4B5E-A852-ED74B590B607}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FC5284B3-A130-4B5E-A852-ED74B590B607}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FC5284B3-A130-4B5E-A852-ED74B590B607}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FC5284B3-A130-4B5E-A852-ED74B590B607}.Release|Any CPU.Build.0 = Release|Any CPU
+		{48FB968C-EC43-468F-881D-76E19C770E29}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{48FB968C-EC43-468F-881D-76E19C770E29}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{48FB968C-EC43-468F-881D-76E19C770E29}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{48FB968C-EC43-468F-881D-76E19C770E29}.Release|Any CPU.Build.0 = Release|Any CPU
+		{219CA47B-2392-42EF-97EE-3790288BEEC6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{219CA47B-2392-42EF-97EE-3790288BEEC6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{219CA47B-2392-42EF-97EE-3790288BEEC6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{219CA47B-2392-42EF-97EE-3790288BEEC6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{30E7C342-9479-4FCF-9EF9-E33C826EF603}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{30E7C342-9479-4FCF-9EF9-E33C826EF603}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{30E7C342-9479-4FCF-9EF9-E33C826EF603}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{30E7C342-9479-4FCF-9EF9-E33C826EF603}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -81,5 +111,12 @@ Global
 		{D1A7392A-3165-4613-8DA2-406688633D46} = {B66D3FFC-C6AF-4B15-9973-3F01AE622FC5}
 		{B7F225A9-E958-4EDB-8F71-8CA95860E5A5} = {B66D3FFC-C6AF-4B15-9973-3F01AE622FC5}
 		{9E4AD66A-C4F5-4AAC-BAE2-0E39E6858985} = {B66D3FFC-C6AF-4B15-9973-3F01AE622FC5}
+		{FC5284B3-A130-4B5E-A852-ED74B590B607} = {A9E279EC-D742-491F-B7F4-84F94E26D4CD}
+		{48FB968C-EC43-468F-881D-76E19C770E29} = {16BC8988-C5D4-4829-9376-6B2D24052A9D}
+		{219CA47B-2392-42EF-97EE-3790288BEEC6} = {8B025947-5E3B-4A29-B26F-B7C1008CF598}
+		{30E7C342-9479-4FCF-9EF9-E33C826EF603} = {0B3889B6-DF97-4DD0-A786-C6776B5F3200}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {214F2544-C9DD-4039-A27F-4A1ACA9B3CF5}
 	EndGlobalSection
 EndGlobal

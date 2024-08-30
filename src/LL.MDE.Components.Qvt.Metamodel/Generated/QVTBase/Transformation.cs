@@ -80,19 +80,19 @@ namespace LL.MDE.Components.Qvt.Metamodel.QVTBase
         public Transformation()
         {
             this._modelParameter = new TransformationModelParameterCollection(this);
-            this._modelParameter.CollectionChanging += this.ModelParameterCollectionChanging;
+            //this._modelParameter.CollectionChanging += this.ModelParameterCollectionChanging;
             this._modelParameter.CollectionChanged += this.ModelParameterCollectionChanged;
             this._ownedTag = new ObservableCompositionSet<ITag>(this);
-            this._ownedTag.CollectionChanging += this.OwnedTagCollectionChanging;
+            //this._ownedTag.CollectionChanging += this.OwnedTagCollectionChanging;
             this._ownedTag.CollectionChanged += this.OwnedTagCollectionChanged;
             this._rule = new TransformationRuleCollection(this);
-            this._rule.CollectionChanging += this.RuleCollectionChanging;
+            //this._rule.CollectionChanging += this.RuleCollectionChanging;
             this._rule.CollectionChanged += this.RuleCollectionChanged;
             this._nestedPackage = new PackageNestedPackageCollection(this);
-            this._nestedPackage.CollectionChanging += this.NestedPackageCollectionChanging;
+            //this._nestedPackage.CollectionChanging += this.NestedPackageCollectionChanging;
             this._nestedPackage.CollectionChanged += this.NestedPackageCollectionChanged;
             this._ownedType = new PackageOwnedTypeCollection(this);
-            this._ownedType.CollectionChanging += this.OwnedTypeCollectionChanging;
+            //this._ownedType.CollectionChanging += this.OwnedTypeCollectionChanging;
             this._ownedType.CollectionChanged += this.OwnedTypeCollectionChanged;
         }
         
@@ -347,10 +347,10 @@ namespace LL.MDE.Components.Qvt.Metamodel.QVTBase
         /// </summary>
         /// <param name="sender">The collection that raised the change</param>
         /// <param name="e">The original event data</param>
-        private void ModelParameterCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
-        {
-            this.OnCollectionChanging("ModelParameter", e);
-        }
+        //private void ModelParameterCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
+        //{
+        //    this.OnCollectionChanging("ModelParameter", e);
+        //}
         
         /// <summary>
         /// Forwards CollectionChanged notifications for the ModelParameter property to the parent model element
@@ -367,10 +367,10 @@ namespace LL.MDE.Components.Qvt.Metamodel.QVTBase
         /// </summary>
         /// <param name="sender">The collection that raised the change</param>
         /// <param name="e">The original event data</param>
-        private void OwnedTagCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
-        {
-            this.OnCollectionChanging("OwnedTag", e);
-        }
+        //private void OwnedTagCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
+        //{
+        //    this.OnCollectionChanging("OwnedTag", e);
+        //}
         
         /// <summary>
         /// Forwards CollectionChanged notifications for the OwnedTag property to the parent model element
@@ -387,10 +387,10 @@ namespace LL.MDE.Components.Qvt.Metamodel.QVTBase
         /// </summary>
         /// <param name="sender">The collection that raised the change</param>
         /// <param name="e">The original event data</param>
-        private void RuleCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
-        {
-            this.OnCollectionChanging("Rule", e);
-        }
+        //private void RuleCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
+        //{
+        //    this.OnCollectionChanging("Rule", e);
+        //}
         
         /// <summary>
         /// Forwards CollectionChanged notifications for the Rule property to the parent model element
@@ -433,10 +433,10 @@ namespace LL.MDE.Components.Qvt.Metamodel.QVTBase
         /// </summary>
         /// <param name="sender">The collection that raised the change</param>
         /// <param name="e">The original event data</param>
-        private void NestedPackageCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
-        {
-            this.OnCollectionChanging("NestedPackage", e);
-        }
+        //private void NestedPackageCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
+        //{
+        //    this.OnCollectionChanging("NestedPackage", e);
+        //}
         
         /// <summary>
         /// Forwards CollectionChanged notifications for the NestedPackage property to the parent model element
@@ -488,10 +488,10 @@ namespace LL.MDE.Components.Qvt.Metamodel.QVTBase
         /// </summary>
         /// <param name="sender">The collection that raised the change</param>
         /// <param name="e">The original event data</param>
-        private void OwnedTypeCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
-        {
-            this.OnCollectionChanging("OwnedType", e);
-        }
+        //private void OwnedTypeCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
+        //{
+        //    this.OnCollectionChanging("OwnedType", e);
+        //}
         
         /// <summary>
         /// Forwards CollectionChanged notifications for the OwnedType property to the parent model element
@@ -1208,7 +1208,7 @@ namespace LL.MDE.Components.Qvt.Metamodel.QVTBase
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ExtendsProxy(ITransformation modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Extends")
             {
             }
             
@@ -1231,19 +1231,19 @@ namespace LL.MDE.Components.Qvt.Metamodel.QVTBase
             /// Registers an event handler to subscribe specifically on the changed event for this property
             /// </summary>
             /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ExtendsChanged += handler;
-            }
+            //protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
+            //{
+            //    this.ModelElement.ExtendsChanged += handler;
+            //}
             
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ExtendsChanged -= handler;
-            }
+            ///// <summary>
+            ///// Registers an event handler to subscribe specifically on the changed event for this property
+            ///// </summary>
+            ///// <param name="handler">The handler that should be unsubscribed from the property change event</param>
+            //protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
+            //{
+            //    this.ModelElement.ExtendsChanged -= handler;
+            //}
         }
         
         /// <summary>
@@ -1257,7 +1257,7 @@ namespace LL.MDE.Components.Qvt.Metamodel.QVTBase
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public UriProxy(IPackage modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Uri")
             {
             }
             
@@ -1280,19 +1280,19 @@ namespace LL.MDE.Components.Qvt.Metamodel.QVTBase
             /// Registers an event handler to subscribe specifically on the changed event for this property
             /// </summary>
             /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.UriChanged += handler;
-            }
+            //protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
+            //{
+            //    this.ModelElement.UriChanged += handler;
+            //}
             
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.UriChanged -= handler;
-            }
+            ///// <summary>
+            ///// Registers an event handler to subscribe specifically on the changed event for this property
+            ///// </summary>
+            ///// <param name="handler">The handler that should be unsubscribed from the property change event</param>
+            //protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
+            //{
+            //    this.ModelElement.UriChanged -= handler;
+            //}
         }
         
         /// <summary>
@@ -1306,7 +1306,7 @@ namespace LL.MDE.Components.Qvt.Metamodel.QVTBase
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public NestingPackageProxy(IPackage modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "NestingPackage")
             {
             }
             
@@ -1329,19 +1329,19 @@ namespace LL.MDE.Components.Qvt.Metamodel.QVTBase
             /// Registers an event handler to subscribe specifically on the changed event for this property
             /// </summary>
             /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.NestingPackageChanged += handler;
-            }
+            //protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
+            //{
+            //    this.ModelElement.NestingPackageChanged += handler;
+            //}
             
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.NestingPackageChanged -= handler;
-            }
+            ///// <summary>
+            ///// Registers an event handler to subscribe specifically on the changed event for this property
+            ///// </summary>
+            ///// <param name="handler">The handler that should be unsubscribed from the property change event</param>
+            //protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
+            //{
+            //    this.ModelElement.NestingPackageChanged -= handler;
+            //}
         }
     }
 }

@@ -59,7 +59,7 @@ namespace LL.MDE.Components.Qvt.Metamodel.EMOF
         public Tag()
         {
             this._element = new ObservableAssociationSet<IElement>();
-            this._element.CollectionChanging += this.ElementCollectionChanging;
+            //this._element.CollectionChanging += this.ElementCollectionChanging;
             this._element.CollectionChanged += this.ElementCollectionChanged;
         }
         
@@ -230,10 +230,10 @@ namespace LL.MDE.Components.Qvt.Metamodel.EMOF
         /// </summary>
         /// <param name="sender">The collection that raised the change</param>
         /// <param name="e">The original event data</param>
-        private void ElementCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
-        {
-            this.OnCollectionChanging("Element", e);
-        }
+        //private void ElementCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
+        //{
+        //    this.OnCollectionChanging("Element", e);
+        //}
         
         /// <summary>
         /// Forwards CollectionChanged notifications for the Element property to the parent model element
@@ -454,7 +454,7 @@ namespace LL.MDE.Components.Qvt.Metamodel.EMOF
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public NameProxy(ITag modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Name")
             {
             }
             
@@ -477,19 +477,19 @@ namespace LL.MDE.Components.Qvt.Metamodel.EMOF
             /// Registers an event handler to subscribe specifically on the changed event for this property
             /// </summary>
             /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.NameChanged += handler;
-            }
+            //protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
+            //{
+            //    this.ModelElement.NameChanged += handler;
+            //}
             
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.NameChanged -= handler;
-            }
+            ///// <summary>
+            ///// Registers an event handler to subscribe specifically on the changed event for this property
+            ///// </summary>
+            ///// <param name="handler">The handler that should be unsubscribed from the property change event</param>
+            //protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
+            //{
+            //    this.ModelElement.NameChanged -= handler;
+            //}
         }
         
         /// <summary>
@@ -503,7 +503,7 @@ namespace LL.MDE.Components.Qvt.Metamodel.EMOF
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ValueProxy(ITag modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Value")
             {
             }
             
@@ -526,19 +526,19 @@ namespace LL.MDE.Components.Qvt.Metamodel.EMOF
             /// Registers an event handler to subscribe specifically on the changed event for this property
             /// </summary>
             /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ValueChanged += handler;
-            }
+            //protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
+            //{
+            //    this.ModelElement.ValueChanged += handler;
+            //}
             
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ValueChanged -= handler;
-            }
+            ///// <summary>
+            ///// Registers an event handler to subscribe specifically on the changed event for this property
+            ///// </summary>
+            ///// <param name="handler">The handler that should be unsubscribed from the property change event</param>
+            //protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
+            //{
+            //    this.ModelElement.ValueChanged -= handler;
+            //}
         }
     }
 }

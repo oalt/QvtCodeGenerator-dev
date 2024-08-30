@@ -483,7 +483,7 @@ namespace LL.MDE.Components.Qvt.Metamodel.QVTBase
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public QueryExpressionProxy(IFunction modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "QueryExpression")
             {
             }
             
@@ -506,19 +506,19 @@ namespace LL.MDE.Components.Qvt.Metamodel.QVTBase
             /// Registers an event handler to subscribe specifically on the changed event for this property
             /// </summary>
             /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.QueryExpressionChanged += handler;
-            }
+            //protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
+            //{
+            //    this.ModelElement.QueryExpressionChanged += handler;
+            //}
             
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.QueryExpressionChanged -= handler;
-            }
+            ///// <summary>
+            ///// Registers an event handler to subscribe specifically on the changed event for this property
+            ///// </summary>
+            ///// <param name="handler">The handler that should be unsubscribed from the property change event</param>
+            //protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
+            //{
+            //    this.ModelElement.QueryExpressionChanged -= handler;
+            //}
         }
     }
 }

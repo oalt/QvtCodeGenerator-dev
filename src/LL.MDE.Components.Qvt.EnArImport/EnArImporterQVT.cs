@@ -17,7 +17,7 @@ using QVTBase = LL.MDE.Components.Qvt.Metamodel.QVTBase;
 using QVTRelations = LL.MDE.Components.Qvt.Metamodel.QVTRelation;
 using QVTTemplate = LL.MDE.Components.Qvt.Metamodel.QVTTemplate;
 using EssentialOCL = LL.MDE.Components.Qvt.Metamodel.EssentialOCL;
-using EnAr = LL.MDE.DataModels.EnAr;
+using EnAr = MDD4All.EAFacade.DataModels.Contracts;
 
 namespace LL.MDE.Components.Qvt.EnArImport
 {

@@ -54,7 +54,7 @@ namespace LL.MDE.Components.Qvt.Metamodel.EssentialOCL
         public LoopExp()
         {
             this._iterator = new ObservableCompositionOrderedSet<IVariable>(this);
-            this._iterator.CollectionChanging += this.IteratorCollectionChanging;
+            //this._iterator.CollectionChanging += this.IteratorCollectionChanging;
             this._iterator.CollectionChanged += this.IteratorCollectionChanged;
         }
         
@@ -184,10 +184,10 @@ namespace LL.MDE.Components.Qvt.Metamodel.EssentialOCL
         /// </summary>
         /// <param name="sender">The collection that raised the change</param>
         /// <param name="e">The original event data</param>
-        private void IteratorCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
-        {
-            this.OnCollectionChanging("Iterator", e);
-        }
+        //private void IteratorCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
+        //{
+        //    this.OnCollectionChanging("Iterator", e);
+        //}
         
         /// <summary>
         /// Forwards CollectionChanged notifications for the Iterator property to the parent model element
@@ -628,7 +628,7 @@ namespace LL.MDE.Components.Qvt.Metamodel.EssentialOCL
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public BodyProxy(ILoopExp modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Body")
             {
             }
             
@@ -651,19 +651,19 @@ namespace LL.MDE.Components.Qvt.Metamodel.EssentialOCL
             /// Registers an event handler to subscribe specifically on the changed event for this property
             /// </summary>
             /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.BodyChanged += handler;
-            }
+            //protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
+            //{
+            //    this.ModelElement.BodyChanged += handler;
+            //}
             
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.BodyChanged -= handler;
-            }
+            ///// <summary>
+            ///// Registers an event handler to subscribe specifically on the changed event for this property
+            ///// </summary>
+            ///// <param name="handler">The handler that should be unsubscribed from the property change event</param>
+            //protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
+            //{
+            //    this.ModelElement.BodyChanged -= handler;
+            //}
         }
     }
 }

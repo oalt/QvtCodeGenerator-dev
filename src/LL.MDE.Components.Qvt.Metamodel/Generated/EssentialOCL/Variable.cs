@@ -712,7 +712,7 @@ namespace LL.MDE.Components.Qvt.Metamodel.EssentialOCL
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public InitExpressionProxy(IVariable modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "InitExpression")
             {
             }
             
@@ -735,19 +735,19 @@ namespace LL.MDE.Components.Qvt.Metamodel.EssentialOCL
             /// Registers an event handler to subscribe specifically on the changed event for this property
             /// </summary>
             /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.InitExpressionChanged += handler;
-            }
+            //protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
+            //{
+            //    this.ModelElement.InitExpressionChanged += handler;
+            //}
             
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.InitExpressionChanged -= handler;
-            }
+            ///// <summary>
+            ///// Registers an event handler to subscribe specifically on the changed event for this property
+            ///// </summary>
+            ///// <param name="handler">The handler that should be unsubscribed from the property change event</param>
+            //protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
+            //{
+            //    this.ModelElement.InitExpressionChanged -= handler;
+            //}
         }
         
         /// <summary>
@@ -761,7 +761,7 @@ namespace LL.MDE.Components.Qvt.Metamodel.EssentialOCL
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public LetExpProxy(IVariable modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "LetExp")
             {
             }
             
@@ -784,19 +784,19 @@ namespace LL.MDE.Components.Qvt.Metamodel.EssentialOCL
             /// Registers an event handler to subscribe specifically on the changed event for this property
             /// </summary>
             /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.LetExpChanged += handler;
-            }
+            //protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
+            //{
+            //    this.ModelElement.LetExpChanged += handler;
+            //}
             
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.LetExpChanged -= handler;
-            }
+            ///// <summary>
+            ///// Registers an event handler to subscribe specifically on the changed event for this property
+            ///// </summary>
+            ///// <param name="handler">The handler that should be unsubscribed from the property change event</param>
+            //protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
+            //{
+            //    this.ModelElement.LetExpChanged -= handler;
+            //}
         }
         
         /// <summary>
@@ -810,7 +810,7 @@ namespace LL.MDE.Components.Qvt.Metamodel.EssentialOCL
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public RepresentedParameterProxy(IVariable modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "RepresentedParameter")
             {
             }
             
@@ -833,19 +833,19 @@ namespace LL.MDE.Components.Qvt.Metamodel.EssentialOCL
             /// Registers an event handler to subscribe specifically on the changed event for this property
             /// </summary>
             /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.RepresentedParameterChanged += handler;
-            }
+            //protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
+            //{
+            //    this.ModelElement.RepresentedParameterChanged += handler;
+            //}
             
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.RepresentedParameterChanged -= handler;
-            }
+            ///// <summary>
+            ///// Registers an event handler to subscribe specifically on the changed event for this property
+            ///// </summary>
+            ///// <param name="handler">The handler that should be unsubscribed from the property change event</param>
+            //protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
+            //{
+            //    this.ModelElement.RepresentedParameterChanged -= handler;
+            //}
         }
     }
 }

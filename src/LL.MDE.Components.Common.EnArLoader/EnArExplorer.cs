@@ -1,19 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
-using EnAr = LL.MDE.DataModels.EnAr;
+using EnAr = MDD4All.EAFacade.DataModels.Contracts;
 
 namespace LL.MDE.Components.Common.EnArLoader
 {
     public class EnArExplorer
     {
-        public readonly EnAr.Repository repository;
-        private readonly EA.Repository repositoryEa;
+        public readonly EnAr.Repository Repository;
+        private readonly EA.Repository _repositoryEa;
 
         public EnArExplorer(EnAr.Repository repository, EA.Repository repositoryEA)
         {
             if (repositoryEA == null) throw new ArgumentNullException(nameof(repositoryEA));
-            this.repository = repository;
-            this.repositoryEa = repositoryEA;
+            Repository = repository;
+            _repositoryEa = repositoryEA;
         }
 
         public static bool EqualsNoCase(string s1, string s2)
@@ -23,19 +23,19 @@ namespace LL.MDE.Components.Common.EnArLoader
 
         public EnAr.Package GetPackageByGuid(string guid)
         {
-            EnAr.Element element = repository.GetElementByGuid(guid);
+            EnAr.Element element = Repository.GetElementByGuid(guid);
             return FindPackage(element);
         }
 
         public List<EnAr.Package> FindPackagesWithStereotype(string stereotype)
         {
             return
-                repository.AllPackages.FindAll(p => p?.Element != null && EqualsNoCase(p.Element.Stereotype, stereotype));
+                Repository.AllPackages.FindAll(p => p?.Element != null && EqualsNoCase(p.Element.Stereotype, stereotype));
         }
 
         public List<EnAr.Element> FindElementsWithType(string type)
         {
-            return repository.AllElements.FindAll(e => EqualsNoCase(e.Type, type));
+            return Repository.AllElements.FindAll(e => EqualsNoCase(e.Type, type));
         }
 
         public List<EnAr.Element> FindElementsWithTypeAndStereotype(string type, string stereotype)
@@ -45,7 +45,7 @@ namespace LL.MDE.Components.Common.EnArLoader
 
         public EnAr.Package FindPackage(EnAr.Element element)
         {
-            return repository.AllPackages.Find(p => p?.Element?.ElementID == element.ElementID);
+            return Repository.AllPackages.Find(p => p?.Element?.ElementID == element.ElementID);
         }
 
         public List<EnAr.Element> GetChildrenElements(EnAr.Package package)
@@ -71,7 +71,7 @@ namespace LL.MDE.Components.Common.EnArLoader
 
         public List<EnAr.Package> GetChildrenPackages(EnAr.Package package)
         {
-            return repository.AllPackages.FindAll(p => p.ParentID == package.PackageID);
+            return Repository.AllPackages.FindAll(p => p.ParentID == package.PackageID);
         }
 
         public List<EnAr.Element> GetChildrenElementsWithType(EnAr.Package package, string type)
@@ -93,7 +93,7 @@ namespace LL.MDE.Components.Common.EnArLoader
             }
             else
             {
-                return repository.AllElements.FindAll(e => e.ParentID == element.ElementID);
+                return Repository.AllElements.FindAll(e => e.ParentID == element.ElementID);
             }
         }
 
@@ -116,7 +116,9 @@ namespace LL.MDE.Components.Common.EnArLoader
             foreach (object attribute in classElement.Attributes)
             {
                 if (attribute is EnAr.Attribute)
+                {
                     result.Add(attribute as EnAr.Attribute);
+                }
             }
             return result;
         }
@@ -124,7 +126,7 @@ namespace LL.MDE.Components.Common.EnArLoader
         public List<EnAr.Connector> GetConnectorsLinkedTo(EnAr.Element element)
         {
             return
-                repository.AllConnectors.FindAll(
+                Repository.AllConnectors.FindAll(
                     c => c.ClientID == element.ElementID || c.SupplierID == element.ElementID);
         }
 
@@ -144,7 +146,7 @@ namespace LL.MDE.Components.Common.EnArLoader
 
         public List<EnAr.Connector> GetConnectorsWithSource(EnAr.Element element)
         {
-            return repository.AllConnectors.FindAll(c => c.ClientID == element.ElementID);
+            return Repository.AllConnectors.FindAll(c => c.ClientID == element.ElementID);
         }
 
         public List<EnAr.Connector> GetConnectorsWithSourceWithStereotype(EnAr.Element element, string stereotype)
@@ -154,12 +156,12 @@ namespace LL.MDE.Components.Common.EnArLoader
 
         public EnAr.Element GetTargetElement(EnAr.Connector c)
         {
-            return repository.AllElements.Find(element => c.SupplierID == element.ElementID);
+            return Repository.AllElements.Find(element => c.SupplierID == element.ElementID);
         }
 
         public EnAr.Element GetSourceElement(EnAr.Connector c)
         {
-            return repository.AllElements.Find(element => c.ClientID == element.ElementID);
+            return Repository.AllElements.Find(element => c.ClientID == element.ElementID);
         }
 
         public List<EnAr.Method> GetMethods(EnAr.Element e)
@@ -244,17 +246,17 @@ namespace LL.MDE.Components.Common.EnArLoader
 
         public EA.Element GetEaObject(EnAr.Element element)
         {
-            return repositoryEa.GetElementByGuid(element.ElementGUID);
+            return _repositoryEa.GetElementByGuid(element.ElementGUID);
         }
 
         public EA.Connector GetEaObject(EnAr.Connector connector)
         {
-            return repositoryEa.GetConnectorByGuid(connector.ConnectorGUID);
+            return _repositoryEa.GetConnectorByGuid(connector.ConnectorGUID);
         }
 
         public EA.Package GetEaObject(EnAr.Package package)
         {
-            return repositoryEa.GetPackageByGuid(package.PackageGUID);
+            return _repositoryEa.GetPackageByGuid(package.PackageGUID);
         }
 
     }

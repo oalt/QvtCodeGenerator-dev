@@ -1,7 +1,6 @@
 ﻿using System;
-using System.Runtime.Serialization;
 
-using LL.MDE.DataModels.EnAr;
+using MDD4All.EAFacade.DataModels.Contracts;
 
 namespace LL.MDE.Components.Qvt.EnArImport
 {

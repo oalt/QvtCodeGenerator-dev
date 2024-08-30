@@ -319,7 +319,7 @@ namespace LL.MDE.Components.Qvt.Metamodel.EssentialOCL
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ElementTypeProxy(ICollectionType modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "ElementType")
             {
             }
             
@@ -342,19 +342,19 @@ namespace LL.MDE.Components.Qvt.Metamodel.EssentialOCL
             /// Registers an event handler to subscribe specifically on the changed event for this property
             /// </summary>
             /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ElementTypeChanged += handler;
-            }
+            //protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
+            //{
+            //    this.ModelElement.ElementTypeChanged += handler;
+            //}
             
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ElementTypeChanged -= handler;
-            }
+            ///// <summary>
+            ///// Registers an event handler to subscribe specifically on the changed event for this property
+            ///// </summary>
+            ///// <param name="handler">The handler that should be unsubscribed from the property change event</param>
+            //protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
+            //{
+            //    this.ModelElement.ElementTypeChanged -= handler;
+            //}
         }
     }
 }

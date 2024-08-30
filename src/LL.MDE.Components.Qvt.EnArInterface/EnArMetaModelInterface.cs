@@ -1,7 +1,9 @@
 ﻿using System.Reflection;
-
 using LL.MDE.Components.Qvt.Common;
-using LL.MDE.DataModels.EnAr;
+
+
+//using LL.MDE.Components.Qvt.Common;
+using MDD4All.EAFacade.DataModels.Contracts;
 
 namespace LL.MDE.Components.Qvt.EnArInterface
 {

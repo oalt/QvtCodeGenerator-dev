@@ -69,10 +69,10 @@ namespace LL.MDE.Components.Qvt.Metamodel.EssentialOCL
         public ExpressionInOcl()
         {
             this._generatedType = new ObservableCompositionSet<IType>(this);
-            this._generatedType.CollectionChanging += this.GeneratedTypeCollectionChanging;
+            //this._generatedType.CollectionChanging += this.GeneratedTypeCollectionChanging;
             this._generatedType.CollectionChanged += this.GeneratedTypeCollectionChanged;
             this._parameterVariable = new ObservableCompositionSet<IVariable>(this);
-            this._parameterVariable.CollectionChanging += this.ParameterVariableCollectionChanging;
+            //this._parameterVariable.CollectionChanging += this.ParameterVariableCollectionChanging;
             this._parameterVariable.CollectionChanged += this.ParameterVariableCollectionChanged;
         }
         
@@ -348,10 +348,10 @@ namespace LL.MDE.Components.Qvt.Metamodel.EssentialOCL
         /// </summary>
         /// <param name="sender">The collection that raised the change</param>
         /// <param name="e">The original event data</param>
-        private void GeneratedTypeCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
-        {
-            this.OnCollectionChanging("GeneratedType", e);
-        }
+        //private void GeneratedTypeCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
+        //{
+        //    this.OnCollectionChanging("GeneratedType", e);
+        //}
         
         /// <summary>
         /// Forwards CollectionChanged notifications for the GeneratedType property to the parent model element
@@ -368,10 +368,10 @@ namespace LL.MDE.Components.Qvt.Metamodel.EssentialOCL
         /// </summary>
         /// <param name="sender">The collection that raised the change</param>
         /// <param name="e">The original event data</param>
-        private void ParameterVariableCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
-        {
-            this.OnCollectionChanging("ParameterVariable", e);
-        }
+        //private void ParameterVariableCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
+        //{
+        //    this.OnCollectionChanging("ParameterVariable", e);
+        //}
         
         /// <summary>
         /// Forwards CollectionChanged notifications for the ParameterVariable property to the parent model element
@@ -1066,7 +1066,7 @@ namespace LL.MDE.Components.Qvt.Metamodel.EssentialOCL
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public BodyExpressionProxy(IExpressionInOcl modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "BodyExpression")
             {
             }
             
@@ -1089,19 +1089,19 @@ namespace LL.MDE.Components.Qvt.Metamodel.EssentialOCL
             /// Registers an event handler to subscribe specifically on the changed event for this property
             /// </summary>
             /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.BodyExpressionChanged += handler;
-            }
+            //protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
+            //{
+            //    this.ModelElement.BodyExpressionChanged += handler;
+            //}
             
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.BodyExpressionChanged -= handler;
-            }
+            ///// <summary>
+            ///// Registers an event handler to subscribe specifically on the changed event for this property
+            ///// </summary>
+            ///// <param name="handler">The handler that should be unsubscribed from the property change event</param>
+            //protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
+            //{
+            //    this.ModelElement.BodyExpressionChanged -= handler;
+            //}
         }
         
         /// <summary>
@@ -1115,7 +1115,7 @@ namespace LL.MDE.Components.Qvt.Metamodel.EssentialOCL
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ContextVariableProxy(IExpressionInOcl modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "ContextVariable")
             {
             }
             
@@ -1138,19 +1138,19 @@ namespace LL.MDE.Components.Qvt.Metamodel.EssentialOCL
             /// Registers an event handler to subscribe specifically on the changed event for this property
             /// </summary>
             /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ContextVariableChanged += handler;
-            }
+            //protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
+            //{
+            //    this.ModelElement.ContextVariableChanged += handler;
+            //}
             
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ContextVariableChanged -= handler;
-            }
+            ///// <summary>
+            ///// Registers an event handler to subscribe specifically on the changed event for this property
+            ///// </summary>
+            ///// <param name="handler">The handler that should be unsubscribed from the property change event</param>
+            //protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
+            //{
+            //    this.ModelElement.ContextVariableChanged -= handler;
+            //}
         }
         
         /// <summary>
@@ -1164,7 +1164,7 @@ namespace LL.MDE.Components.Qvt.Metamodel.EssentialOCL
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ResultVariableProxy(IExpressionInOcl modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "ResultVariable")
             {
             }
             
@@ -1187,19 +1187,19 @@ namespace LL.MDE.Components.Qvt.Metamodel.EssentialOCL
             /// Registers an event handler to subscribe specifically on the changed event for this property
             /// </summary>
             /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ResultVariableChanged += handler;
-            }
+            //protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
+            //{
+            //    this.ModelElement.ResultVariableChanged += handler;
+            //}
             
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ResultVariableChanged -= handler;
-            }
+            ///// <summary>
+            ///// Registers an event handler to subscribe specifically on the changed event for this property
+            ///// </summary>
+            ///// <param name="handler">The handler that should be unsubscribed from the property change event</param>
+            //protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
+            //{
+            //    this.ModelElement.ResultVariableChanged -= handler;
+            //}
         }
     }
 }

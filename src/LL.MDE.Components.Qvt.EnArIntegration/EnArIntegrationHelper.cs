@@ -1,10 +1,10 @@
 ﻿using EA;
 
 using LL.MDE.Components.Common.EnArLoader;
-using LL.MDE.DataAccess.EnAr.Hybrid;
 using LL.MDE.Components.Qvt.EnArImport;
 using LL.MDE.Components.Qvt.Metamodel.QVTRelation;
 using LL.MDE.Components.Qvt.QvtCodeGenerator.CodeGeneration;
+using MDD4All.EAFacade.DataAccess.Cached;
 
 namespace LL.MDE.Components.Qvt.EnArIntegration
 {
@@ -21,7 +21,8 @@ namespace LL.MDE.Components.Qvt.EnArIntegration
         public static void GenerateTransformationCode(Repository eaRepository, string transformationGuid, string absoluteOutputFolder, bool useMetamodelInterface = true)
         {
             // Create hybrid repository of an EA instance
-            RepositoryImpl hybridrepo = new RepositoryImpl(eaRepository);
+            CachedRepository hybridrepo = new CachedRepository(eaRepository);
+            hybridrepo.CacheAll();
 
             // Import the transformation as real qvt model
             EnArExplorer explorer = new EnArExplorer(hybridrepo, eaRepository);

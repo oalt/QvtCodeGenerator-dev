@@ -54,7 +54,7 @@ namespace LL.MDE.Components.Qvt.Metamodel.QVTRelation
         public RelationalTransformation()
         {
             this._ownedKey = new RelationalTransformationOwnedKeyCollection(this);
-            this._ownedKey.CollectionChanging += this.OwnedKeyCollectionChanging;
+            //this._ownedKey.CollectionChanging += this.OwnedKeyCollectionChanging;
             this._ownedKey.CollectionChanged += this.OwnedKeyCollectionChanged;
         }
         
@@ -117,10 +117,10 @@ namespace LL.MDE.Components.Qvt.Metamodel.QVTRelation
         /// </summary>
         /// <param name="sender">The collection that raised the change</param>
         /// <param name="e">The original event data</param>
-        private void OwnedKeyCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
-        {
-            this.OnCollectionChanging("OwnedKey", e);
-        }
+        //private void OwnedKeyCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
+        //{
+        //    this.OnCollectionChanging("OwnedKey", e);
+        //}
         
         /// <summary>
         /// Forwards CollectionChanged notifications for the OwnedKey property to the parent model element

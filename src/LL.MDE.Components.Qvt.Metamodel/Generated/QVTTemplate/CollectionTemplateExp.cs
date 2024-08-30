@@ -60,7 +60,7 @@ namespace LL.MDE.Components.Qvt.Metamodel.QVTTemplate
         public CollectionTemplateExp()
         {
             this._member = new ObservableCompositionSet<IOclExpression>(this);
-            this._member.CollectionChanging += this.MemberCollectionChanging;
+            //this._member.CollectionChanging += this.MemberCollectionChanging;
             this._member.CollectionChanged += this.MemberCollectionChanged;
         }
         
@@ -195,10 +195,10 @@ namespace LL.MDE.Components.Qvt.Metamodel.QVTTemplate
         /// </summary>
         /// <param name="sender">The collection that raised the change</param>
         /// <param name="e">The original event data</param>
-        private void MemberCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
-        {
-            this.OnCollectionChanging("Member", e);
-        }
+        //private void MemberCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
+        //{
+        //    this.OnCollectionChanging("Member", e);
+        //}
         
         /// <summary>
         /// Forwards CollectionChanged notifications for the Member property to the parent model element
@@ -679,7 +679,7 @@ namespace LL.MDE.Components.Qvt.Metamodel.QVTTemplate
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ReferredCollectionTypeProxy(ICollectionTemplateExp modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "ReferredCollectionType")
             {
             }
             
@@ -702,19 +702,19 @@ namespace LL.MDE.Components.Qvt.Metamodel.QVTTemplate
             /// Registers an event handler to subscribe specifically on the changed event for this property
             /// </summary>
             /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ReferredCollectionTypeChanged += handler;
-            }
+            //protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
+            //{
+            //    this.ModelElement.ReferredCollectionTypeChanged += handler;
+            //}
             
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ReferredCollectionTypeChanged -= handler;
-            }
+            ///// <summary>
+            ///// Registers an event handler to subscribe specifically on the changed event for this property
+            ///// </summary>
+            ///// <param name="handler">The handler that should be unsubscribed from the property change event</param>
+            //protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
+            //{
+            //    this.ModelElement.ReferredCollectionTypeChanged -= handler;
+            //}
         }
         
         /// <summary>
@@ -728,7 +728,7 @@ namespace LL.MDE.Components.Qvt.Metamodel.QVTTemplate
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public RestProxy(ICollectionTemplateExp modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Rest")
             {
             }
             
@@ -751,19 +751,19 @@ namespace LL.MDE.Components.Qvt.Metamodel.QVTTemplate
             /// Registers an event handler to subscribe specifically on the changed event for this property
             /// </summary>
             /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.RestChanged += handler;
-            }
+            //protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
+            //{
+            //    this.ModelElement.RestChanged += handler;
+            //}
             
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.RestChanged -= handler;
-            }
+            ///// <summary>
+            ///// Registers an event handler to subscribe specifically on the changed event for this property
+            ///// </summary>
+            ///// <param name="handler">The handler that should be unsubscribed from the property change event</param>
+            //protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
+            //{
+            //    this.ModelElement.RestChanged -= handler;
+            //}
         }
     }
 }

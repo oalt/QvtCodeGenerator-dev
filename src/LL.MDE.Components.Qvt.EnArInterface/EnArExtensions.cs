@@ -1,5 +1,7 @@
 ﻿using System.Linq;
 
+using MDD4All.EAFacade.DataModels.Contracts;
+
 // ReSharper disable once CheckNamespace
 namespace LL.MDE.DataModels.EnAr
 {

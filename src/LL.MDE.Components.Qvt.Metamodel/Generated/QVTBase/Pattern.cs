@@ -54,10 +54,10 @@ namespace LL.MDE.Components.Qvt.Metamodel.QVTBase
         public Pattern()
         {
             this._bindsTo = new ObservableAssociationSet<IVariable>();
-            this._bindsTo.CollectionChanging += this.BindsToCollectionChanging;
+            //this._bindsTo.CollectionChanging += this.BindsToCollectionChanging;
             this._bindsTo.CollectionChanged += this.BindsToCollectionChanged;
             this._predicate = new PatternPredicateCollection(this);
-            this._predicate.CollectionChanging += this.PredicateCollectionChanging;
+            //this._predicate.CollectionChanging += this.PredicateCollectionChanging;
             this._predicate.CollectionChanged += this.PredicateCollectionChanged;
         }
         
@@ -120,10 +120,10 @@ namespace LL.MDE.Components.Qvt.Metamodel.QVTBase
         /// </summary>
         /// <param name="sender">The collection that raised the change</param>
         /// <param name="e">The original event data</param>
-        private void BindsToCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
-        {
-            this.OnCollectionChanging("BindsTo", e);
-        }
+        //private void BindsToCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
+        //{
+        //    this.OnCollectionChanging("BindsTo", e);
+        //}
         
         /// <summary>
         /// Forwards CollectionChanged notifications for the BindsTo property to the parent model element
@@ -140,10 +140,10 @@ namespace LL.MDE.Components.Qvt.Metamodel.QVTBase
         /// </summary>
         /// <param name="sender">The collection that raised the change</param>
         /// <param name="e">The original event data</param>
-        private void PredicateCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
-        {
-            this.OnCollectionChanging("Predicate", e);
-        }
+        //private void PredicateCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
+        //{
+        //    this.OnCollectionChanging("Predicate", e);
+        //}
         
         /// <summary>
         /// Forwards CollectionChanged notifications for the Predicate property to the parent model element

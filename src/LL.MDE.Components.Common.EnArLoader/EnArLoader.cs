@@ -1,15 +1,11 @@
 ﻿using System;
 using System.IO;
 using System.Threading;
-
 using EA;
-using LL.MDE.DataAccess.EnAr.Hybrid;
 using LL.MDE.Components.Common.Util;
-
-using NUnit.Framework;
-
 using File = System.IO.File;
-using Package = LL.MDE.DataModels.EnAr.Package;
+using Package = MDD4All.EAFacade.DataModels.Contracts.Package;
+using MDD4All.EAFacade.DataAccess.Cached;
 
 namespace LL.MDE.Components.Common.EnArLoader
 {
@@ -23,7 +19,7 @@ namespace LL.MDE.Components.Common.EnArLoader
         public string AbsolutePathToOutput { get; }
         public EnArExplorer Explorer { get; }
 
-        public readonly RepositoryImpl currentLlRepository;
+        public readonly CachedRepository currentLlRepository;
         private readonly string projectFolder;
         private bool dataModelReadyToUse;
 
@@ -54,26 +50,33 @@ namespace LL.MDE.Components.Common.EnArLoader
                     string absolutePathToModelCopy = absolutePathToModel;
                     absolutePathToModelCopy = Path.ChangeExtension(absolutePathToModelCopy, ".tmp.eap");
                     if (File.Exists(absolutePathToModelCopy))
+                    {
                         File.Delete(absolutePathToModelCopy);
+                    }
                     File.Copy(absolutePathToModel, absolutePathToModelCopy);
                     absolutePathToModel = absolutePathToModelCopy;
                 }
 
                 bool openResult = currentEaRepository.OpenFile(absolutePathToModel);
-                Assert.True(openResult, "The file " + absolutePathToModel + "could not be opened");
+                //Assert.True(openResult, "The file " + absolutePathToModel + "could not be opened");
 
                 // Opens the model    
-                currentLlRepository = new RepositoryImpl(currentEaRepository);
-                currentLlRepository.ChachingFinished += HybridRepositoryCachingFinished;
+                currentLlRepository = new CachedRepository(currentEaRepository);
+                currentLlRepository.CacheAll();
+
+                currentLlRepository.CachingFinished += HybridRepositoryCachingFinished;
                 for (int i = 0; i < 50; i++)
                 {
                     if (dataModelReadyToUse == false)
+                    {
                         Thread.Sleep(500);
+                    }
                 }
 
                 if (dataModelReadyToUse == false)
+                {
                     throw new Exception("Timeout when trying to open EnAr file " + fileName);
-
+                }
                 Explorer = new EnArExplorer(currentLlRepository, currentEaRepository);
             }
         }
@@ -114,6 +117,6 @@ namespace LL.MDE.Components.Common.EnArLoader
         {
             return currentLlRepository.GetPackageByGuid(guid);
         }
-        
+
     }
 }

@@ -73,10 +73,10 @@ namespace LL.MDE.Components.Qvt.Metamodel.EMOF
         public Operation()
         {
             this._ownedParameter = new OperationOwnedParameterCollection(this);
-            this._ownedParameter.CollectionChanging += this.OwnedParameterCollectionChanging;
+            //this._ownedParameter.CollectionChanging += this.OwnedParameterCollectionChanging;
             this._ownedParameter.CollectionChanged += this.OwnedParameterCollectionChanged;
             this._raisedException = new ObservableAssociationSet<IType>();
-            this._raisedException.CollectionChanging += this.RaisedExceptionCollectionChanging;
+            //this._raisedException.CollectionChanging += this.RaisedExceptionCollectionChanging;
             this._raisedException.CollectionChanged += this.RaisedExceptionCollectionChanged;
         }
         
@@ -346,10 +346,10 @@ namespace LL.MDE.Components.Qvt.Metamodel.EMOF
         /// </summary>
         /// <param name="sender">The collection that raised the change</param>
         /// <param name="e">The original event data</param>
-        private void OwnedParameterCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
-        {
-            this.OnCollectionChanging("OwnedParameter", e);
-        }
+        //private void OwnedParameterCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
+        //{
+        //    this.OnCollectionChanging("OwnedParameter", e);
+        //}
         
         /// <summary>
         /// Forwards CollectionChanged notifications for the OwnedParameter property to the parent model element
@@ -366,10 +366,10 @@ namespace LL.MDE.Components.Qvt.Metamodel.EMOF
         /// </summary>
         /// <param name="sender">The collection that raised the change</param>
         /// <param name="e">The original event data</param>
-        private void RaisedExceptionCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
-        {
-            this.OnCollectionChanging("RaisedException", e);
-        }
+        //private void RaisedExceptionCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
+        //{
+        //    this.OnCollectionChanging("RaisedException", e);
+        //}
         
         /// <summary>
         /// Forwards CollectionChanged notifications for the RaisedException property to the parent model element
@@ -961,7 +961,7 @@ namespace LL.MDE.Components.Qvt.Metamodel.EMOF
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ClassProxy(IOperation modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Class")
             {
             }
             
@@ -979,12 +979,13 @@ namespace LL.MDE.Components.Qvt.Metamodel.EMOF
                     this.ModelElement.Class = value;
                 }
             }
-            
+           
+
             /// <summary>
             /// Registers an event handler to subscribe specifically on the changed event for this property
             /// </summary>
             /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
+            protected void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
             {
                 this.ModelElement.ClassChanged += handler;
             }
@@ -993,7 +994,7 @@ namespace LL.MDE.Components.Qvt.Metamodel.EMOF
             /// Registers an event handler to subscribe specifically on the changed event for this property
             /// </summary>
             /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
+            protected void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
             {
                 this.ModelElement.ClassChanged -= handler;
             }
@@ -1010,7 +1011,7 @@ namespace LL.MDE.Components.Qvt.Metamodel.EMOF
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public IsOrderedProxy(IMultiplicityElement modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "IsOrdered")
             {
             }
             
@@ -1033,19 +1034,19 @@ namespace LL.MDE.Components.Qvt.Metamodel.EMOF
             /// Registers an event handler to subscribe specifically on the changed event for this property
             /// </summary>
             /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.IsOrderedChanged += handler;
-            }
+            //protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
+            //{
+            //    this.ModelElement.IsOrderedChanged += handler;
+            //}
             
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.IsOrderedChanged -= handler;
-            }
+            ///// <summary>
+            ///// Registers an event handler to subscribe specifically on the changed event for this property
+            ///// </summary>
+            ///// <param name="handler">The handler that should be unsubscribed from the property change event</param>
+            //protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
+            //{
+            //    this.ModelElement.IsOrderedChanged -= handler;
+            //}
         }
         
         /// <summary>
@@ -1059,7 +1060,7 @@ namespace LL.MDE.Components.Qvt.Metamodel.EMOF
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public IsUniqueProxy(IMultiplicityElement modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "IsUnique")
             {
             }
             
@@ -1082,19 +1083,19 @@ namespace LL.MDE.Components.Qvt.Metamodel.EMOF
             /// Registers an event handler to subscribe specifically on the changed event for this property
             /// </summary>
             /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.IsUniqueChanged += handler;
-            }
+            //protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
+            //{
+            //    this.ModelElement.IsUniqueChanged += handler;
+            //}
             
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.IsUniqueChanged -= handler;
-            }
+            ///// <summary>
+            ///// Registers an event handler to subscribe specifically on the changed event for this property
+            ///// </summary>
+            ///// <param name="handler">The handler that should be unsubscribed from the property change event</param>
+            //protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
+            //{
+            //    this.ModelElement.IsUniqueChanged -= handler;
+            //}
         }
         
         /// <summary>
@@ -1108,7 +1109,7 @@ namespace LL.MDE.Components.Qvt.Metamodel.EMOF
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public LowerProxy(IMultiplicityElement modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Lower")
             {
             }
             
@@ -1131,19 +1132,19 @@ namespace LL.MDE.Components.Qvt.Metamodel.EMOF
             /// Registers an event handler to subscribe specifically on the changed event for this property
             /// </summary>
             /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.LowerChanged += handler;
-            }
+            //protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
+            //{
+            //    this.ModelElement.LowerChanged += handler;
+            //}
             
             /// <summary>
             /// Registers an event handler to subscribe specifically on the changed event for this property
             /// </summary>
             /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.LowerChanged -= handler;
-            }
+            //protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
+            //{
+            //    this.ModelElement.LowerChanged -= handler;
+            //}
         }
         
         /// <summary>
@@ -1157,7 +1158,7 @@ namespace LL.MDE.Components.Qvt.Metamodel.EMOF
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public UpperProxy(IMultiplicityElement modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Upper")
             {
             }
             
@@ -1180,19 +1181,19 @@ namespace LL.MDE.Components.Qvt.Metamodel.EMOF
             /// Registers an event handler to subscribe specifically on the changed event for this property
             /// </summary>
             /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.UpperChanged += handler;
-            }
+            //protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
+            //{
+            //    this.ModelElement.UpperChanged += handler;
+            //}
             
             /// <summary>
             /// Registers an event handler to subscribe specifically on the changed event for this property
             /// </summary>
             /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.UpperChanged -= handler;
-            }
+            //protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
+            //{
+            //    this.ModelElement.UpperChanged -= handler;
+            //}
         }
     }
 }

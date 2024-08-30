@@ -55,7 +55,7 @@ namespace LL.MDE.Components.Qvt.Metamodel.QVTTemplate
         public ObjectTemplateExp()
         {
             this._part = new ObjectTemplateExpPartCollection(this);
-            this._part.CollectionChanging += this.PartCollectionChanging;
+            //this._part.CollectionChanging += this.PartCollectionChanging;
             this._part.CollectionChanged += this.PartCollectionChanged;
         }
         
@@ -147,10 +147,10 @@ namespace LL.MDE.Components.Qvt.Metamodel.QVTTemplate
         /// </summary>
         /// <param name="sender">The collection that raised the change</param>
         /// <param name="e">The original event data</param>
-        private void PartCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
-        {
-            this.OnCollectionChanging("Part", e);
-        }
+        //private void PartCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
+        //{
+        //    this.OnCollectionChanging("Part", e);
+        //}
         
         /// <summary>
         /// Forwards CollectionChanged notifications for the Part property to the parent model element
@@ -552,7 +552,7 @@ namespace LL.MDE.Components.Qvt.Metamodel.QVTTemplate
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ReferredClassProxy(IObjectTemplateExp modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "ReferredClass")
             {
             }
             
@@ -575,19 +575,19 @@ namespace LL.MDE.Components.Qvt.Metamodel.QVTTemplate
             /// Registers an event handler to subscribe specifically on the changed event for this property
             /// </summary>
             /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ReferredClassChanged += handler;
-            }
+            //protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
+            //{
+            //    this.ModelElement.ReferredClassChanged += handler;
+            //}
             
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ReferredClassChanged -= handler;
-            }
+            ///// <summary>
+            ///// Registers an event handler to subscribe specifically on the changed event for this property
+            ///// </summary>
+            ///// <param name="handler">The handler that should be unsubscribed from the property change event</param>
+            //protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
+            //{
+            //    this.ModelElement.ReferredClassChanged -= handler;
+            //}
         }
     }
 }

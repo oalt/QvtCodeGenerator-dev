@@ -74,10 +74,10 @@ namespace LL.MDE.Components.Qvt.Metamodel.QVTRelation
         public Relation()
         {
             this._operationalImpl = new RelationOperationalImplCollection(this);
-            this._operationalImpl.CollectionChanging += this.OperationalImplCollectionChanging;
+            //this._operationalImpl.CollectionChanging += this.OperationalImplCollectionChanging;
             this._operationalImpl.CollectionChanged += this.OperationalImplCollectionChanged;
             this._variable = new ObservableCompositionSet<IVariable>(this);
-            this._variable.CollectionChanging += this.VariableCollectionChanging;
+            //this._variable.CollectionChanging += this.VariableCollectionChanging;
             this._variable.CollectionChanged += this.VariableCollectionChanged;
         }
         
@@ -312,10 +312,10 @@ namespace LL.MDE.Components.Qvt.Metamodel.QVTRelation
         /// </summary>
         /// <param name="sender">The collection that raised the change</param>
         /// <param name="e">The original event data</param>
-        private void OperationalImplCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
-        {
-            this.OnCollectionChanging("OperationalImpl", e);
-        }
+        //private void OperationalImplCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
+        //{
+        //    this.OnCollectionChanging("OperationalImpl", e);
+        //}
         
         /// <summary>
         /// Forwards CollectionChanged notifications for the OperationalImpl property to the parent model element
@@ -332,10 +332,10 @@ namespace LL.MDE.Components.Qvt.Metamodel.QVTRelation
         /// </summary>
         /// <param name="sender">The collection that raised the change</param>
         /// <param name="e">The original event data</param>
-        private void VariableCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
-        {
-            this.OnCollectionChanging("Variable", e);
-        }
+        //private void VariableCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
+        //{
+        //    this.OnCollectionChanging("Variable", e);
+        //}
         
         /// <summary>
         /// Forwards CollectionChanged notifications for the Variable property to the parent model element
@@ -1009,7 +1009,7 @@ namespace LL.MDE.Components.Qvt.Metamodel.QVTRelation
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public IsTopLevelProxy(IRelation modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "IsTopLevel")
             {
             }
             
@@ -1032,19 +1032,19 @@ namespace LL.MDE.Components.Qvt.Metamodel.QVTRelation
             /// Registers an event handler to subscribe specifically on the changed event for this property
             /// </summary>
             /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.IsTopLevelChanged += handler;
-            }
+            //protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
+            //{
+            //    this.ModelElement.IsTopLevelChanged += handler;
+            //}
             
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.IsTopLevelChanged -= handler;
-            }
+            ///// <summary>
+            ///// Registers an event handler to subscribe specifically on the changed event for this property
+            ///// </summary>
+            ///// <param name="handler">The handler that should be unsubscribed from the property change event</param>
+            //protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
+            //{
+            //    this.ModelElement.IsTopLevelChanged -= handler;
+            //}
         }
         
         /// <summary>
@@ -1058,7 +1058,7 @@ namespace LL.MDE.Components.Qvt.Metamodel.QVTRelation
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public WhenProxy(IRelation modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "When")
             {
             }
             
@@ -1081,19 +1081,19 @@ namespace LL.MDE.Components.Qvt.Metamodel.QVTRelation
             /// Registers an event handler to subscribe specifically on the changed event for this property
             /// </summary>
             /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.WhenChanged += handler;
-            }
+            //protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
+            //{
+            //    this.ModelElement.WhenChanged += handler;
+            //}
             
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.WhenChanged -= handler;
-            }
+            ///// <summary>
+            ///// Registers an event handler to subscribe specifically on the changed event for this property
+            ///// </summary>
+            ///// <param name="handler">The handler that should be unsubscribed from the property change event</param>
+            //protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
+            //{
+            //    this.ModelElement.WhenChanged -= handler;
+            //}
         }
         
         /// <summary>
@@ -1107,7 +1107,7 @@ namespace LL.MDE.Components.Qvt.Metamodel.QVTRelation
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public WhereProxy(IRelation modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Where")
             {
             }
             
@@ -1130,19 +1130,19 @@ namespace LL.MDE.Components.Qvt.Metamodel.QVTRelation
             /// Registers an event handler to subscribe specifically on the changed event for this property
             /// </summary>
             /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.WhereChanged += handler;
-            }
+            //protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
+            //{
+            //    this.ModelElement.WhereChanged += handler;
+            //}
             
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.WhereChanged -= handler;
-            }
+            ///// <summary>
+            ///// Registers an event handler to subscribe specifically on the changed event for this property
+            ///// </summary>
+            ///// <param name="handler">The handler that should be unsubscribed from the property change event</param>
+            //protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
+            //{
+            //    this.ModelElement.WhereChanged -= handler;
+            //}
         }
     }
 }

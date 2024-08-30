@@ -52,7 +52,7 @@ namespace LL.MDE.Components.Qvt.Metamodel.EMOF
         public Comment()
         {
             this._annotatedElement = new ObservableAssociationSet<INamedElement>();
-            this._annotatedElement.CollectionChanging += this.AnnotatedElementCollectionChanging;
+            //this._annotatedElement.CollectionChanging += this.AnnotatedElementCollectionChanging;
             this._annotatedElement.CollectionChanged += this.AnnotatedElementCollectionChanged;
         }
         
@@ -149,10 +149,10 @@ namespace LL.MDE.Components.Qvt.Metamodel.EMOF
         /// </summary>
         /// <param name="sender">The collection that raised the change</param>
         /// <param name="e">The original event data</param>
-        private void AnnotatedElementCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
-        {
-            this.OnCollectionChanging("AnnotatedElement", e);
-        }
+        //private void AnnotatedElementCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
+        //{
+        //    this.OnCollectionChanging("AnnotatedElement", e);
+        //}
         
         /// <summary>
         /// Forwards CollectionChanged notifications for the AnnotatedElement property to the parent model element
@@ -351,7 +351,7 @@ namespace LL.MDE.Components.Qvt.Metamodel.EMOF
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public BodyProxy(IComment modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "<PropertyName>")
             {
             }
             
@@ -374,19 +374,19 @@ namespace LL.MDE.Components.Qvt.Metamodel.EMOF
             /// Registers an event handler to subscribe specifically on the changed event for this property
             /// </summary>
             /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.BodyChanged += handler;
-            }
+            //protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
+            //{
+            //    this.ModelElement.BodyChanged += handler;
+            //}
             
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.BodyChanged -= handler;
-            }
+            ///// <summary>
+            ///// Registers an event handler to subscribe specifically on the changed event for this property
+            ///// </summary>
+            ///// <param name="handler">The handler that should be unsubscribed from the property change event</param>
+            //protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
+            //{
+            //    this.ModelElement.BodyChanged -= handler;
+            //}
         }
     }
 }

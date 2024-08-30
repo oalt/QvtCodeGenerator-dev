@@ -47,7 +47,7 @@ namespace LL.MDE.Components.Qvt.Metamodel.EMOF
         public Element()
         {
             this._ownedComment = new ObservableCompositionSet<IComment>(this);
-            this._ownedComment.CollectionChanging += this.OwnedCommentCollectionChanging;
+            //this._ownedComment.CollectionChanging += this.OwnedCommentCollectionChanging;
             this._ownedComment.CollectionChanged += this.OwnedCommentCollectionChanged;
         }
         
@@ -180,10 +180,10 @@ namespace LL.MDE.Components.Qvt.Metamodel.EMOF
         /// </summary>
         /// <param name="sender">The collection that raised the change</param>
         /// <param name="e">The original event data</param>
-        private void OwnedCommentCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
-        {
-            this.OnCollectionChanging("OwnedComment", e);
-        }
+        //private void OwnedCommentCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
+        //{
+        //    this.OnCollectionChanging("OwnedComment", e);
+        //}
         
         /// <summary>
         /// Forwards CollectionChanged notifications for the OwnedComment property to the parent model element

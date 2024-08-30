@@ -55,10 +55,10 @@ namespace LL.MDE.Components.Qvt.Metamodel.QVTBase
         public TypedModel()
         {
             this._dependsOn = new ObservableAssociationSet<ITypedModel>();
-            this._dependsOn.CollectionChanging += this.DependsOnCollectionChanging;
+            //this._dependsOn.CollectionChanging += this.DependsOnCollectionChanging;
             this._dependsOn.CollectionChanged += this.DependsOnCollectionChanged;
             this._usedPackage = new ObservableAssociationSet<IPackage>();
-            this._usedPackage.CollectionChanging += this.UsedPackageCollectionChanging;
+            //this._usedPackage.CollectionChanging += this.UsedPackageCollectionChanging;
             this._usedPackage.CollectionChanged += this.UsedPackageCollectionChanged;
         }
         
@@ -133,10 +133,10 @@ namespace LL.MDE.Components.Qvt.Metamodel.QVTBase
         /// </summary>
         /// <param name="sender">The collection that raised the change</param>
         /// <param name="e">The original event data</param>
-        private void DependsOnCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
-        {
-            this.OnCollectionChanging("DependsOn", e);
-        }
+        //private void DependsOnCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
+        //{
+        //    this.OnCollectionChanging("DependsOn", e);
+        //}
         
         /// <summary>
         /// Forwards CollectionChanged notifications for the DependsOn property to the parent model element
@@ -188,10 +188,10 @@ namespace LL.MDE.Components.Qvt.Metamodel.QVTBase
         /// </summary>
         /// <param name="sender">The collection that raised the change</param>
         /// <param name="e">The original event data</param>
-        private void UsedPackageCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
-        {
-            this.OnCollectionChanging("UsedPackage", e);
-        }
+        //private void UsedPackageCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
+        //{
+        //    this.OnCollectionChanging("UsedPackage", e);
+        //}
         
         /// <summary>
         /// Forwards CollectionChanged notifications for the UsedPackage property to the parent model element
@@ -471,7 +471,7 @@ namespace LL.MDE.Components.Qvt.Metamodel.QVTBase
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public TransformationProxy(ITypedModel modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Transformation")
             {
             }
             
@@ -494,19 +494,19 @@ namespace LL.MDE.Components.Qvt.Metamodel.QVTBase
             /// Registers an event handler to subscribe specifically on the changed event for this property
             /// </summary>
             /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TransformationChanged += handler;
-            }
+            //protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
+            //{
+            //    this.ModelElement.TransformationChanged += handler;
+            //}
             
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TransformationChanged -= handler;
-            }
+            ///// <summary>
+            ///// Registers an event handler to subscribe specifically on the changed event for this property
+            ///// </summary>
+            ///// <param name="handler">The handler that should be unsubscribed from the property change event</param>
+            //protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
+            //{
+            //    this.ModelElement.TransformationChanged -= handler;
+            //}
         }
     }
 }

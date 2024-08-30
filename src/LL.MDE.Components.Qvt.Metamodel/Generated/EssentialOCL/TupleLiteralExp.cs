@@ -49,7 +49,7 @@ namespace LL.MDE.Components.Qvt.Metamodel.EssentialOCL
         public TupleLiteralExp()
         {
             this._part = new TupleLiteralExpPartCollection(this);
-            this._part.CollectionChanging += this.PartCollectionChanging;
+            //this._part.CollectionChanging += this.PartCollectionChanging;
             this._part.CollectionChanged += this.PartCollectionChanged;
         }
         
@@ -97,10 +97,10 @@ namespace LL.MDE.Components.Qvt.Metamodel.EssentialOCL
         /// </summary>
         /// <param name="sender">The collection that raised the change</param>
         /// <param name="e">The original event data</param>
-        private void PartCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
-        {
-            this.OnCollectionChanging("Part", e);
-        }
+        //private void PartCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
+        //{
+        //    this.OnCollectionChanging("Part", e);
+        //}
         
         /// <summary>
         /// Forwards CollectionChanged notifications for the Part property to the parent model element

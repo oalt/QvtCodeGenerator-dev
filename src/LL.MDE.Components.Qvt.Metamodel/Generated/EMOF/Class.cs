@@ -63,13 +63,13 @@ namespace LL.MDE.Components.Qvt.Metamodel.EMOF
         public Class()
         {
             this._ownedAttribute = new ClassOwnedAttributeCollection(this);
-            this._ownedAttribute.CollectionChanging += this.OwnedAttributeCollectionChanging;
-            this._ownedAttribute.CollectionChanged += this.OwnedAttributeCollectionChanged;
+            //this._ownedAttribute.CollectionChanging += this.OwnedAttributeCollectionChanging;
+            //this._ownedAttribute.CollectionChanged += this.OwnedAttributeCollectionChanged;
             this._ownedOperation = new ClassOwnedOperationCollection(this);
-            this._ownedOperation.CollectionChanging += this.OwnedOperationCollectionChanging;
-            this._ownedOperation.CollectionChanged += this.OwnedOperationCollectionChanged;
+            //this._ownedOperation.CollectionChanging += this.OwnedOperationCollectionChanging;
+            //this._ownedOperation.CollectionChanged += this.OwnedOperationCollectionChanged;
             this._superClass = new ObservableAssociationSet<LL.MDE.Components.Qvt.Metamodel.EMOF.IClass>();
-            this._superClass.CollectionChanging += this.SuperClassCollectionChanging;
+            //this._superClass.CollectionChanging += this.SuperClassCollectionChanging;
             this._superClass.CollectionChanged += this.SuperClassCollectionChanged;
         }
         
@@ -212,50 +212,50 @@ namespace LL.MDE.Components.Qvt.Metamodel.EMOF
         /// </summary>
         /// <param name="sender">The collection that raised the change</param>
         /// <param name="e">The original event data</param>
-        private void OwnedAttributeCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
-        {
-            this.OnCollectionChanging("OwnedAttribute", e);
-        }
+        //private void OwnedAttributeCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
+        //{
+        //    this.OnCollectionChanging("OwnedAttribute", e);
+        //}
         
         /// <summary>
         /// Forwards CollectionChanged notifications for the OwnedAttribute property to the parent model element
         /// </summary>
         /// <param name="sender">The collection that raised the change</param>
         /// <param name="e">The original event data</param>
-        private void OwnedAttributeCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
-        {
-            this.OnCollectionChanged("OwnedAttribute", e);
-        }
+        //private void OwnedAttributeCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        //{
+        //    this.OnCollectionChanged("OwnedAttribute", e);
+        //}
         
         /// <summary>
         /// Forwards CollectionChanging notifications for the OwnedOperation property to the parent model element
         /// </summary>
         /// <param name="sender">The collection that raised the change</param>
         /// <param name="e">The original event data</param>
-        private void OwnedOperationCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
-        {
-            this.OnCollectionChanging("OwnedOperation", e);
-        }
+        //private void OwnedOperationCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
+        //{
+        //    this.OnCollectionChanging("OwnedOperation", e);
+        //}
         
         /// <summary>
         /// Forwards CollectionChanged notifications for the OwnedOperation property to the parent model element
         /// </summary>
         /// <param name="sender">The collection that raised the change</param>
         /// <param name="e">The original event data</param>
-        private void OwnedOperationCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
-        {
-            this.OnCollectionChanged("OwnedOperation", e);
-        }
+        //private void OwnedOperationCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        //{
+        //    this.OnCollectionChanged("OwnedOperation", e);
+        //}
         
         /// <summary>
         /// Forwards CollectionChanging notifications for the SuperClass property to the parent model element
         /// </summary>
         /// <param name="sender">The collection that raised the change</param>
         /// <param name="e">The original event data</param>
-        private void SuperClassCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
-        {
-            this.OnCollectionChanging("SuperClass", e);
-        }
+        //private void SuperClassCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
+        //{
+        //    this.OnCollectionChanging("SuperClass", e);
+        //}
         
         /// <summary>
         /// Forwards CollectionChanged notifications for the SuperClass property to the parent model element
@@ -740,8 +740,8 @@ namespace LL.MDE.Components.Qvt.Metamodel.EMOF
             /// Creates a new observable property access proxy
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
-            public IsAbstractProxy(LL.MDE.Components.Qvt.Metamodel.EMOF.IClass modelElement) : 
-                    base(modelElement)
+            public IsAbstractProxy(LL.MDE.Components.Qvt.Metamodel.EMOF.IClass modelElement)
+                : base(modelElement, "<PropertyName>")
             {
             }
             
@@ -764,19 +764,19 @@ namespace LL.MDE.Components.Qvt.Metamodel.EMOF
             /// Registers an event handler to subscribe specifically on the changed event for this property
             /// </summary>
             /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.IsAbstractChanged += handler;
-            }
+            //protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
+            //{
+            //    this.ModelElement.IsAbstractChanged += handler;
+            //}
             
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.IsAbstractChanged -= handler;
-            }
+            ///// <summary>
+            ///// Registers an event handler to subscribe specifically on the changed event for this property
+            ///// </summary>
+            ///// <param name="handler">The handler that should be unsubscribed from the property change event</param>
+            //protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
+            //{
+            //    this.ModelElement.IsAbstractChanged -= handler;
+            //}
         }
     }
 }

@@ -9,7 +9,7 @@ using LL.MDE.Components.Qvt.Metamodel.EMOFExtensions;
 using NMF.Utilities;
 
 using EMOF = LL.MDE.Components.Qvt.Metamodel.EMOF;
-using EnAr = LL.MDE.DataModels.EnAr;
+using EnAr = MDD4All.EAFacade.DataModels.Contracts;
 
 namespace LL.MDE.Components.Qvt.EnArImport
 {
@@ -119,7 +119,7 @@ namespace LL.MDE.Components.Qvt.EnArImport
         {
             if (method.ReturnType == null)
                 return null;
-            EnAr.Element returnType = explorer.repository.GetElementByGuid(method.ReturnType);
+            EnAr.Element returnType = explorer.Repository.GetElementByGuid(method.ReturnType);
             if (returnType != null)
                 return ConstructType(returnType);
             else
@@ -130,7 +130,7 @@ namespace LL.MDE.Components.Qvt.EnArImport
         {
             if (parameter.Type == null)
                 return null;
-            EnAr.Element returnType = explorer.repository.GetElementByGuid(parameter.Type);
+            EnAr.Element returnType = explorer.Repository.GetElementByGuid(parameter.Type);
             if (returnType != null)
                 return ConstructType(returnType);
             else
