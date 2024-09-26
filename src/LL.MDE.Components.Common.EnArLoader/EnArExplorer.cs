@@ -7,13 +7,13 @@ namespace LL.MDE.Components.Common.EnArLoader
     public class EnArExplorer
     {
         public readonly EnAr.Repository Repository;
-        private readonly EA.Repository _repositoryEa;
+        //private readonly EA.Repository _repositoryEa;
 
         public EnArExplorer(EnAr.Repository repository, EA.Repository repositoryEA)
         {
             if (repositoryEA == null) throw new ArgumentNullException(nameof(repositoryEA));
             Repository = repository;
-            _repositoryEa = repositoryEA;
+            //_repositoryEa = repositoryEA;
         }
 
         public static bool EqualsNoCase(string s1, string s2)
@@ -244,20 +244,20 @@ namespace LL.MDE.Components.Common.EnArLoader
             return result;
         }
 
-        public EA.Element GetEaObject(EnAr.Element element)
-        {
-            return _repositoryEa.GetElementByGuid(element.ElementGUID);
-        }
+        //public EA.Element GetEaObject(EnAr.Element element)
+        //{
+        //    return _repositoryEa.GetElementByGuid(element.ElementGUID);
+        //}
 
-        public EA.Connector GetEaObject(EnAr.Connector connector)
-        {
-            return _repositoryEa.GetConnectorByGuid(connector.ConnectorGUID);
-        }
+        //public EA.Connector GetEaObject(EnAr.Connector connector)
+        //{
+        //    return _repositoryEa.GetConnectorByGuid(connector.ConnectorGUID);
+        //}
 
-        public EA.Package GetEaObject(EnAr.Package package)
-        {
-            return _repositoryEa.GetPackageByGuid(package.PackageGUID);
-        }
+        //public EA.Package GetEaObject(EnAr.Package package)
+        //{
+        //    return _repositoryEa.GetPackageByGuid(package.PackageGUID);
+        //}
 
     }
 }

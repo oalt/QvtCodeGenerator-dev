@@ -6,4 +6,8 @@
         <AssemblyName>$(MSBuildProjectName.Replace("-dev", ""))</AssemblyName>
     </PropertyGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\LL.MDE.Components.Qvt.Common\LL.MDE.Components.Qvt.Common-dev.csproj" />
+    </ItemGroup>
+
 </Project>

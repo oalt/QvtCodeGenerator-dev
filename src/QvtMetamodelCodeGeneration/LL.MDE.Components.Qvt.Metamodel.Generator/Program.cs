@@ -20,7 +20,7 @@ namespace LL.MDE.Components.Qvt.Metamodel.Generator
 
         public static void Main(string[] args)
         {
-            GenerateCodeFor(@"..\..\model\QVTRelation.ecore", @"..\..\..\..\QvtEnginePerformance\trunk\src\LL.MDE.Components.Qvt.Metamodel\Generated", "LL.MDE.Components.Qvt.Metamodel");
+            GenerateCodeFor(@".\model\QVTRelation.ecore", @"..\..\..\..\QvtEnginePerformance\trunk\src\LL.MDE.Components.Qvt.Metamodel\Generated", "LL.MDE.Components.Qvt.Metamodel");
         }
     }
 }

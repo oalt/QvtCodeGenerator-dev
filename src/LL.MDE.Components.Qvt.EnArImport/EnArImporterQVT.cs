@@ -23,8 +23,8 @@ namespace LL.MDE.Components.Qvt.EnArImport
 {
     public class EnArImporterQVT
     {
-        private readonly EnArExplorer explorer;
-        private readonly EnArImporterEMOF emofImporter;
+        private readonly EnArExplorer _explorer;
+        private readonly EnArImporterEMOF _emofImporter;
         private readonly List<EMOF.IPackage> metamodels = new List<EMOF.IPackage>();
         private readonly Dictionary<string, EMOF.IPackage> aliases = new Dictionary<string, EMOF.IPackage>();
         private readonly Dictionary<EnAr.Element, QVTTemplate.IObjectTemplateExp> objectElementToObjectTemplate = new Dictionary<EnAr.Element, QVTTemplate.IObjectTemplateExp>();
@@ -32,9 +32,9 @@ namespace LL.MDE.Components.Qvt.EnArImport
 
         public EnArImporterQVT(EnArExplorer explorer)
         {
-            this.explorer = explorer;
-            this.emofImporter = new EnArImporterEMOF(explorer);
-            Tuple<List<EMOF.IPackage>, Dictionary<string, EMOF.IPackage>> res = this.emofImporter.ConstructMetamodels();
+            _explorer = explorer;
+            _emofImporter = new EnArImporterEMOF(explorer);
+            Tuple<List<EMOF.IPackage>, Dictionary<string, EMOF.IPackage>> res = this._emofImporter.ConstructMetamodels();
             metamodels.AddRange(res.Item1);
             foreach (KeyValuePair<string, EMOF.IPackage> keyValuePair in res.Item2)
             {
@@ -161,13 +161,13 @@ namespace LL.MDE.Components.Qvt.EnArImport
 
         private EssentialOCL.IVariable ConstructVariable(QVTRelations.IRelation relation, EnAr.Element objectElement)
         {
-            return ConstructVariable(relation, objectElement.Name, emofImporter.ConstructTypeOfTyped(objectElement));
+            return ConstructVariable(relation, objectElement.Name, _emofImporter.ConstructTypeOfTyped(objectElement));
         }
 
         private QVTTemplate.IObjectTemplateExp ConstructObjectTemplateExp(QVTRelations.IRelation relation, QVTRelations.IDomainPattern domainPattern, EnAr.Element objectElement, ISet<EnAr.Connector> visitedConnectors = null)
         {
             EssentialOCL.IVariable variable = null;
-            EMOF.IType type = emofImporter.ConstructTypeOfTyped(objectElement);
+            EMOF.IType type = _emofImporter.ConstructTypeOfTyped(objectElement);
 
             // TODO manage the not ?
             if (objectElement.Name != "{not}")
@@ -190,9 +190,9 @@ namespace LL.MDE.Components.Qvt.EnArImport
                 ConstructPropertyTemplateItem(relation, domainPattern, objectTemplateExp, runStateField);
             }
 
-            foreach (EnAr.Connector connector in explorer.GetConnectorsLinkedTo(objectElement).FindAll(c => c.Stereotype != "qvtTransformationLink"))
+            foreach (EnAr.Connector connector in _explorer.GetConnectorsLinkedTo(objectElement).FindAll(c => c.Stereotype != "qvtTransformationLink"))
             {
-                Tuple<EnAr.ConnectorEnd, EnAr.Element> linked = explorer.GetElementOppositeTo(objectElement, connector);
+                Tuple<EnAr.ConnectorEnd, EnAr.Element> linked = _explorer.GetElementOppositeTo(objectElement, connector);
                 EnAr.ConnectorEnd connectorEnd = linked.Item1;
                 EnAr.Element linkedElement = linked.Item2;
                 //if (!string.IsNullOrWhiteSpace(connectorEnd.Role))
@@ -220,8 +220,8 @@ namespace LL.MDE.Components.Qvt.EnArImport
         private QVTBase.ITypedModel ConstructTypedModel(QVTRelations.IRelationalTransformation relationTransformation, EnAr.Connector qvtTransformationLinkConnector)
         {
             // We determine the typedmodel based on the FQN given on the connector
-            string modelNameTag = explorer.GetTaggedValue(qvtTransformationLinkConnector, "modelName");
-            string metaModelNameTag = explorer.GetTaggedValue(qvtTransformationLinkConnector, "metaModelName");
+            string modelNameTag = _explorer.GetTaggedValue(qvtTransformationLinkConnector, "modelName");
+            string metaModelNameTag = _explorer.GetTaggedValue(qvtTransformationLinkConnector, "metaModelName");
             string typedModelName = "";
             string metamodelFQNOrAlias = "";
             EMOF.IPackage metamodelPackage = null;
@@ -244,8 +244,8 @@ namespace LL.MDE.Components.Qvt.EnArImport
                 // Case real link
                 if (metaModelNameTag.StartsWith("{"))
                 {
-                    EnAr.Package enArMetamodelPackage = explorer.GetPackageByGuid(metaModelNameTag);
-                    metamodelPackage = emofImporter.GetEMOFPackage(enArMetamodelPackage);
+                    EnAr.Package enArMetamodelPackage = _explorer.GetPackageByGuid(metaModelNameTag);
+                    metamodelPackage = _emofImporter.GetEMOFPackage(enArMetamodelPackage);
                 }
                 // Case string name
                 else
@@ -298,7 +298,7 @@ namespace LL.MDE.Components.Qvt.EnArImport
             {
                 Name = qvtTransformationLinkConnector.Name,
                 IsCheckable = true,
-                IsEnforceable = explorer.GetTaggedValue(qvtTransformationLinkConnector, "CEType").ToLower() == "enforce",
+                IsEnforceable = _explorer.GetTaggedValue(qvtTransformationLinkConnector, "CEType").ToLower() == "enforce",
                 TypedModel = typedModel,
                 //DefaultAssignment = null // TODO
                 Rule = relation
@@ -332,7 +332,7 @@ namespace LL.MDE.Components.Qvt.EnArImport
         private void ConstructRelationDomain(QVTRelations.IRelationalTransformation relationTransformation, QVTRelations.IRelation relation, EnAr.Connector qvtTransformationLinkConnector)
         {
             // We look in the EA "domain" Element pointed by the qvtTransformationLinkConnector
-            EnAr.Element domainObjectElement = explorer.GetTargetElement(qvtTransformationLinkConnector);
+            EnAr.Element domainObjectElement = _explorer.GetTargetElement(qvtTransformationLinkConnector);
 
             // We construct (or get) the typed model, if any
             QVTBase.ITypedModel candidateTypedModel = ConstructTypedModel(relationTransformation, qvtTransformationLinkConnector);
@@ -520,10 +520,10 @@ namespace LL.MDE.Components.Qvt.EnArImport
                 transformation.Rule.Add(relation);
 
                 // We find the unique child EA elements with the stereotype "qvtTransformationNode"
-                List<EnAr.Element> transformationNodeElements = explorer.GetChildrenElementsWithTypeAndStereotype(relationElement, "class", "qvtTransformationNode");
+                List<EnAr.Element> transformationNodeElements = _explorer.GetChildrenElementsWithTypeAndStereotype(relationElement, "class", "qvtTransformationNode");
                 EnAr.Element transformationNodeElement = transformationNodeElements.Single();
 
-                bool isTopRelation = explorer.GetTaggedValue(relationElement, "isTopRelation").ToLower() == "true";
+                bool isTopRelation = _explorer.GetTaggedValue(relationElement, "isTopRelation").ToLower() == "true";
 
                 relation.IsTopLevel = isTopRelation;
                 relation.Transformation = transformation;
@@ -531,7 +531,7 @@ namespace LL.MDE.Components.Qvt.EnArImport
 
                 // We browse the EA Connectors with the stereotype "qvtTransformationLink", from the qvtTransformationNode
                 // We use the concrete syntax extension to order the domains
-                foreach (EnAr.Connector qvtTransformationLinkConnector in explorer.GetConnectorsWithSourceWithStereotype(transformationNodeElement, "qvtTransformationLink").OrderBy(c => c.Name))
+                foreach (EnAr.Connector qvtTransformationLinkConnector in _explorer.GetConnectorsWithSourceWithStereotype(transformationNodeElement, "qvtTransformationLink").OrderBy(c => c.Name))
                 {
                     ConstructRelationDomain(transformation, relation, qvtTransformationLinkConnector);
                 }
@@ -571,21 +571,21 @@ namespace LL.MDE.Components.Qvt.EnArImport
             QVTRelations.IRelation relation = FindRelation(transformation, relationElement.Name);
 
             // We look for the tag "where"
-            string whereCode = explorer.GetTaggedValue(relationElement, "Where");
+            string whereCode = _explorer.GetTaggedValue(relationElement, "Where");
             if (!string.IsNullOrWhiteSpace(whereCode))
             {
                 relation.Where = ConstructWhenOrWherePattern(relation, whereCode);
             }
 
             // We look for the tag "when"
-            string whenCode = explorer.GetTaggedValue(relationElement, "When");
+            string whenCode = _explorer.GetTaggedValue(relationElement, "When");
             if (!string.IsNullOrWhiteSpace(whenCode))
             {
                 relation.When = ConstructWhenOrWherePattern(relation, whenCode);
             }
 
             // We look for the tag 'qvtKey'
-            string qvtKeyString = explorer.GetTaggedValue(relationElement, "qvtKey");
+            string qvtKeyString = _explorer.GetTaggedValue(relationElement, "qvtKey");
             if (!string.IsNullOrWhiteSpace(qvtKeyString))
             {
                 relationsWithKeys.Add(relation);
@@ -688,7 +688,7 @@ namespace LL.MDE.Components.Qvt.EnArImport
             QVTBase.FunctionParameter result = new QVTBase.FunctionParameter()
             {
                 Operation = function,
-                Type = emofImporter.ConstructTypeOfParameter(parameter),
+                Type = _emofImporter.ConstructTypeOfParameter(parameter),
                 Name = parameter.Name,
                 IsOrdered = null,
                 IsUnique = null,
@@ -709,7 +709,7 @@ namespace LL.MDE.Components.Qvt.EnArImport
         {
             QVTBase.Function result = new QVTBase.Function()
             {
-                Type = emofImporter.ConstructTypeOfMethod(method),
+                Type = _emofImporter.ConstructTypeOfMethod(method),
                 Name = method.Name,
                 Class = transformation,
                 IsOrdered = false,
@@ -739,7 +739,7 @@ namespace LL.MDE.Components.Qvt.EnArImport
             };
 
             // We first find the "Functions" class that contains the functions of the transformation
-            EnAr.Element functionsClass = explorer.GetChildrenElementsWithType(transformationElement, "class").FirstOrDefault(e => e.Stereotype.IsNullOrEmpty());
+            EnAr.Element functionsClass = _explorer.GetChildrenElementsWithType(transformationElement, "class").FirstOrDefault(e => e.Stereotype.IsNullOrEmpty());
 
             if (functionsClass != null)
             {
@@ -751,7 +751,7 @@ namespace LL.MDE.Components.Qvt.EnArImport
             }
 
             // We browse the children EA elements with the stereotype "qvtRelation"
-            IList<EnAr.Element> relationsElements = explorer.GetChildrenElementsWithTypeAndStereotype(transformationElement, "class", "qvtRelation");
+            IList<EnAr.Element> relationsElements = _explorer.GetChildrenElementsWithTypeAndStereotype(transformationElement, "class", "qvtRelation");
 
             // First pass: we create the basic relations (to manage relation calls later)
             foreach (EnAr.Element relationElement in relationsElements)
@@ -766,7 +766,7 @@ namespace LL.MDE.Components.Qvt.EnArImport
             }
 
             // We look for the tag 'qvtKey'
-            string qvtKeyString = explorer.GetTaggedValue(transformationElement, "qvtKey");
+            string qvtKeyString = _explorer.GetTaggedValue(transformationElement, "qvtKey");
             if (!string.IsNullOrWhiteSpace(qvtKeyString))
             {
                 ISet<EMOF.IClass> classes = FindAllClassesUsedInTransformation(transformation);
@@ -829,7 +829,7 @@ namespace LL.MDE.Components.Qvt.EnArImport
 
         public QVTRelations.IRelationalTransformation ConstructRelationalTransformationFromGuid(string guid)
         {
-            IList<EnAr.Element> transformationsElements = explorer.FindElementsWithTypeAndStereotype("component", "qvtTransformation");
+            IList<EnAr.Element> transformationsElements = _explorer.FindElementsWithTypeAndStereotype("component", "qvtTransformation");
             EnAr.Element transfo = transformationsElements.Single(e => e.ElementGUID == guid);
             QVTRelations.IRelationalTransformation transformation = ConstructRelationalTransformation(transfo);
             return transformation;
@@ -837,7 +837,7 @@ namespace LL.MDE.Components.Qvt.EnArImport
 
         public QVTRelations.IRelationalTransformation ConstructRelationalTransformation(string transformatioName)
         {
-            IList<EnAr.Element> transformationsElements = explorer.FindElementsWithTypeAndStereotype("component", "qvtTransformation");
+            IList<EnAr.Element> transformationsElements = _explorer.FindElementsWithTypeAndStereotype("component", "qvtTransformation");
             EnAr.Element transfo = transformationsElements.Single(e => e.Name == transformatioName);
             QVTRelations.IRelationalTransformation transformation = ConstructRelationalTransformation(transfo);
             return transformation;
@@ -849,7 +849,7 @@ namespace LL.MDE.Components.Qvt.EnArImport
             List<QVTRelations.IRelationalTransformation> result = new List<QVTRelations.IRelationalTransformation>();
 
             // We browse in the EA repo all the elements with the "qvtTransformation" stereotype
-            IList<EnAr.Element> transformationsElements = explorer.FindElementsWithTypeAndStereotype("component", "qvtTransformation");
+            IList<EnAr.Element> transformationsElements = _explorer.FindElementsWithTypeAndStereotype("component", "qvtTransformation");
             foreach (EnAr.Element transformationElement in transformationsElements)
             {
                 QVTRelations.IRelationalTransformation transformation = ConstructRelationalTransformation(transformationElement);

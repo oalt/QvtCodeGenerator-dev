@@ -6,4 +6,35 @@
         <AssemblyName>$(MSBuildProjectName.Replace("-dev", ""))</AssemblyName>
     </PropertyGroup>
 
+    <ItemGroup>
+      <Folder Include="Properties\" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Mono.TextTemplating" Version="2.3.1" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\LL.MDE.Components.Qvt.Metamodel\LL.MDE.Components.Qvt.Metamodel-dev.csproj" />
+    </ItemGroup>
+    
+    <ItemGroup>
+      <None Update="QVTConcreteSyntaxTemplate.tt">
+        <Generator>TextTemplatingFilePreprocessor</Generator>
+        <LastGenOutput>QVTConcreteSyntaxTemplate.cs</LastGenOutput>
+      </None>
+    </ItemGroup>
+
+    <ItemGroup>
+      <Service Include="{508349b6-6b84-4df5-91f0-309beebad82d}" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Compile Update="QVTConcreteSyntaxTemplate.cs">
+        <DesignTime>True</DesignTime>
+        <AutoGen>True</AutoGen>
+        <DependentUpon>QVTConcreteSyntaxTemplate.tt</DependentUpon>
+      </Compile>
+    </ItemGroup>
+
 </Project>

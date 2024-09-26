@@ -1,0 +1,61 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <OutputType>Exe</OutputType>
+        <TargetFramework>net6.0</TargetFramework>
+        <RootNamespace>$(MSBuildProjectName.Replace("-dev", ""))</RootNamespace>
+        <AssemblyName>$(MSBuildProjectName.Replace("-dev", ""))</AssemblyName>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <Compile Remove="Properties\AssemblyInfo.cs" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="NMF-Basics" Version="2.0.222" />
+      <PackageReference Include="NMF-EcoreInterop" Version="2.0.222" />
+      <PackageReference Include="NMF-MetaTransformation" Version="2.0.222" />
+      <PackageReference Include="System.CodeDom" Version="6.0.0" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Properties\" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Update="model\EMOF.ecore">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </None>
+      <None Update="model\EssentialOCL.ecore">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </None>
+      <None Update="model\FlatQVT.ecore">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </None>
+      <None Update="model\ImperativeOCL.ecore">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </None>
+      <None Update="model\PrimitiveTypes.ecore">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </None>
+      <None Update="model\QVT.ecore">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </None>
+      <None Update="model\QVTBase.ecore">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </None>
+      <None Update="model\QVTCore.ecore">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </None>
+      <None Update="model\QVTOperational.ecore">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </None>
+      <None Update="model\QVTRelation.ecore">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </None>
+      <None Update="model\QVTTemplate.ecore">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </None>
+    </ItemGroup>
+
+</Project>
