@@ -6,6 +6,7 @@ using LL.MDE.Components.Common.Util;
 using File = System.IO.File;
 using Package = MDD4All.EAFacade.DataModels.Contracts.Package;
 using MDD4All.EAFacade.DataAccess.Cached;
+using System.Runtime.InteropServices.ComTypes;
 
 namespace LL.MDE.Components.Common.EnArLoader
 {
@@ -16,19 +17,40 @@ namespace LL.MDE.Components.Common.EnArLoader
     {
         private const string GeneratorOutputPath = @"out\";
 
-        public string AbsolutePathToOutput { get; }
-        public EnArExplorer Explorer { get; }
+        public string AbsolutePathToOutput { get; set; }
+        public EnArExplorer Explorer { get; set; }
 
-        public readonly CachedRepository currentLlRepository;
-        private readonly string projectFolder;
-        private bool dataModelReadyToUse;
+        private EA.Repository Repository { get; set; }
+
+        public CachedRepository CurrentLlRepository { get; set; }
+        
+        private string projectFolder;
+
+        public bool DataModelReadyToUse { get; set; }
 
         /// <summary>
         /// To initialize EA with a given project file.
         /// The "Close" method should be called when it is over.
         /// </summary>
         /// <param name="fileName"></param>
-        public EnArLoader(string fileName, bool isAbsolute = false, bool makeCopy = true)
+        public EnArLoader()
+        {
+            
+        }
+
+        public void Load(EA.Repository repository)
+        {
+            Repository = repository;
+
+            CurrentLlRepository = new CachedRepository(repository);
+            CurrentLlRepository.CacheAll();
+
+            CurrentLlRepository.CachingFinished += HybridRepositoryCachingFinished;
+
+            
+        }
+
+        public void Load(string fileName, bool isAbsolute = false, bool makeCopy = true)
         {
             if (AbsolutePathToOutput == null)
             {
@@ -37,13 +59,24 @@ namespace LL.MDE.Components.Common.EnArLoader
                 // Create output folder
                 AbsolutePathToOutput = Path.Combine(projectFolder, GeneratorOutputPath);
             }
-            if (currentLlRepository == null)
+            if (CurrentLlRepository == null)
             {
                 // Creates EA instance
                 Repository currentEaRepository = new Repository();
 
+                Repository = currentEaRepository;
+
+                string absolutePathToModel = "";
                 // Opens the model file in the EA instance
-                string absolutePathToModel = isAbsolute ? fileName : Path.Combine(projectFolder, fileName); // and from there we can find the "models" folder
+                if (isAbsolute)
+                {
+                    absolutePathToModel = fileName;
+                }
+                else
+                {
+                    absolutePathToModel = Path.Combine(projectFolder, fileName);
+                }
+                
 
                 if (makeCopy)
                 {
@@ -61,23 +94,23 @@ namespace LL.MDE.Components.Common.EnArLoader
                 //Assert.True(openResult, "The file " + absolutePathToModel + "could not be opened");
 
                 // Opens the model    
-                currentLlRepository = new CachedRepository(currentEaRepository);
-                currentLlRepository.CacheAll();
+                CurrentLlRepository = new CachedRepository(currentEaRepository);
+                CurrentLlRepository.CacheAll();
 
-                currentLlRepository.CachingFinished += HybridRepositoryCachingFinished;
+                CurrentLlRepository.CachingFinished += HybridRepositoryCachingFinished;
                 for (int i = 0; i < 50; i++)
                 {
-                    if (dataModelReadyToUse == false)
+                    if (DataModelReadyToUse == false)
                     {
                         Thread.Sleep(500);
                     }
                 }
 
-                if (dataModelReadyToUse == false)
+                if (DataModelReadyToUse == false)
                 {
                     throw new Exception("Timeout when trying to open EnAr file " + fileName);
                 }
-                Explorer = new EnArExplorer(currentLlRepository, currentEaRepository);
+                Explorer = new EnArExplorer(CurrentLlRepository, currentEaRepository);
             }
         }
 
@@ -88,7 +121,9 @@ namespace LL.MDE.Components.Common.EnArLoader
 
         private void HybridRepositoryCachingFinished(object sender, EventArgs e)
         {
-            dataModelReadyToUse = true;
+            DataModelReadyToUse = true;
+
+            Explorer = new EnArExplorer(CurrentLlRepository, Repository);
         }
 
         /// <summary>
@@ -98,8 +133,8 @@ namespace LL.MDE.Components.Common.EnArLoader
         {
             try
             {
-                currentLlRepository?.CloseFile();
-                currentLlRepository?.Exit();
+                CurrentLlRepository?.CloseFile();
+                CurrentLlRepository?.Exit();
             }
             catch (Exception)
             {
@@ -115,7 +150,7 @@ namespace LL.MDE.Components.Common.EnArLoader
         /// <returns></returns>
         public Package GetEnAarPackage(string guid)
         {
-            return currentLlRepository.GetPackageByGuid(guid);
+            return CurrentLlRepository.GetPackageByGuid(guid);
         }
 
     }

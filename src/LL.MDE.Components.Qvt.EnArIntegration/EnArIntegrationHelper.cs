@@ -5,11 +5,15 @@ using LL.MDE.Components.Qvt.EnArImport;
 using LL.MDE.Components.Qvt.Metamodel.QVTRelation;
 using LL.MDE.Components.Qvt.QvtCodeGenerator.CodeGeneration;
 using MDD4All.EAFacade.DataAccess.Cached;
+using System.Diagnostics;
+using System.Threading;
 
 namespace LL.MDE.Components.Qvt.EnArIntegration
 {
     public class EnArIntegrationHelper
     {
+        private static bool CachingFinished { get; set; } = false;
+
         /// <summary>
         /// Generates the code for a transformation element of a given EnAr instance.
         /// This method can be called from EnAr UI directly.
@@ -22,7 +26,10 @@ namespace LL.MDE.Components.Qvt.EnArIntegration
         {
             // Create hybrid repository of an EA instance
             CachedRepository hybridrepo = new CachedRepository(eaRepository);
+            hybridrepo.CachingFinished += HybridrepoCachingFinished;
             hybridrepo.CacheAll();
+
+            Debug.WriteLine("Caching model...");
 
             // Import the transformation as real qvt model
             EnArExplorer explorer = new EnArExplorer(hybridrepo, eaRepository);
@@ -31,6 +38,13 @@ namespace LL.MDE.Components.Qvt.EnArIntegration
 
             // Generate code from qvt model
             QVTCodeGeneratorHelper.GenerateAllCode(relationalTransformation, absoluteOutputFolder, useMetamodelInterface);
+        }
+
+        private static void HybridrepoCachingFinished(object sender, System.EventArgs e)
+        {
+            CachingFinished = true;
+
+            Debug.WriteLine("Caching finished...");
         }
     }
 }
