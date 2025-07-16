@@ -42,7 +42,10 @@ namespace LL.MDE.Components.Qvt.EnArImport
             }
         }
 
-        private QVTTemplate.IPropertyTemplateItem ConstructPropertyTemplateItem(QVTRelations.IRelation relation, QVTRelations.IDomainPattern domainPattern, QVTTemplate.IObjectTemplateExp objectTemplateExp, RunStateField runStateField)
+        private QVTTemplate.IPropertyTemplateItem ConstructPropertyTemplateItem(QVTRelations.IRelation relation, 
+                                                                                QVTRelations.IDomainPattern domainPattern, 
+                                                                                QVTTemplate.IObjectTemplateExp objectTemplateExp, 
+                                                                                RunStateField runStateField)
         {
             ISet<EMOF.IProperty> atts = objectTemplateExp.ReferredClass.GetAllInheritedAttributes();
             EMOF.IProperty property = atts.Single(p => string.Equals(p.Name, runStateField.Variable, StringComparison.CurrentCultureIgnoreCase));
@@ -97,7 +100,7 @@ namespace LL.MDE.Components.Qvt.EnArImport
             // If the connector end has a role, we use it to find the corresponding EMOF property
             if (!string.IsNullOrWhiteSpace(connectorEnd.Role))
             {
-                property = objectTemplateExp.ReferredClass.GetAllInheritedAttributes().Single(p => p.Name == connectorEnd.Role);
+                property = objectTemplateExp.ReferredClass.GetAllInheritedAttributes().First(p => p.Name == connectorEnd.Role);
             }
 
             // If the connector end has no role (due to the else)
@@ -298,11 +301,13 @@ namespace LL.MDE.Components.Qvt.EnArImport
             {
                 Name = qvtTransformationLinkConnector.Name,
                 IsCheckable = true,
-                IsEnforceable = _explorer.GetTaggedValue(qvtTransformationLinkConnector, "CEType").ToLower() == "enforce",
+                
                 TypedModel = typedModel,
                 //DefaultAssignment = null // TODO
                 Rule = relation
             };
+
+            relationDomain.IsEnforceable = _explorer.GetTaggedValue(qvtTransformationLinkConnector, "CEType").ToLower() == "enforce";
 
             QVTRelations.IDomainPattern domainpattern = ConstructDomainPattern(relation, domainObjectElement);
             relationDomain.Pattern = domainpattern;

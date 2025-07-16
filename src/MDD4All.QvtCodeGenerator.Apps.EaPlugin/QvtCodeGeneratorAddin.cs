@@ -11,6 +11,7 @@ namespace MDD4All.QvtCodeGenerator.Apps.EaPlugin
     {
         private const string MAIN_MENUNAME = "QVT Code Generator";
         private const string MENU_GENERATE_CODE = "Generate Code";
+        private const string MENU_CONVERT_PROPERTY_METHODS = "Convert Property Methods to Attributes";
 
         private MainViewModel MainViewModel { get; set; }
 
@@ -30,7 +31,7 @@ namespace MDD4All.QvtCodeGenerator.Apps.EaPlugin
                     return "-&" + MAIN_MENUNAME;
 
                 case "-&" + MAIN_MENUNAME:
-                    string[] menuItems = { MENU_GENERATE_CODE };
+                    string[] menuItems = { MENU_GENERATE_CODE, MENU_CONVERT_PROPERTY_METHODS };
                     return menuItems;
             }
             return "";
@@ -73,9 +74,11 @@ namespace MDD4All.QvtCodeGenerator.Apps.EaPlugin
                 switch (itemName)
                 {
                     case MENU_GENERATE_CODE:
-                        {
-                            MainViewModel.GenerateCodeCommand.Execute(null);
-                        }
+                        MainViewModel.GenerateCodeCommand.Execute(null);
+                        break;
+
+                    case MENU_CONVERT_PROPERTY_METHODS:
+                        MainViewModel.ConvertPropertyMethodsToAttributes.Execute(null);
                         break;
                 }
             }

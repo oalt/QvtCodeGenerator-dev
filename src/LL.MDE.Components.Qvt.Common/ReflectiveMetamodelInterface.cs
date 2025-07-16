@@ -71,7 +71,9 @@ namespace LL.MDE.Components.Qvt.Common
                 // /!\ WARNING: 'GetUninitializedObject' does not rely on any construtor,
                 // so it creates a completely blank object and bypasses ALL defined constructors!
                 if (newValue == null)
+                {
                     newValue = FormatterServices.GetUninitializedObject(collectionContentType);
+                }
 
                 // We find the add operation of the collection type
                 MethodInfo addMethod = memberType.GetMethod("Add");
@@ -89,7 +91,9 @@ namespace LL.MDE.Components.Qvt.Common
                 // /!\ WARNING: 'GetUninitializedObject' does not rely on any construtor,
                 // so it creates a completely blank object!
                 if (newValue == null)
+                {
                     newValue = FormatterServices.GetUninitializedObject(memberType);
+                }
 
                 // And we assign the new instance to the member "collectionName"
                 object[] newValueAsArray = { newValue };

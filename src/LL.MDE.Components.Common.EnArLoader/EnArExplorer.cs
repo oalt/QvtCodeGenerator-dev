@@ -48,6 +48,16 @@ namespace LL.MDE.Components.Common.EnArLoader
             return Repository.AllPackages.Find(p => p?.Element?.ElementID == element.ElementID);
         }
 
+        public bool SuppressNamespace(EnAr.Package package)
+        {
+            bool result = false;
+            if(!string.IsNullOrEmpty(package.Flags) && package.Flags.Contains("SNSP=true"))
+            {
+                result = true;
+            }
+            return result;
+        }
+
         public List<EnAr.Element> GetChildrenElements(EnAr.Package package)
         {
             List<EnAr.Element> result = new List<EnAr.Element>();

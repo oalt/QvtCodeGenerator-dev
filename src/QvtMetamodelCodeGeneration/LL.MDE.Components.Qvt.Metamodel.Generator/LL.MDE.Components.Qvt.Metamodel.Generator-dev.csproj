@@ -12,14 +12,32 @@
     </ItemGroup>
 
     <ItemGroup>
-      <PackageReference Include="NMF-Basics" Version="2.0.222" />
-      <PackageReference Include="NMF-EcoreInterop" Version="2.0.222" />
-      <PackageReference Include="NMF-MetaTransformation" Version="2.0.222" />
       <PackageReference Include="System.CodeDom" Version="6.0.0" />
     </ItemGroup>
 
     <ItemGroup>
       <Folder Include="Properties\" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Reference Include="NMF.Collections">
+        <HintPath>..\..\libs\NMF.Collections.dll</HintPath>
+      </Reference>
+      <Reference Include="NMF.Expressions">
+        <HintPath>..\..\libs\NMF.Expressions.dll</HintPath>
+      </Reference>
+      <Reference Include="NMF.Expressions.Linq">
+        <HintPath>..\..\libs\NMF.Expressions.Linq.dll</HintPath>
+      </Reference>
+      <Reference Include="NMF.Models">
+        <HintPath>..\..\libs\NMF.Models.dll</HintPath>
+      </Reference>
+      <Reference Include="NMF.Serialization">
+        <HintPath>..\..\libs\NMF.Serialization.dll</HintPath>
+      </Reference>
+      <Reference Include="NMF.Utilities">
+        <HintPath>..\..\libs\NMF.Utilities.dll</HintPath>
+      </Reference>
     </ItemGroup>
 
     <ItemGroup>

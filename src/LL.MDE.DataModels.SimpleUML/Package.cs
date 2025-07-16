@@ -16,7 +16,7 @@ using LL.MDE.DataModels.SimpleUML;
 namespace LL.MDE.DataModels.SimpleUML {
 	public class Package : UMLModelElement {
 
-		List<PackageElement> elements = new List<PackageElement>();
+		public List<PackageElement> elements = new List<PackageElement>();
 
 		public Package()
 		{
