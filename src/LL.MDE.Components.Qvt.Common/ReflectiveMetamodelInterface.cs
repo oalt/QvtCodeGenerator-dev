@@ -8,7 +8,17 @@ namespace LL.MDE.Components.Qvt.Common
 {
     public class ReflectiveMetamodelInterface : IMetaModelInterface
     {
-        private static object CommonAddOrSet(object element, string fieldName, object newValue = null)
+        public void AddOrSetInField(object element, string fieldName, object value)
+        {
+            CommonAddOrSet(element, fieldName, value);
+        }
+
+        public object CreateNewObjectInField(object element, string fieldName)
+        {
+            return CommonAddOrSet(element, fieldName);
+        }
+
+        private object CommonAddOrSet(object element, string fieldName, object newValue = null)
         {
             // We get the type of the element
             Type type = element.GetType();
@@ -83,7 +93,6 @@ namespace LL.MDE.Components.Qvt.Common
                 addMethod.Invoke(collection, newValueAsArray);
                 return newValue;
             }
-
             // If it isn't a collection
             else
             {
@@ -102,14 +111,6 @@ namespace LL.MDE.Components.Qvt.Common
             }
         }
 
-        public void AddOrSetInField(object element, string fieldName, object value)
-        {
-            CommonAddOrSet(element, fieldName, value);
-        }
-
-        public object CreateNewObjectInField(object element, string fieldName)
-        {
-            return CommonAddOrSet(element, fieldName);
-        }
+        
     }
 }
