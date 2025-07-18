@@ -19,9 +19,6 @@
 [submodule "src/MDD4All.UI.BlazorComponents"]
 	path = src/MDD4All.UI.BlazorComponents
 	url = https://github.com/oalt/MDD4All.UI.BlazorComponents.git
-[submodule "src/MDD4All.BlazorComponents.EnterpriseArchitect"]
-	path = src/MDD4All.BlazorComponents.EnterpriseArchitect
-	url = https://github.com/oalt/MDD4All.BlazorComponents.EnterpriseArchitect.git
 [submodule "src/MDD4All.UI.BlazorComponents.EnterpriseArchitect"]
 	path = src/MDD4All.UI.BlazorComponents.EnterpriseArchitect
 	url = https://github.com/oalt/MDD4All.UI.BlazorComponents.EnterpriseArchitect.git
