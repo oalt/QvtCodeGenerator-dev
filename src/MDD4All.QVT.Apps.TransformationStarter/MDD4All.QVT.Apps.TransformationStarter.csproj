@@ -1,0 +1,31 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net6.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Microsoft.AspNetCore.Components" Version="6.0.25" />
+        <PackageReference Include="Microsoft.AspNetCore.Components.WebView.Wpf" Version="6.0.547" />
+        <PackageReference Include="Microsoft.AspNetCore.Localization" Version="2.2.0" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\MDD4All.EAFacade.DataAccess.Cached\src\MDD4All.EAFacade.DataAccess.Cached\MDD4All.EAFacade.DataAccess.Cached-dev.csproj" />
+      <ProjectReference Include="..\MDD4All.EnterpriseArchitect.Manipulations\src\MDD4All.EA.Manipulations\MDD4All.EAFacade.Manipulations-dev.csproj" />
+      <ProjectReference Include="..\MDD4All.EnterpriseArchitect.ModelTree\src\MDD4All.EnterpriseArchitect.ModelTree\MDD4All.EAFacade.ModelTree-dev.csproj" />
+      <ProjectReference Include="..\MDD4All.UI.BlazorComponents.EnterpriseArchitect\src\MDD4All.BlazorComponents.EnterpriseArchitect\MDD4All.UI.BlazorComponents.EnterpriseArchitect-dev.csproj" />
+      <ProjectReference Include="..\MDD4All.UI.BlazorComponents\src\MDD4All.UI.BlazorComponents\MDD4All.UI.BlazorComponents-dev.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Reference Include="Interop.EA">
+        <HintPath>..\libs\Interop.EA.dll</HintPath>
+        <EmbedInteropTypes>False</EmbedInteropTypes>
+      </Reference>
+    </ItemGroup>
+    
+</Project>

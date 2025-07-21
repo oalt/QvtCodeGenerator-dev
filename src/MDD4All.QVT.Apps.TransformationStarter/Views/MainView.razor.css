@@ -1,0 +1,13 @@
+﻿.mainContainer  {
+    display: grid;
+    grid-template-rows: 50px 1fr;
+}
+
+.topRow {
+    grid-row: 1;
+    border-bottom: 1px solid darkgray;
+}
+
+.contentPanel {
+    grid-row: 2;
+}
