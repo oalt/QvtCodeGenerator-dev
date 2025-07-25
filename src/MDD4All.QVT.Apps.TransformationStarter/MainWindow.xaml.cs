@@ -1,4 +1,6 @@
-﻿using MDD4All.UI.BlazorComponents.Services;
+﻿using MDD4All.FileAccess.Contracts;
+using MDD4All.FileAccess.WPF;
+using MDD4All.UI.BlazorComponents.Services;
 using Microsoft.Extensions.DependencyInjection;
 using System.Windows;
 
@@ -17,8 +19,15 @@ namespace MDD4All.QVT.Apps.TransformationStarter
             services.AddWpfBlazorWebView();
             services.AddBlazorWebViewDeveloperTools();
 
-            services.AddSingleton<DragDropDataProvider>();
+            services.AddLocalization(options =>
+            {
 
+                options.ResourcesPath = "Resources";
+            });
+
+            services.AddSingleton<DragDropDataProvider>();
+            services.AddSingleton<IFileLoader, WpfFileLoader>();
+            services.AddSingleton<IFileSaver, WpfFileSaver>();
 
             Resources.Add("services", services.BuildServiceProvider());
 

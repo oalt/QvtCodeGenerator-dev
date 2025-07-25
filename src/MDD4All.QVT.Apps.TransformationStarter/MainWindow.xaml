@@ -7,7 +7,10 @@
         xmlns:views="clr-namespace:MDD4All.QVT.Apps.TransformationStarter.Views"
         xmlns:blazor="clr-namespace:Microsoft.AspNetCore.Components.WebView.Wpf;assembly=Microsoft.AspNetCore.Components.WebView.Wpf"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="SpecIFicator Model Transformator" 
+        Height="750" 
+        Width="1000"
+        WindowStartupLocation="CenterScreen">
     <Grid>
         <blazor:BlazorWebView HostPage="wwwroot\index.html"
                               Services="{DynamicResource services}"

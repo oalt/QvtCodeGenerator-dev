@@ -1,0 +1,67 @@
+﻿@using MDD4All.QVT.Apps.TransformationStarter.ViewModels
+@using Microsoft.AspNetCore.Components.Web
+<div class="mainPanel">
+    <div class="title">
+        <h3>Please Select a Transformation...</h3>
+    </div>
+    <div class="continueButtonPanel">
+        <button class="btn btn-secondary"
+                disabled="@(!(DataContext.TransformationsViewModel.SelectedTransformation != null))"
+                @onclick="@(() => DataContext.OpenTransformationStartViewCommand.Execute(null))">
+            Continue >
+        </button>
+    </div>
+
+    <div class="contentPanel">
+
+
+        @if (DataContext.TransformationsViewModel.Transformations.Any())
+        {
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>Transformation Name</th>
+                    </tr>
+
+                </thead>
+                <tbody>
+                    @{
+                        int index = 0;
+                    }
+
+                    @foreach (TransformationViewModel transformationViewModel in DataContext.TransformationsViewModel.Transformations)
+                    {
+                        int i = index;
+                        <tr>
+                            <td>
+                                @if(i == 0)
+                                {
+                                    <input type="radio"
+                                           name="transformation"
+                                           id="@index"
+                                           @onchange="(args => OnRadioButtonChange(args, i))" 
+                                           checked="checked" />
+                                }
+                                else
+                                {
+                                <input type="radio"
+                                       name="transformation"
+                                       id="@index"
+                                       @onchange="(args => OnRadioButtonChange(args, i))" 
+                                       />
+                                }
+                            </td>
+                            <td>
+                                @transformationViewModel.Name
+                            </td>
+                        </tr>
+
+
+                        index++;
+                    }
+                </tbody>
+            </table>
+        }
+    </div>
+</div>

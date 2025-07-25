@@ -2,6 +2,18 @@
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
+html {
+    display: grid;
+    height: 100%;
+    overflow: hidden; /* disable the scroll on the page */
+}
+
+body {
+    display: grid;
+    grid-auto-rows: 100%; /* all rows equal in height and take all the space */
+    overflow: hidden; /* Let's have the scroll on the body element */
+}
+
 h1:focus {
     outline: none;
 }

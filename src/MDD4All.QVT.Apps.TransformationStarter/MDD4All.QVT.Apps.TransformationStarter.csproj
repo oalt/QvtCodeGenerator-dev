@@ -11,12 +11,15 @@
         <PackageReference Include="Microsoft.AspNetCore.Components" Version="6.0.25" />
         <PackageReference Include="Microsoft.AspNetCore.Components.WebView.Wpf" Version="6.0.547" />
         <PackageReference Include="Microsoft.AspNetCore.Localization" Version="2.2.0" />
+        <PackageReference Include="Microsoft.Extensions.Localization" Version="6.0.36" />
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\LL.MDE.Components.Qvt.Common\LL.MDE.Components.Qvt.Common-dev.csproj" />
       <ProjectReference Include="..\MDD4All.EAFacade.DataAccess.Cached\src\MDD4All.EAFacade.DataAccess.Cached\MDD4All.EAFacade.DataAccess.Cached-dev.csproj" />
       <ProjectReference Include="..\MDD4All.EnterpriseArchitect.Manipulations\src\MDD4All.EA.Manipulations\MDD4All.EAFacade.Manipulations-dev.csproj" />
       <ProjectReference Include="..\MDD4All.EnterpriseArchitect.ModelTree\src\MDD4All.EnterpriseArchitect.ModelTree\MDD4All.EAFacade.ModelTree-dev.csproj" />
+      <ProjectReference Include="..\MDD4All.FileAccess.WPF\src\MDD4All.FileAccess.WPF\MDD4All.FileAccess.WPF-dev.csproj" />
       <ProjectReference Include="..\MDD4All.UI.BlazorComponents.EnterpriseArchitect\src\MDD4All.BlazorComponents.EnterpriseArchitect\MDD4All.UI.BlazorComponents.EnterpriseArchitect-dev.csproj" />
       <ProjectReference Include="..\MDD4All.UI.BlazorComponents\src\MDD4All.UI.BlazorComponents\MDD4All.UI.BlazorComponents-dev.csproj" />
     </ItemGroup>

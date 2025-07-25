@@ -1,13 +1,44 @@
-﻿<div class="mainContainer">
+﻿@using Microsoft.AspNetCore.Components.Web
+<div class="mainContainer">
 
     <div class="topRow">
-        <img src="images/ModelTransformatorLogo.png" 
+        <img src="images/ModelTransformatorLogo.png"
              height="50" />
+
+        <button class="btn btn-primary"
+                @onclick="OnOpenTransformationAssembly">
+            Open Transformation
+        </button>
+
+
     </div>
 
     <div class="contentPanel">
-        <TransformationView DataContext="DataContext" />
+        @switch (DataContext.ActiveViewState)
+        {
+            case ViewModels.ViewState.ApplicationStart:
+                <span>Please Open a Transformation...</span>
+                break;
+
+            case ViewModels.ViewState.TransformationSelection:
+                <TransformationSelectionView DataContext="DataContext" />
+                break;
+
+            case ViewModels.ViewState.TransformationStart:
+                <TransformationStartView DataContext="DataContext" />
+                break;
+        }
     </div>
+
+    <div class="statusPanel">
+        @if (!string.IsNullOrEmpty(DataContext.StatusMessage))
+        {
+            <span>
+                @DataContext.StatusMessage
+            </span>
+        }
+    </div>
+
 
 </div>
 
