@@ -28,3 +28,6 @@
 [submodule "src/MDD4All.FileAccess.WPF"]
 	path = src/MDD4All.FileAccess.WPF
 	url = https://github.com/oalt/MDD4All.FileAccess.WPF.git
+[submodule "src/SlnParser"]
+	path = src/SlnParser
+	url = https://github.com/oalt/SlnParser.git
