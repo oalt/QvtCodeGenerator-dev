@@ -31,3 +31,6 @@
 [submodule "src/SlnParser"]
 	path = src/SlnParser
 	url = https://github.com/oalt/SlnParser.git
+[submodule "src/LL.MDE.Components.Qvt.Common"]
+	path = src/LL.MDE.Components.Qvt.Common
+	url = https://github.com/oalt/LL.MDE.Components.Qvt.Common.git
