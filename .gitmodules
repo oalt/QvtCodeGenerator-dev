@@ -41,3 +41,6 @@
 	path = src/LL.MDE.Components.Qvt.CodeGenerator
 	url = https://github.com/oalt/LL.MDE.Components.Qvt.CodeGenerator.git
 	branch = dev
+[submodule "src/MDD4All.JsonSchema"]
+	path = src/MDD4All.JsonSchema
+	url = https://github.com/oalt/MDD4All.JsonSchema.git
