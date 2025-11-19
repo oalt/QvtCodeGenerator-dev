@@ -44,3 +44,12 @@
 [submodule "src/MDD4All.JsonSchema"]
 	path = src/MDD4All.JsonSchema
 	url = https://github.com/oalt/MDD4All.JsonSchema.git
+[submodule "src/MDD4All.DataModelClassGenerator"]
+	path = src/MDD4All.DataModelClassGenerator
+	url = https://github.com/oalt/MDD4All.DataModelClassGenerator.git
+[submodule "src/MDD4All.EMOF.DataModels"]
+	path = src/MDD4All.EMOF.DataModels
+	url = https://github.com/oalt/MDD4All.EMOF.DataModels.git
+[submodule "src/MDD4All.EMOF.DataAccess"]
+	path = src/MDD4All.EMOF.DataAccess
+	url = https://github.com/oalt/MDD4All.EMOF.DataAccess.git
