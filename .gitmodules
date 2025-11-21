@@ -53,3 +53,6 @@
 [submodule "src/MDD4All.EMOF.DataAccess"]
 	path = src/MDD4All.EMOF.DataAccess
 	url = https://github.com/oalt/MDD4All.EMOF.DataAccess.git
+[submodule "src/MDD4All.EMOF.DotNetToEmofConverter"]
+	path = src/MDD4All.EMOF.DotNetToEmofConverter
+	url = https://github.com/oalt/MDD4All.EMOF.DotNetToEmofConverter.git
