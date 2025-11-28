@@ -102,8 +102,16 @@ namespace LL.MDE.Components.Qvt.Metamodel.CustomExtensions.EMOFExtensions
                 IPackage package = clazz.Package;
                 while (package != null)
                 {
-                    result = package.Name + "." + result;
-                    package = package.NestingPackage;
+                    if (package.NestingPackage != null)
+                    {
+                        result = package.Name + "." + result;
+                        package = package.NestingPackage;
+                    }
+                    else
+                    {
+                        break;
+                    }
+                    
                 }
             }
             return result;

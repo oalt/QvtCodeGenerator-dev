@@ -14,7 +14,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\LL.MDE.Components.Common.EnArLoader\LL.MDE.Components.Common.EnArLoader-dev.csproj" />
-      <ProjectReference Include="..\LL.MDE.Components.Qvt.CodeGenerator\LL.MDE.Components.Qvt.CodeGenerator-dev.csproj" />
+      <ProjectReference Include="..\LL.MDE.Components.Qvt.CodeGenerator\src\LL.MDE.Components.QVT.CodeGenerator\LL.MDE.Components.Qvt.CodeGenerator-dev.csproj" />
       <ProjectReference Include="..\LL.MDE.Components.Qvt.EnArImport\LL.MDE.Components.Qvt.EnArImport-dev.csproj" />
       <ProjectReference Include="..\LL.MDE.Components.Qvt.Metamodel\LL.MDE.Components.Qvt.Metamodel-dev.csproj" />
       <ProjectReference Include="..\MDD4All.EAFacade.DataAccess.Cached\src\MDD4All.EAFacade.DataAccess.Cached\MDD4All.EAFacade.DataAccess.Cached-dev.csproj" />

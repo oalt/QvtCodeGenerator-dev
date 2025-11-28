@@ -226,7 +226,7 @@ namespace LL.MDE.Components.Qvt.EnArImport
 
         private EMOF.IClass ConstructClass(EnAr.Element classElement)
         {
-            // We create a EMOF.Class
+            // We create an EMOF.Class
             EMOF.IClass clazz = new EMOF.Class()
             {
                 IsAbstract = classElement.Abstract.ToLower() == "true",
@@ -314,61 +314,68 @@ namespace LL.MDE.Components.Qvt.EnArImport
             return parameter;
         }
 
-        private EMOF.IPackage ConstructMetamodelElementsRecusrively(EnAr.Package metamodelPackage, EMOF.IPackage parentPackage)
+        private EMOF.IPackage ConstructMetamodelElementsRecusrively(EnAr.Package metamodelPackage,
+                                                                    EMOF.IPackage parentPackage)
         {
+            EMOF.IPackage result = null;
+           
+            // We create the root package
+            result = new EMOF.Package()
+            {
+                Name = metamodelPackage.Name
+            };
+
+            foreach (EnAr.TaggedValue taggedValue in metamodelPackage.Element.TaggedValues)
+            {
+                result.SetOrAddTag(taggedValue.Name, taggedValue.Value);
+            }
+
+            if (parentPackage != null)
+            {
+                parentPackage.NestedPackage.Add(result);
+                result.NestingPackage = parentPackage;
+            }
+            elementToPackage.Add(metamodelPackage.PackageGUID, result);
+
 
             // We create its owned Types
             foreach (EnAr.Element classChild in explorer.GetChildrenElementsWithType(metamodelPackage, "class"))
             {
                 EMOF.IType type = ConstructType(classChild);
-                parentPackage.OwnedType.Add(type);
-                type.Package = parentPackage;
+                result.OwnedType.Add(type);
+                type.Package = result;
             }
 
-            EMOF.IPackage currentPackage = parentPackage;
 
-            if (elementToPackage.ContainsKey(metamodelPackage.PackageGUID))
+            // We create its nested Packages
+            foreach (EnAr.Package metamodelChild in explorer.GetChildrenPackages(metamodelPackage))
             {
-                return elementToPackage[metamodelPackage.PackageGUID];
+                // TODO
+                bool suppressNamespace = explorer.SuppressNamespace(metamodelChild);
+
+                //if (!suppressNamespace)
+                //{
+                //    // We create the Package
+                //    EMOF.IPackage package = new EMOF.Package()
+                //    {
+                //        Name = metamodelChild.Name
+                //    };
+
+                //    if (currentPackage != null)
+                //    {
+                //        currentPackage.NestedPackage.Add(package);
+                //        package.NestingPackage = currentPackage;
+                //    }
+                //    elementToPackage.Add(metamodelChild.PackageGUID, package);
+
+                //    currentPackage = package;
+                //}
+
+                // recursive call
+                EMOF.IPackage nestedPackage = ConstructMetamodelElementsRecusrively(metamodelChild, result);
             }
-            else
-            {
-                // We create the root package
-                EMOF.IPackage rootPackage = new EMOF.Package()
-                {
-                    Name = metamodelPackage.Name
-                };
-                elementToPackage.Add(metamodelPackage.PackageGUID, rootPackage);
 
-                // We create its nested Packages
-                foreach (EnAr.Package metamodelChild in explorer.GetChildrenPackages(metamodelPackage))
-                {
-                    bool suppressNamespace = explorer.SuppressNamespace(metamodelChild);
-
-                    if (!suppressNamespace)
-                    {
-                        // We create the Package
-                        EMOF.IPackage package = new EMOF.Package()
-                        {
-                            Name = metamodelChild.Name
-                        };
-
-                        if (currentPackage != null)
-                        {
-                            currentPackage.NestedPackage.Add(package);
-                            package.NestingPackage = currentPackage;
-                        }
-                        elementToPackage.Add(metamodelChild.PackageGUID, package);
-
-                        currentPackage = package;
-                    }
-
-                    // recursive call
-                    EMOF.IPackage nestedPackage = ConstructMetamodelElementsRecusrively(metamodelChild, currentPackage);
-                }
-
-                return currentPackage;
-            }
+            return result;
         }
 
         /// <summary>
@@ -384,80 +391,33 @@ namespace LL.MDE.Components.Qvt.EnArImport
             List<EnAr.Package> metamodelPackages = explorer.FindPackagesWithStereotype("metamodel");
             foreach (EnAr.Package metamodelPackage in metamodelPackages)
             {
-                string metaModelNamespace = explorer.GetTaggedValue(metamodelPackage.Element, "Namespace");
-
-                List<string> packageNames = ParseNamespace(metaModelNamespace);
-
-                string packageGuid = "";
-
-                EMOF.IPackage parent = null;
-
-                for (int counter = 0; counter < packageNames.Count; counter++)
+                EMOF.IPackage emofMetamodelPackage;
+                
+                // We create the Package
+                emofMetamodelPackage = new EMOF.Package()
                 {
-                    string name = packageNames[counter];
+                    Name = metamodelPackage.Name
+                };
 
-                    if (packageGuid == "")
-                    {
-                        packageGuid = name;
+                elementToPackage.Add(metamodelPackage.PackageGUID, emofMetamodelPackage);
 
-                    }
-                    else
-                    {
-                        packageGuid += "." + name;
-                    }
-
-                    EMOF.IPackage package;
-
-                    if (elementToPackage.ContainsKey(packageGuid))
-                    {
-                        package = elementToPackage[packageGuid];
-                    }
-                    else
-                    {
-                        // We create the Package
-                        package = new EMOF.Package()
-                        {
-                            Name = name
-                        };
-
-                        if (counter < metamodelPackages.Count - 1)
-                        {
-                            elementToPackage.Add(packageGuid, package);
-                        }
-                        else
-                        {
-                            elementToPackage.Add(metamodelPackage.PackageGUID, package);
-                        }
-
-                        if (parent != null)
-                        {
-                            parent.NestedPackage.Add(package);
-                            package.NestingPackage = parent;
-                        }
-                    }
-
-                    parent = package;
-                }
-
-                if (string.IsNullOrEmpty(metaModelNamespace))
+                foreach (EnAr.Package metamodelChild in explorer.GetChildrenPackages(metamodelPackage))
                 {
-                    parent = new EMOF.Package()
-                    {
-                        Name = metamodelPackage.Name
-                    };
-                    elementToPackage.Add(metamodelPackage.PackageGUID, parent);
-                }
+                    EMOF.IPackage emofMetamodelChild = ConstructMetamodelElementsRecusrively(metamodelChild, emofMetamodelPackage);
 
-                EMOF.IPackage emofMetamodel = ConstructMetamodelElementsRecusrively(metamodelPackage, parent);
+                    emofMetamodelChild.Parent = emofMetamodelPackage;
+
+                    emofMetamodelPackage.NestedPackage.Add(emofMetamodelChild);
+                }
 
                 // We import into an EMOF Package
 
-                metamodels.Add(emofMetamodel);
+                metamodels.Add(emofMetamodelPackage);
 
                 // We store the alias, if any
                 if (!string.IsNullOrWhiteSpace(metamodelPackage.Alias))
                 {
-                    aliases.Add(metamodelPackage.Alias, emofMetamodel);
+                    aliases.Add(metamodelPackage.Alias, emofMetamodelPackage);
                 }
             }
             return new Tuple<List<EMOF.IPackage>, Dictionary<string, EMOF.IPackage>>(metamodels, aliases);
