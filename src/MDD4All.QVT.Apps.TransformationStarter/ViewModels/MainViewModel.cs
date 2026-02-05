@@ -46,6 +46,7 @@ namespace MDD4All.QVT.Apps.TransformationStarter.ViewModels
         {
             OpenTransformationAssemblyCommand = new RelayCommand(ExecuteOpenTransformationAssembly);
             OpenTransformationStartViewCommand = new RelayCommand(ExecuteOpenTransformationStartView);
+            RunTransformationCommand = new RelayCommand(ExecuteRunTransformation);
         }
 
         public RepositoryTreeViewModel RepositoryTreeViewModel { get; set; }
@@ -73,6 +74,8 @@ namespace MDD4All.QVT.Apps.TransformationStarter.ViewModels
 
         public ICommand OpenTransformationStartViewCommand { get; private set; }
 
+        public ICommand RunTransformationCommand { get; private set; }
+
         private void ExecuteOpenTransformationAssembly()
         {
             string selectedFile = string.Empty;
@@ -92,6 +95,13 @@ namespace MDD4All.QVT.Apps.TransformationStarter.ViewModels
         private void ExecuteOpenTransformationStartView()
         {
             ActiveViewState = ViewState.TransformationStart;
+        }
+
+        private void ExecuteRunTransformation()
+        {
+            ActiveViewState = ViewState.TransformationRunning;
+
+            TransformationCaller.CallTransformation(TransformationsViewModel.SelectedTransformation);
         }
     }
 }

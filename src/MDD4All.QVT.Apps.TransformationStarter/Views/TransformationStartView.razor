@@ -8,7 +8,8 @@
     </div>
     <div class="transformationButtonPanel">
         <button class="btn btn-danger"
-                disabled="@(!TransformationViewModel.ReadyToRunTransformation)">Start Transformation</button>
+                disabled="@(!TransformationViewModel.ReadyToRunTransformation)"
+                @onclick="@(() => DataContext.RunTransformationCommand.Execute(null))">Start Transformation</button>
     </div>
 
     <div class="relationTitlePanel">

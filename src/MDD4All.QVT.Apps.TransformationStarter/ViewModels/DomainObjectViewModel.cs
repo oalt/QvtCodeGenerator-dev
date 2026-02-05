@@ -37,6 +37,14 @@ namespace MDD4All.QVT.Apps.TransformationStarter.ViewModels
 
         public DomainParameterType DomainParameterType { get; set; }
 
+        public Type ParameterType
+        {
+            get
+            {
+                return _parameter.ParameterType;
+            }
+        }
+
         public string Title
         {
             get
@@ -97,6 +105,8 @@ namespace MDD4All.QVT.Apps.TransformationStarter.ViewModels
         public string SelectedFilename { get; set; } = string.Empty;
 
         public bool FileSelectionResult { get; set; } = false;
+
+        public object ParameterObject { get; set; } = null;
 
         public ICommand SelectFileToLoadCommand { get; private set; }
 

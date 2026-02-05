@@ -24,6 +24,14 @@ namespace MDD4All.QVT.Apps.TransformationStarter.ViewModels
             _fileSaver = fileSaver;
         }
 
+        public Type TransformationClass
+        {
+            get 
+            { 
+                return _transformationClass; 
+            }
+        }
+
         public string Name
         {
             get
