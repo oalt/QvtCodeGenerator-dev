@@ -399,6 +399,11 @@ namespace LL.MDE.Components.Qvt.EnArImport
                     Name = metamodelPackage.Name
                 };
 
+                foreach (EnAr.TaggedValue taggedValue in metamodelPackage.Element.TaggedValues)
+                {
+                    emofMetamodelPackage.SetOrAddTag(taggedValue.Name, taggedValue.Value);
+                }
+
                 elementToPackage.Add(metamodelPackage.PackageGUID, emofMetamodelPackage);
 
                 foreach (EnAr.Package metamodelChild in explorer.GetChildrenPackages(metamodelPackage))
