@@ -56,3 +56,6 @@
 [submodule "src/MDD4All.EA.ModelGeneration"]
 	path = src/MDD4All.EA.ModelGeneration
 	url = https://github.com/oalt/MDD4All.EA.ModelGeneration.git
+[submodule "src/MDD4All.SimpleUML.DataModels"]
+	path = src/MDD4All.SimpleUML.DataModels
+	url = https://github.com/oalt/MDD4All.SimpleUML.DataModels.git
