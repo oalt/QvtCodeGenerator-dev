@@ -1,9 +1,5 @@
 ﻿using MDD4All.QvtCodeGenerator.Apps.EaPlugin.ViewModels;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MDD4All.QvtCodeGenerator.Apps.EaPlugin
 {
@@ -12,6 +8,7 @@ namespace MDD4All.QvtCodeGenerator.Apps.EaPlugin
         private const string MAIN_MENUNAME = "QVT Code Generator";
         private const string MENU_GENERATE_CODE = "Generate Code";
         private const string MENU_CONVERT_PROPERTY_METHODS = "Convert Property Methods to Attributes";
+        private const string MENU_GENERATE_METAMODEL_FROM_JSON_SCHEMA = "Generate Metamodel from EMOF";
 
         private MainViewModel MainViewModel { get; set; }
 
@@ -31,7 +28,10 @@ namespace MDD4All.QvtCodeGenerator.Apps.EaPlugin
                     return "-&" + MAIN_MENUNAME;
 
                 case "-&" + MAIN_MENUNAME:
-                    string[] menuItems = { MENU_GENERATE_CODE, MENU_CONVERT_PROPERTY_METHODS };
+                    string[] menuItems = { MENU_GENERATE_CODE, 
+                                           MENU_CONVERT_PROPERTY_METHODS,
+                                           MENU_GENERATE_METAMODEL_FROM_JSON_SCHEMA
+                                          };
                     return menuItems;
             }
             return "";
@@ -79,6 +79,10 @@ namespace MDD4All.QvtCodeGenerator.Apps.EaPlugin
 
                     case MENU_CONVERT_PROPERTY_METHODS:
                         MainViewModel.ConvertPropertyMethodsToAttributes.Execute(null);
+                        break;
+
+                    case MENU_GENERATE_METAMODEL_FROM_JSON_SCHEMA:
+                        MainViewModel.GenerateMetamodelFromEmofCommand.Execute(null);
                         break;
                 }
             }

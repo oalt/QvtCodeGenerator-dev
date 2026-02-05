@@ -4,12 +4,16 @@ using LL.MDE.Components.Qvt.EnArIntegration;
 using System.Collections.Generic;
 using System.Windows.Input;
 using MDD4All.EnterpriseArchitect.Manipulations;
+using System.Windows.Forms;
+using MDD4All.EnterpriseArchitect.ModelGeneration;
+
+
 
 namespace MDD4All.QvtCodeGenerator.Apps.EaPlugin.ViewModels
 {
     internal class MainViewModel
     {
-        public MainViewModel() 
+        public MainViewModel()
         {
             InitializeCommands();
         }
@@ -18,6 +22,7 @@ namespace MDD4All.QvtCodeGenerator.Apps.EaPlugin.ViewModels
         {
             GenerateCodeCommand = new RelayCommand(ExecuteGenerateCode);
             ConvertPropertyMethodsToAttributes = new RelayCommand(ExecuteConvertPropertyMethodsToAttributes);
+            GenerateMetamodelFromEmofCommand = new RelayCommand(ExecuteGenerateMetamodelFromEMOF);
         }
 
         public EA.Repository Repository { get; set; }
@@ -25,6 +30,9 @@ namespace MDD4All.QvtCodeGenerator.Apps.EaPlugin.ViewModels
         public ICommand GenerateCodeCommand { get; private set; }
 
         public ICommand ConvertPropertyMethodsToAttributes { get; private set; }
+
+        public ICommand GenerateMetamodelFromEmofCommand { get; private set; }
+
 
         private void ExecuteGenerateCode()
         {
@@ -34,13 +42,30 @@ namespace MDD4All.QvtCodeGenerator.Apps.EaPlugin.ViewModels
 
                 if (selectedElement != null)
                 {
-                    if(selectedElement.Stereotype == "qvtTransformation")
+                    if (selectedElement.Stereotype == "qvtTransformation")
                     {
                         //Repository.CreateOutputTab("QVT Generator");
                         //Repository.EnsureOutputVisible("QVT Generator");
                         //Repository.WriteOutput("QVT Generator", selectedElement.Name, 0);
 
-                        EnArIntegrationHelper.GenerateTransformationCode(Repository, selectedElement.ElementGUID, @"C:\work\QvtCodeGenerator-dev\src\MDD4All.QVT.Transformations.Demo\Generated");
+                        string path = selectedElement.GetTaggedValueString("codePath");
+
+                        if (string.IsNullOrEmpty(path))
+                        {
+                            FolderBrowserDialog folderBrowserDialog = new FolderBrowserDialog();
+                            DialogResult dialogResult = folderBrowserDialog.ShowDialog();
+
+                            if (dialogResult == DialogResult.OK)
+                            {
+                                path = folderBrowserDialog.SelectedPath;
+                                selectedElement.SetTaggedValueString("codePath", path);
+                            }
+                        }
+
+                        if (!string.IsNullOrEmpty(path))
+                        {
+                            EnArIntegrationHelper.GenerateTransformationCode(Repository, selectedElement.ElementGUID, path);
+                        }
                     }
                 }
             }
@@ -75,19 +100,19 @@ namespace MDD4All.QvtCodeGenerator.Apps.EaPlugin.ViewModels
             {
                 EA.Attribute attribute = currentClass.Attributes.GetAt(count) as EA.Attribute;
 
-                if(!existingAttributes.Contains(attribute.Name))
+                if (!existingAttributes.Contains(attribute.Name))
                 {
                     existingAttributes.Add(attribute.Name);
                 }
             }
 
-            for(short count = 0; count < currentClass.Methods.Count; count++)
+            for (short count = 0; count < currentClass.Methods.Count; count++)
             {
                 EA.Method method = currentClass.Methods.GetAt(count) as EA.Method;
 
                 string methodName = method.Name;
 
-                if(method.Stereotype == "property" && !existingAttributes.Contains(methodName))
+                if (method.Stereotype == "property" && !existingAttributes.Contains(methodName))
                 {
                     EA.Attribute attribute = currentClass.AddAttribute(methodName, method.ReturnType);
                     attribute.Stereotype = "property";
@@ -97,5 +122,23 @@ namespace MDD4All.QvtCodeGenerator.Apps.EaPlugin.ViewModels
                 }
             }
         }
-    }
+
+        private void ExecuteGenerateMetamodelFromEMOF()
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            DialogResult dialogResult = openFileDialog.ShowDialog();
+
+            if (dialogResult == DialogResult.OK)
+            {
+
+                //MetamodelFromJsonSchemaGenerator generator = new MetamodelFromJsonSchemaGenerator(Repository, openFileDialog.FileName, Repository.GetTreeSelectedPackage());
+
+                MetamodelFromEmofGenerator generator = new MetamodelFromEmofGenerator(Repository,
+                                                                                      openFileDialog.FileName,
+                                                                                      Repository.GetTreeSelectedPackage());
+
+                generator.ConvertEmofToMetamodel();
+            }
+        }
+    } 
 }
