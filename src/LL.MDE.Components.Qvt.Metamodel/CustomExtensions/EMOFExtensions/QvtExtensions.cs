@@ -1,5 +1,4 @@
 ﻿using LL.MDE.Components.Qvt.Metamodel.QVTBase;
-using LL.MDE.Components.Qvt.Metamodel.QVTRelation;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -11,33 +10,12 @@ namespace LL.MDE.Components.Qvt.Metamodel.CustomExtensions.EMOFExtensions
         {
             List<EMOF.IPackage> result = new List<EMOF.IPackage>();
 
-            foreach (IRelation relation in transformation.Rule.OfType<IRelation>())
+            foreach (ITypedModel typedModel in transformation.ModelParameter)
             {
-                if(relation.IsTopLevel == true)
+                EMOF.IPackage usedPackage = typedModel.UsedPackage.First();
+                if (usedPackage != null)
                 {
-                    foreach (IRelationDomain domain in relation.Domain.OfType<IRelationDomain>())
-                    {
-                        try
-                        {
-                            EMOF.IPackage domainObejctTypePackage = domain.RootVariable.Type.Package;
-
-                            EMOF.IPackage rootPackage = domainObejctTypePackage;
-
-                            while (rootPackage.NestingPackage != null)
-                            {
-                                rootPackage = rootPackage.NestingPackage;
-                            }
-
-                            if (rootPackage != null)
-                            {
-                                result.Add(rootPackage);
-                            }
-                        }
-                        catch
-                        {
-
-                        }
-                    }
+                    result.Add(usedPackage);
                 }
             }
 

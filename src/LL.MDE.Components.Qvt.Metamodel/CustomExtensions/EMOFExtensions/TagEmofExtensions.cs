@@ -14,7 +14,8 @@ namespace LL.MDE.Components.Qvt.Metamodel.CustomExtensions.EMOFExtensions
 
             if (_allTags.ContainsKey(modelElement))
             {
-                if (_allTags[modelElement].ContainsKey(name))
+                Dictionary<string, ITag> tags = _allTags[modelElement];
+                if (tags.ContainsKey(name))
                 {
                     result = _allTags[modelElement][name];
                 }

@@ -85,6 +85,43 @@ namespace LL.MDE.Components.Qvt.Metamodel.CustomExtensions.EMOFExtensions
             return package.Name;
         }
 
+        public static string GetNamespace(this IPackage package)
+        {
+            string result = package.Name;
+
+            IPackage nestingPackage = package.NestingPackage;
+
+            while (true)
+            {
+                if (nestingPackage != null)
+                {
+                    ITag isNamespaceRootTag = nestingPackage.GetTag("isNamespaceRoot");
+                    string isNamespaceRootTagValue = null;
+
+                    if (isNamespaceRootTag != null)
+                    {
+                        isNamespaceRootTagValue = isNamespaceRootTag.Value;
+                    }
+
+                    if (isNamespaceRootTagValue != null && isNamespaceRootTagValue == "true")
+                    {
+                        break;
+                    }
+                    else
+                    {
+                        result = nestingPackage.Name + "." + result;
+                    }
+                }
+                else
+                {
+                    break;
+                }
+                nestingPackage = nestingPackage.NestingPackage;
+            }
+
+            return result;
+        }
+
         public static string GetFQN(this IPackage package)
         {
             if (package.NestingPackage != null)

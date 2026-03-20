@@ -18,6 +18,7 @@ using QVTRelations = LL.MDE.Components.Qvt.Metamodel.QVTRelation;
 using QVTTemplate = LL.MDE.Components.Qvt.Metamodel.QVTTemplate;
 using EssentialOCL = LL.MDE.Components.Qvt.Metamodel.EssentialOCL;
 using EnAr = MDD4All.EAFacade.DataModels.Contracts;
+using MDD4All.EAFacade.DataModels.Contracts;
 
 namespace LL.MDE.Components.Qvt.EnArImport
 {
@@ -220,53 +221,51 @@ namespace LL.MDE.Components.Qvt.EnArImport
             return domainPattern;
         }
 
-        private QVTBase.ITypedModel ConstructTypedModel(QVTRelations.IRelationalTransformation relationTransformation, EnAr.Connector qvtTransformationLinkConnector)
+        private QVTBase.ITypedModel ConstructTypedModel(QVTRelations.IRelationalTransformation transformation, EnAr.Connector qvtTransformationLinkConnector)
         {
             // We determine the typedmodel based on the FQN given on the connector
             string modelNameTag = _explorer.GetTaggedValue(qvtTransformationLinkConnector, "modelName");
             string metaModelNameTag = _explorer.GetTaggedValue(qvtTransformationLinkConnector, "metaModelName");
-            string typedModelName = "";
-            string metamodelFQNOrAlias = "";
+
+            string referenceTypeTag = "";
+            string referencePackageName = "";
+            string referenceVersionTag = "";
+
             EMOF.IPackage metamodelPackage = null;
-            if (!modelNameTag.IsNullOrEmpty())
+
+            EnAr.Element transformationElement = _explorer.GetTransformationByTransformationLink(qvtTransformationLinkConnector);
+
+            if (transformationElement != null)
             {
-                if (modelNameTag.Contains(':'))
+                for (short count = 0; count < transformationElement.Connectors.Count; count++)
                 {
-                    string[] split = modelNameTag.Split(':');
-                    typedModelName = split[0];
-                    metamodelFQNOrAlias = split[1];
-                }
-                else if (metaModelNameTag != null)
-                {
-                    typedModelName = modelNameTag;
+                    EnAr.Connector connector = (EnAr.Connector)transformationElement.Connectors.GetAt(count);
+                    if (connector != null && connector.Stereotype == "metamodelRelation")
+                    {
+                        string relationName = _explorer.GetTaggedValue(connector, "name");
+                        if(relationName == modelNameTag)
+                        {
+                            EnAr.Element metamodelPackageElement = _explorer.GetTargetElement(connector);
+
+                            EnAr.Package metamodelPackageEA = _explorer.GetPackageByGuid(metamodelPackageElement.ElementGUID);
+
+                            metamodelPackage = _emofImporter.GetEMOFPackage(metamodelPackageEA);
+
+                            referenceTypeTag = _explorer.GetTaggedValue(connector, "ReferenceType");
+                            referencePackageName = _explorer.GetTaggedValue(connector, "PackageName");
+                            referenceVersionTag = _explorer.GetTaggedValue(connector, "Version");
+
+                            metamodelPackage.SetOrAddTag("ReferenceType", referenceTypeTag);
+                            metamodelPackage.SetOrAddTag("PackageName", referencePackageName);
+                            metamodelPackage.SetOrAddTag("Version", referenceVersionTag);
+
+                            break;
+                        }
+
+                        
+                    }
                 }
             }
-
-            if (metamodelFQNOrAlias.IsNullOrEmpty() && metaModelNameTag != null)
-            {
-                // Case real link
-                if (metaModelNameTag.StartsWith("{"))
-                {
-                    EnAr.Package enArMetamodelPackage = _explorer.GetPackageByGuid(metaModelNameTag);
-                    metamodelPackage = _emofImporter.GetEMOFPackage(enArMetamodelPackage);
-                }
-                // Case string name
-                else
-                {
-                    metamodelFQNOrAlias = metaModelNameTag;
-                }
-            }
-
-            if (metamodelPackage == null)
-            {
-                // The metamodel package can be found either using the FQN or one of its aliases
-                metamodelPackage = metamodels.FirstOrDefault(metamodel => EnArImporterEMOF.GetFQN(metamodel) == metamodelFQNOrAlias || (aliases.ContainsKey(metamodelFQNOrAlias) && metamodel == aliases[metamodelFQNOrAlias]));
-            }
-
-            /*if (typedModelName.IsNullOrEmpty() && metamodelPackage == null)
-            {
-                throw new InvalidQVTRelationsModelException("A domain link must either indicate the model name with the pattern <model name>:<metamodel name>, or must provide a tag 'metaModelName'.", qvtTransformationLinkConnector);
-            }*/
 
             // Case primitive domains... could probably be managed better
             if (metamodelPackage == null)
@@ -275,15 +274,15 @@ namespace LL.MDE.Components.Qvt.EnArImport
             }
 
             // We first check that the relational transformation doesn't already have this typed model
-            QVTBase.ITypedModel typedModel = relationTransformation.ModelParameter.FirstOrDefault(p => (typedModelName.IsNullOrEmpty() || p.Name == typedModelName) && p.UsedPackage.FirstOrDefault(p2 => p2 == metamodelPackage) != null);
+            QVTBase.ITypedModel typedModel = transformation.ModelParameter.FirstOrDefault(p => (modelNameTag.IsNullOrEmpty() || p.Name == modelNameTag) && p.UsedPackage.FirstOrDefault(p2 => p2 == metamodelPackage) != null);
 
             // If there is none, we create one
             if (typedModel == null)
             {
                 typedModel = new QVTBase.TypedModel()
                 {
-                    Name = typedModelName,
-                    Transformation = relationTransformation,
+                    Name = modelNameTag,
+                    Transformation = transformation,
                 };
                 typedModel.UsedPackage.Add(metamodelPackage);
             }
@@ -347,11 +346,12 @@ namespace LL.MDE.Components.Qvt.EnArImport
             if (candidateTypedModel == null)
             {
                 ConstructPrimitiveRelationDomain(relation, qvtTransformationLinkConnector, domainObjectElement);
-                return;
             }
-
-            // Else, we construct a regular domain
-            ConstructNonPrimitiveRelationDomain(relation, candidateTypedModel, qvtTransformationLinkConnector, domainObjectElement);
+            else
+            {
+                // Else, we construct a regular domain
+                ConstructNonPrimitiveRelationDomain(relation, candidateTypedModel, qvtTransformationLinkConnector, domainObjectElement);
+            }
         }
 
         /// <summary>

@@ -209,6 +209,29 @@ namespace LL.MDE.Components.Common.EnArLoader
             return null;
         }
 
+        public EnAr.Element GetTransformationByTransformationLink(EnAr.Connector qvtTransformationLink)
+        {
+            EnAr.Element result = null;
+
+            EnAr.Element domainElement = Repository.GetElementByID(qvtTransformationLink.SupplierID);
+
+            if (domainElement != null)
+            {
+                EnAr.Element relationElement = Repository.GetElementByID(domainElement.ParentID);
+
+                if (relationElement != null)
+                {
+                    EnAr.Element transormationElement = Repository.GetElementByID(relationElement.ParentID);
+                    if (transormationElement != null && transormationElement.Stereotype == "qvtTransformation")
+                    {
+                        result = transormationElement;
+                    }
+                }
+            }
+
+            return result;
+        }
+
         public static List<RunStateField> GetRunState(EnAr.Element element)
         {
             List<RunStateField> result = new List<RunStateField>();

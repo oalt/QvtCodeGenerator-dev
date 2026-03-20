@@ -388,7 +388,7 @@ namespace LL.MDE.Components.Qvt.EnArImport
             Dictionary<string, EMOF.IPackage> aliases = new Dictionary<string, EMOF.IPackage>();
 
             // We browse all package elements with stereotype "metamodel"
-            List<EnAr.Package> metamodelPackages = explorer.FindPackagesWithStereotype("metamodel");
+            List<EnAr.Package> metamodelPackages = explorer.FindPackagesWithStereotype("datamodels");
             foreach (EnAr.Package metamodelPackage in metamodelPackages)
             {
                 EMOF.IPackage emofMetamodelPackage;
@@ -398,6 +398,8 @@ namespace LL.MDE.Components.Qvt.EnArImport
                 {
                     Name = metamodelPackage.Name
                 };
+
+                emofMetamodelPackage.SetOrAddTag("isNamespaceRoot", "true");
 
                 foreach (EnAr.TaggedValue taggedValue in metamodelPackage.Element.TaggedValues)
                 {
