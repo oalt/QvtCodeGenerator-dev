@@ -164,10 +164,6 @@
       <Project>{9e4ad66a-c4f5-4aac-bae2-0e39e6858985}</Project>
       <Name>LL.MDE.Components.Qvt.Metamodel-dev</Name>
     </ProjectReference>
-    <ProjectReference Include="..\MDD4All.EA.ModelGeneration\src\MDD4All.EA.ModelGeneration\MDD4All.EnterpriseArchitect.ModelGeneration-dev.csproj">
-      <Project>{a53f9841-7ac3-020a-a5aa-14f278a9b307}</Project>
-      <Name>MDD4All.EnterpriseArchitect.ModelGeneration-dev</Name>
-    </ProjectReference>
     <ProjectReference Include="..\MDD4All.EAFacade.DataAccess.Cached\src\MDD4All.EAFacade.DataAccess.Cached\MDD4All.EAFacade.DataAccess.Cached-dev.csproj">
       <Project>{48fb968c-ec43-468f-881d-76e19c770e29}</Project>
       <Name>MDD4All.EAFacade.DataAccess.Cached-dev</Name>

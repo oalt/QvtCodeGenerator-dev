@@ -29,8 +29,8 @@ namespace MDD4All.QvtCodeGenerator.Apps.EaPlugin
 
                 case "-&" + MAIN_MENUNAME:
                     string[] menuItems = { MENU_GENERATE_CODE, 
-                                           MENU_CONVERT_PROPERTY_METHODS,
-                                           MENU_GENERATE_METAMODEL_FROM_JSON_SCHEMA
+                                           //MENU_CONVERT_PROPERTY_METHODS,
+                                           //MENU_GENERATE_METAMODEL_FROM_JSON_SCHEMA
                                           };
                     return menuItems;
             }

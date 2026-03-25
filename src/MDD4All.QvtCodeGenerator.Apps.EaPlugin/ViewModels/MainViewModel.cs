@@ -5,9 +5,6 @@ using System.Collections.Generic;
 using System.Windows.Input;
 using MDD4All.EnterpriseArchitect.Manipulations;
 using System.Windows.Forms;
-using MDD4All.EnterpriseArchitect.ModelGeneration;
-
-
 
 namespace MDD4All.QvtCodeGenerator.Apps.EaPlugin.ViewModels
 {
@@ -133,11 +130,11 @@ namespace MDD4All.QvtCodeGenerator.Apps.EaPlugin.ViewModels
 
                 //MetamodelFromJsonSchemaGenerator generator = new MetamodelFromJsonSchemaGenerator(Repository, openFileDialog.FileName, Repository.GetTreeSelectedPackage());
 
-                MetamodelFromEmofGenerator generator = new MetamodelFromEmofGenerator(Repository,
-                                                                                      openFileDialog.FileName,
-                                                                                      Repository.GetTreeSelectedPackage());
+                //MetamodelFromEmofGenerator generator = new MetamodelFromEmofGenerator(Repository,
+                //                                                                      openFileDialog.FileName,
+                //                                                                      Repository.GetTreeSelectedPackage());
 
-                generator.ConvertEmofToMetamodel();
+                //generator.ConvertEmofToMetamodel();
             }
         }
     } 
