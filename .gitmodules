@@ -13,21 +13,6 @@
 [submodule "src/MDD4All.UI.DataModels"]
 	path = src/MDD4All.UI.DataModels
 	url = https://github.com/oalt/MDD4All.UI.DataModels.git
-[submodule "src/MDD4All.EnterpriseArchitect.ModelTree"]
-	path = src/MDD4All.EnterpriseArchitect.ModelTree
-	url = https://github.com/oalt/MDD4All.EnterpriseArchitect.ModelTree.git
-[submodule "src/MDD4All.UI.BlazorComponents"]
-	path = src/MDD4All.UI.BlazorComponents
-	url = https://github.com/oalt/MDD4All.UI.BlazorComponents.git
-[submodule "src/MDD4All.UI.BlazorComponents.EnterpriseArchitect"]
-	path = src/MDD4All.UI.BlazorComponents.EnterpriseArchitect
-	url = https://github.com/oalt/MDD4All.UI.BlazorComponents.EnterpriseArchitect.git
-[submodule "src/MDD4All.FileAccess.Contracts"]
-	path = src/MDD4All.FileAccess.Contracts
-	url = https://github.com/oalt/MDD4All.FileAccess.Contracts.git
-[submodule "src/MDD4All.FileAccess.WPF"]
-	path = src/MDD4All.FileAccess.WPF
-	url = https://github.com/oalt/MDD4All.FileAccess.WPF.git
 [submodule "src/SlnParser"]
 	path = src/SlnParser
 	url = https://github.com/oalt/SlnParser.git
@@ -41,21 +26,3 @@
 	path = src/LL.MDE.Components.Qvt.CodeGenerator
 	url = https://github.com/oalt/LL.MDE.Components.Qvt.CodeGenerator.git
 	branch = dev
-[submodule "src/MDD4All.JsonSchema"]
-	path = src/MDD4All.JsonSchema
-	url = https://github.com/oalt/MDD4All.JsonSchema.git
-[submodule "src/MDD4All.EMOF.DataModels"]
-	path = src/MDD4All.EMOF.DataModels
-	url = https://github.com/oalt/MDD4All.EMOF.DataModels.git
-[submodule "src/MDD4All.EMOF.DataAccess"]
-	path = src/MDD4All.EMOF.DataAccess
-	url = https://github.com/oalt/MDD4All.EMOF.DataAccess.git
-[submodule "src/MDD4All.EMOF.DotNetToEmofConverter"]
-	path = src/MDD4All.EMOF.DotNetToEmofConverter
-	url = https://github.com/oalt/MDD4All.EMOF.DotNetToEmofConverter.git
-[submodule "src/MDD4All.EA.ModelGeneration"]
-	path = src/MDD4All.EA.ModelGeneration
-	url = https://github.com/oalt/MDD4All.EA.ModelGeneration.git
-[submodule "src/MDD4All.SimpleUML.DataModels"]
-	path = src/MDD4All.SimpleUML.DataModels
-	url = https://github.com/oalt/MDD4All.SimpleUML.DataModels.git
