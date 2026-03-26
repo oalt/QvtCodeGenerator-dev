@@ -1,5 +1,7 @@
 ﻿using MDD4All.QvtCodeGenerator.Apps.EaPlugin.ViewModels;
 using System;
+using System.Diagnostics;
+using System.Windows.Forms;
 
 namespace MDD4All.QvtCodeGenerator.Apps.EaPlugin
 {
@@ -7,6 +9,7 @@ namespace MDD4All.QvtCodeGenerator.Apps.EaPlugin
     {
         private const string MAIN_MENUNAME = "QVT Code Generator";
         private const string MENU_GENERATE_CODE = "Generate Code";
+        private const string MENU_GENERATE_CODE_WITH_MICROSERVICE = "Generate Code with Microservice";
         private const string MENU_CONVERT_PROPERTY_METHODS = "Convert Property Methods to Attributes";
         private const string MENU_GENERATE_METAMODEL_FROM_JSON_SCHEMA = "Generate Metamodel from EMOF";
 
@@ -29,6 +32,7 @@ namespace MDD4All.QvtCodeGenerator.Apps.EaPlugin
 
                 case "-&" + MAIN_MENUNAME:
                     string[] menuItems = { MENU_GENERATE_CODE, 
+                                           MENU_GENERATE_CODE_WITH_MICROSERVICE,
                                            //MENU_CONVERT_PROPERTY_METHODS,
                                            //MENU_GENERATE_METAMODEL_FROM_JSON_SCHEMA
                                           };
@@ -74,7 +78,11 @@ namespace MDD4All.QvtCodeGenerator.Apps.EaPlugin
                 switch (itemName)
                 {
                     case MENU_GENERATE_CODE:
-                        MainViewModel.GenerateCodeCommand.Execute(null);
+                        MainViewModel.GenerateCodeCommand.Execute(false);
+                        break;
+
+                    case MENU_GENERATE_CODE_WITH_MICROSERVICE:
+                        MainViewModel.GenerateCodeCommand.Execute(true);
                         break;
 
                     case MENU_CONVERT_PROPERTY_METHODS:
@@ -88,7 +96,8 @@ namespace MDD4All.QvtCodeGenerator.Apps.EaPlugin
             }
             catch (Exception exception)
             {
-                //log.Debug(ex.ToString());
+                MessageBox.Show("An error has occured.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Debug.WriteLine(exception.ToString());
             }
         }
     }

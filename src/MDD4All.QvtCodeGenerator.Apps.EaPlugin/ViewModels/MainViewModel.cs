@@ -17,7 +17,7 @@ namespace MDD4All.QvtCodeGenerator.Apps.EaPlugin.ViewModels
 
         private void InitializeCommands()
         {
-            GenerateCodeCommand = new RelayCommand(ExecuteGenerateCode);
+            GenerateCodeCommand = new RelayCommand<bool>(ExecuteGenerateCode);
             ConvertPropertyMethodsToAttributes = new RelayCommand(ExecuteConvertPropertyMethodsToAttributes);
             GenerateMetamodelFromEmofCommand = new RelayCommand(ExecuteGenerateMetamodelFromEMOF);
         }
@@ -31,7 +31,7 @@ namespace MDD4All.QvtCodeGenerator.Apps.EaPlugin.ViewModels
         public ICommand GenerateMetamodelFromEmofCommand { get; private set; }
 
 
-        private void ExecuteGenerateCode()
+        private void ExecuteGenerateCode(bool generateMicroservice)
         {
             if (Repository != null)
             {
@@ -61,7 +61,8 @@ namespace MDD4All.QvtCodeGenerator.Apps.EaPlugin.ViewModels
 
                         if (!string.IsNullOrEmpty(path))
                         {
-                            EnArIntegrationHelper.GenerateTransformationCode(Repository, selectedElement.ElementGUID, path);
+                            EnArIntegrationHelper.GenerateTransformationCode(Repository, selectedElement.ElementGUID, path, generateMicroservice: generateMicroservice);
+                            MessageBox.Show("QVT code generation finished.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         }
                     }
                 }

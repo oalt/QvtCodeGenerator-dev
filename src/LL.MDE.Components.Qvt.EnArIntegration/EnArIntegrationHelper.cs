@@ -22,7 +22,9 @@ namespace LL.MDE.Components.Qvt.EnArIntegration
         /// <param name="transformationGuid">The identifier of the transformation for code generation.</param>
         /// <param name="absoluteOutputFolder">The output folder to put the code into.</param>
         /// <param name="useMetamodelInterface">If true, the generated code will rely on an IMetamodelInterface object. Otherwise, it will rely on standard C# getters/setters.</param>
-        public static void GenerateTransformationCode(Repository eaRepository, string transformationGuid, string absoluteOutputFolder, bool useMetamodelInterface = true)
+        public static void GenerateTransformationCode(Repository eaRepository, string transformationGuid, string absoluteOutputFolder, 
+                                                      bool useMetamodelInterface = true, 
+                                                      bool generateMicroservice = false)
         {
             // Create hybrid repository of an EA instance
             CachedRepository hybridrepo = new CachedRepository(eaRepository);
@@ -37,7 +39,7 @@ namespace LL.MDE.Components.Qvt.EnArIntegration
             IRelationalTransformation relationalTransformation = importer.ConstructRelationalTransformationFromGuid(transformationGuid);
 
             // Generate code from qvt model
-            QVTCodeGeneratorHelper.GenerateAllCode(relationalTransformation, absoluteOutputFolder, useMetamodelInterface);
+            QVTCodeGeneratorHelper.GenerateAllCode(relationalTransformation, absoluteOutputFolder, useMetamodelInterface, generateMicroservice: generateMicroservice);
         }
 
         private static void HybridrepoCachingFinished(object sender, System.EventArgs e)
