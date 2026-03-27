@@ -21,7 +21,7 @@ namespace LL.MDE.Components.Qvt.EnArImport.Util
                 SyntaxNode currentNode = node;
                 while (currentNode.Parent != null)
                 {
-                    if (currentNode.Parent is InvocationExpressionSyntax)
+                    if (currentNode.Parent is InvocationExpressionSyntax || currentNode.Parent is MemberAccessExpressionSyntax)
                     {
                         addResult = false;
                         break;
