@@ -9,7 +9,7 @@ using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace LL.MDE.Components.Qvt.EnArImport.Util
 {
-    public static class CSharpParser
+    public static partial class CSharpParser
     {
         private const string BeginDummyClass = @"public class MyClass { public void MyMethod() {";
         private const string EndDummyClass = "}}";
@@ -31,18 +31,6 @@ namespace LL.MDE.Components.Qvt.EnArImport.Util
         {
             BlockSyntax stuff = ParseAnything(expressionString);
             return stuff.Statements.OfType<ExpressionStatementSyntax>().Single().Expression;
-        }
-
-        private class IdentifierWalker : CSharpSyntaxWalker
-        {
-            public readonly ISet<string> Result = new HashSet<string>();
-
-            /// <summary>Called when the visitor visits a IdentifierNameSyntax node.</summary>
-            public override void VisitIdentifierName(IdentifierNameSyntax node)
-            {
-                if (!(node.Parent is InvocationExpressionSyntax))
-                    Result.Add(node.Identifier.Text);
-            }
         }
 
         public static ISet<string> ExtractNonMethodIdentifiersFromExpression(ExpressionSyntax expressionSyntax)
