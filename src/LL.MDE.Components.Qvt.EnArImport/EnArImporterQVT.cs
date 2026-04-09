@@ -19,6 +19,8 @@ using QVTTemplate = LL.MDE.Components.Qvt.Metamodel.QVTTemplate;
 using EssentialOCL = LL.MDE.Components.Qvt.Metamodel.EssentialOCL;
 using EnAr = MDD4All.EAFacade.DataModels.Contracts;
 using MDD4All.EAFacade.DataModels.Contracts;
+using LL.MDE.Components.Qvt.Metamodel.EssentialOCL;
+using LL.MDE.Components.Qvt.Metamodel.CustomExtensions.EssentialOCLExtensions;
 
 namespace LL.MDE.Components.Qvt.EnArImport
 {
@@ -450,13 +452,37 @@ namespace LL.MDE.Components.Qvt.EnArImport
                 AssignmentExpressionSyntax assignmentExpressionSyntax = (AssignmentExpressionSyntax)parsedExpression;
                 IdentifierNameSyntax leftIdentifier = (IdentifierNameSyntax)assignmentExpressionSyntax.Left;
                 ExpressionSyntax right = assignmentExpressionSyntax.Right;
-                EssentialOCL.IVariable variable = ConstructVariable(relation, leftIdentifier.ToString());
-                pattern?.BindsTo.Add(variable);
-                return new EssentialOCL.Assignment()
+
+                if (relation.Variable.Any(v => v.Name == leftIdentifier.ToString()))
                 {
-                    AssignedVariable = variable,
-                    Value = ConstructOCLExpression(relation, right, pattern)
-                };
+                    IOclExpression rightSide = ConstructOCLExpression(relation, right, pattern);
+
+                    if(rightSide is VariableExp)
+                    {
+                        VariableExp varExp = (VariableExp)rightSide;
+
+                        ObjectAssignment objectAssignment = new ObjectAssignment()
+                        {
+                            LeftSideVariable = ConstructVariable(relation, leftIdentifier.ToFullString()),
+                            RightSideVariable = ConstructVariable(relation, varExp.ReferredVariable.Name)
+                        };
+
+                        return objectAssignment;
+                    }
+
+                    
+
+                }
+                else
+                {
+                    EssentialOCL.IVariable variable = ConstructVariable(relation, leftIdentifier.ToString());
+                    pattern?.BindsTo.Add(variable);
+                    return new EssentialOCL.Assignment()
+                    {
+                        AssignedVariable = variable,
+                        Value = ConstructOCLExpression(relation, right, pattern)
+                    };
+                }
             }
             // Any other case => Custom CSharpOpaqueExpression // TODO replace by QVT "Function" with a black box implementation?
             EssentialOCL.CSharpOpaqueExpression cSharpOpaqueExpression = new EssentialOCL.CSharpOpaqueExpression()

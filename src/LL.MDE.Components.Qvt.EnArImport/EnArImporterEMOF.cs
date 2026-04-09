@@ -226,20 +226,33 @@ namespace LL.MDE.Components.Qvt.EnArImport
 
         private EMOF.IClass ConstructClass(EnAr.Element classElement)
         {
-            // We create an EMOF.Class
-            EMOF.IClass clazz = new EMOF.Class()
+            EMOF.IClass result;
+
+            if (classElement.Stereotype == "struct")
             {
-                IsAbstract = classElement.Abstract.ToLower() == "true",
-                Name = classElement.Name
-            };
-            elementToType.Add(classElement, clazz);
+                result = new Struct()
+                {
+                    IsAbstract = classElement.Abstract.ToLower() == "true",
+                    Name = classElement.Name
+                };
+            }
+            else
+            {
+                // We create an EMOF.Class
+                result = new EMOF.Class()
+                {
+                    IsAbstract = classElement.Abstract.ToLower() == "true",
+                    Name = classElement.Name
+                };
+            }
+            elementToType.Add(classElement, result);
 
             // We browse the attributes of the EMOF.Class element (~= ecore attributes)
             foreach (EnAr.Attribute attribute in explorer.GetAttributes(classElement))
             {
                 EMOF.IProperty property = ConstructProperty(attribute);
-                property.Class = clazz;
-                clazz.OwnedAttribute.Add(property);
+                property.Class = result;
+                result.OwnedAttribute.Add(property);
             }
 
             // We browse the connectors (~= ecore references + inheritance links)
@@ -255,13 +268,13 @@ namespace LL.MDE.Components.Qvt.EnArImport
                         // Case super type
                         if (connector.Type.ToLower() == "generalization")
                         {
-                            clazz.SuperClass.Add(targetType);
+                            result.SuperClass.Add(targetType);
                         }
                         // Case reference(s)
                         else
                         {
-                            EMOF.IProperty prop1 = ConstructProperty(clazz, targetType, connector.ClientEnd, connector.SupplierEnd);
-                            EMOF.IProperty prop2 = ConstructProperty(targetType, clazz, connector.SupplierEnd, connector.ClientEnd);
+                            EMOF.IProperty prop1 = ConstructProperty(result, targetType, connector.ClientEnd, connector.SupplierEnd);
+                            EMOF.IProperty prop2 = ConstructProperty(targetType, result, connector.SupplierEnd, connector.ClientEnd);
                             if (prop1 != null && prop2 != null)
                             {
                                 prop1.Opposite = prop2;
@@ -276,11 +289,11 @@ namespace LL.MDE.Components.Qvt.EnArImport
             foreach (EnAr.Method method in explorer.GetMethods(classElement))
             {
                 EMOF.IOperation operation = ConstructOperation(method);
-                clazz.OwnedOperation.Add(operation);
-                operation.Class = clazz;
+                result.OwnedOperation.Add(operation);
+                operation.Class = result;
             }
 
-            return clazz;
+            return result;
         }
 
         private EMOF.IOperation ConstructOperation(EnAr.Method method)
