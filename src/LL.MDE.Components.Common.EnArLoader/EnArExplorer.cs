@@ -185,13 +185,19 @@ namespace LL.MDE.Components.Common.EnArLoader
             return result;
         }
 
-        public string GetTaggedValue(EnAr.Element element, String tagName)
+        public string GetTaggedValue(EnAr.Element element, String tagName, bool getNote = false)
         {
             foreach (EnAr.TaggedValue taggedValue2 in element.TaggedValues)
             {
                 if (EqualsNoCase(taggedValue2.Name, tagName))
                 {
-                    return taggedValue2.Value;
+                    string value = taggedValue2.Value;
+
+                    if (getNote)
+                    {
+                        value = taggedValue2.Notes;
+                    }
+                    return value;
                 }
             }
             return null;

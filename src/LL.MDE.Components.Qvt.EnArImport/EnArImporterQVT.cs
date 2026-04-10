@@ -602,14 +602,14 @@ namespace LL.MDE.Components.Qvt.EnArImport
             QVTRelations.IRelation relation = FindRelation(transformation, relationElement.Name);
 
             // We look for the tag "where"
-            string whereCode = _explorer.GetTaggedValue(relationElement, "Where");
+            string whereCode = _explorer.GetTaggedValue(relationElement, "Where", true);
             if (!string.IsNullOrWhiteSpace(whereCode))
             {
                 relation.Where = ConstructWhenOrWherePattern(relation, whereCode);
             }
 
             // We look for the tag "when"
-            string whenCode = _explorer.GetTaggedValue(relationElement, "When");
+            string whenCode = _explorer.GetTaggedValue(relationElement, "When", true);
             if (!string.IsNullOrWhiteSpace(whenCode))
             {
                 relation.When = ConstructWhenOrWherePattern(relation, whenCode);
