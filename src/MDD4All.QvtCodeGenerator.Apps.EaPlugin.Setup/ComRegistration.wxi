@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Per-user COM registration for MDD4All.QvtCodeGenerator.Apps.EaPlugin,
+  transcribed from regasm.exe MDD4All.QvtCodeGenerator.Apps.EaPlugin.dll
+  /regfile /codebase, with the two substitutions described in
+  ../.claude/skills/wix-setup-ea-addin/SKILL.md Step 1 applied:
+  HKEY_CLASSES_ROOT -> HKEY_CURRENT_USER\Software\Classes, and
+  Classes\CLSID -> Classes\WOW6432Node\CLSID.
+
+  Only one COM-visible class is exposed by this addin
+  (QvtCodeGeneratorAddin), so this file registers a single CLSID tree.
+-->
+<Include xmlns="http://wixtoolset.org/schemas/v4/wxs">
+
+  <Component Id="Cmp_ComRegistration" Guid="280FD3AE-B508-481C-A976-E21ADB6029D6">
+
+    <!-- ProgId -> CLSID lookup -->
+    <RegistryKey Root="HKCU"
+                 Key="Software\Classes\MDD4All.QvtCodeGenerator.Apps.EaPlugin.QvtCodeGeneratorAddin">
+      <RegistryValue Type="string"
+                     Value="MDD4All.QvtCodeGenerator.Apps.EaPlugin.QvtCodeGeneratorAddin"
+                     KeyPath="yes" />
+
+      <RegistryKey Key="CLSID">
+        <RegistryValue Type="string"
+                       Value="{C3A59004-98EE-36B0-85D2-81D8CAD00623}" />
+      </RegistryKey>
+    </RegistryKey>
+
+    <!--
+      CLSID registration under WOW6432Node, because EA is a 32-bit process
+      even on 64-bit Windows and its COM lookups go through the WOW64
+      registry view.
+    -->
+    <RegistryKey Root="HKCU"
+                 Key="Software\Classes\WOW6432Node\CLSID\{C3A59004-98EE-36B0-85D2-81D8CAD00623}">
+      <RegistryValue Type="string"
+                     Value="MDD4All.QvtCodeGenerator.Apps.EaPlugin.QvtCodeGeneratorAddin" />
+    </RegistryKey>
+
+    <RegistryKey Root="HKCU"
+                 Key="Software\Classes\WOW6432Node\CLSID\{C3A59004-98EE-36B0-85D2-81D8CAD00623}\InprocServer32">
+      <RegistryValue Type="string"
+                     Value="mscoree.dll" />
+      <RegistryValue Name="ThreadingModel"
+                     Type="string"
+                     Value="Both" />
+      <RegistryValue Name="Class"
+                     Type="string"
+                     Value="MDD4All.QvtCodeGenerator.Apps.EaPlugin.QvtCodeGeneratorAddin" />
+      <RegistryValue Name="Assembly"
+                     Type="string"
+                     Value="MDD4All.QvtCodeGenerator.Apps.EaPlugin, Version=$(var.ProductVersion), Culture=neutral, PublicKeyToken=dfd4bdb117292732" />
+      <RegistryValue Name="RuntimeVersion"
+                     Type="string"
+                     Value="v4.0.30319" />
+      <RegistryValue Name="CodeBase"
+                     Type="string"
+                     Value="file:///C:/ProgramData/MDD4All/QvtCodeGeneratorEaPlugin/bin/MDD4All.QvtCodeGenerator.Apps.EaPlugin.dll" />
+    </RegistryKey>
+
+    <!--
+      Versioned subkey (InprocServer32\<version>): .NET COM interop uses
+      this to pin a specific assembly version. Duplicates the values above
+      and must not be skipped. Key name must match $(var.ProductVersion)
+      exactly since that's the version actually written into the assembly.
+    -->
+    <RegistryKey Root="HKCU"
+                 Key="Software\Classes\WOW6432Node\CLSID\{C3A59004-98EE-36B0-85D2-81D8CAD00623}\InprocServer32\$(var.ProductVersion)">
+      <RegistryValue Name="Class"
+                     Type="string"
+                     Value="MDD4All.QvtCodeGenerator.Apps.EaPlugin.QvtCodeGeneratorAddin" />
+      <RegistryValue Name="Assembly"
+                     Type="string"
+                     Value="MDD4All.QvtCodeGenerator.Apps.EaPlugin, Version=$(var.ProductVersion), Culture=neutral, PublicKeyToken=dfd4bdb117292732" />
+      <RegistryValue Name="RuntimeVersion"
+                     Type="string"
+                     Value="v4.0.30319" />
+      <RegistryValue Name="CodeBase"
+                     Type="string"
+                     Value="file:///C:/ProgramData/MDD4All/QvtCodeGeneratorEaPlugin/bin/MDD4All.QvtCodeGenerator.Apps.EaPlugin.dll" />
+    </RegistryKey>
+
+    <RegistryKey Root="HKCU"
+                 Key="Software\Classes\WOW6432Node\CLSID\{C3A59004-98EE-36B0-85D2-81D8CAD00623}\ProgId">
+      <RegistryValue Type="string"
+                     Value="MDD4All.QvtCodeGenerator.Apps.EaPlugin.QvtCodeGeneratorAddin" />
+    </RegistryKey>
+
+    <!--
+      Standard .NET COM category marker regasm always writes. Empty key,
+      no value required, but the key itself must exist.
+    -->
+    <RegistryKey Root="HKCU"
+                 Key="Software\Classes\WOW6432Node\CLSID\{C3A59004-98EE-36B0-85D2-81D8CAD00623}\Implemented Categories\{62C8FE65-4EBB-45E7-B440-6E39B2CDBF29}" />
+
+  </Component>
+
+</Include>

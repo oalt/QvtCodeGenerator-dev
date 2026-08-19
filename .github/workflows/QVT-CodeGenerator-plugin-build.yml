@@ -1,0 +1,101 @@
+name: Build QVT Code Generator Plugin (development build)
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+    runs-on: windows-latest
+    env:
+      PROJECT_NAME: src\MDD4All.QvtCodeGenerator.Apps.EaPlugin\MDD4All.QvtCodeGenerator.Apps.EaPlugin-dev.csproj
+      SETUP_DIR: src\MDD4All.QvtCodeGenerator.Apps.EaPlugin.Setup
+
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v3
+        with:
+          submodules: recursive
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.0.x
+
+      - name: Setup MSBuild
+        uses: microsoft/setup-msbuild@v1
+
+      - name: Setup NuGet
+        uses: nuget/setup-nuget@v2
+
+      - name: Set version number from date using PS
+        uses: Amadevus/pwsh-script@v2
+        id: date-version
+        with:
+            script: |
+                $now = Get-Date
+                $versionString = "{0}.{1}" -f $now.Year, $now.DayOfYear
+                $versionString
+
+      - name: Set version variable from date and build number
+        env:
+            DATE_VERSION: ${{steps.date-version.outputs.result}}
+        run: echo ("VERSION=" + $env:DATE_VERSION + "." + $env:GITHUB_RUN_NUMBER) >> $env:GITHUB_ENV
+
+      - name: Echo version number
+        run: echo $env:VERSION
+
+      - name: Update Assembly info versions
+        uses: Amadevus/pwsh-script@v2
+        id: script
+        with:
+          script: |
+            function Update-SourceVersion
+            {
+                Param ([string]$Version)
+                $NewVersion = 'AssemblyVersion("' + $Version + '")';
+                Write-output $NewVersion
+                $NewFileVersion = 'AssemblyFileVersion("' + $Version + '")';
+                foreach ($o in $input)
+                {
+                    Write-output $o.FullName
+                    $TmpFile = $o.FullName + ".tmp"
+                    get-content $o.FullName |
+                    %{$_ -replace 'AssemblyVersion\("[0-9]+(\.([0-9]+|\*)){1,3}"\)', $NewVersion } |
+                    %{$_ -replace 'AssemblyFileVersion\("[0-9]+(\.([0-9]+|\*)){1,3}"\)', $NewFileVersion }  > $TmpFile
+
+                    move-item $TmpFile $o.FullName -force
+                }
+            }
+            Write-output 'Modifiing AssemblyInfos.'
+            foreach ($file in "AssemblyInfo.cs", "AssemblyInfo.vb" )
+            {
+                get-childitem -recurse |? {$_.Name -eq $file} | Update-SourceVersion $env:VERSION;
+            }
+
+      - name: Build EA Plugin (and its project references)
+        run: msbuild.exe /restore /p:configuration=Release /p:platform="Any CPU" ${{env.PROJECT_NAME}}
+
+      - name: Create MSI installer file
+        shell: pwsh
+        run: |
+            cd ${{env.SETUP_DIR}}
+            dotnet build Setup.wixproj -p:ProductVersion=${{env.VERSION}} -c Release
+
+      - name: Rename MSI file and copy results to output directory
+        shell: pwsh
+        run: |
+            cd $env:GITHUB_WORKSPACE
+            mkdir output
+            cd ${{env.SETUP_DIR}}\bin\Release
+            ren Setup.msi QVT-CodeGenerator-Plugin-Setup_${{env.VERSION}}.msi
+            cd $env:GITHUB_WORKSPACE
+            xcopy /y ${{env.SETUP_DIR}}\bin\Release\*.msi output\
+
+      - name: Upload QVT Code Generator Plugin artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: QVT-CodeGenerator-Plugin-Setup_${{env.VERSION}}
+          path: output\*.msi

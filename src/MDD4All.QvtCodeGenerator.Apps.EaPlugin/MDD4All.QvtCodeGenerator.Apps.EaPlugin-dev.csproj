@@ -9,11 +9,12 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>MDD4All.QvtCodeGenerator.Apps.EaPlugin</RootNamespace>
     <AssemblyName>MDD4All.QvtCodeGenerator.Apps.EaPlugin</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -140,12 +141,12 @@
       <Project>{30e7c342-9479-4fcf-9ef9-e33c826ef603}</Project>
       <Name>LL.MDE.Components.Common.Util-dev</Name>
     </ProjectReference>
-    <ProjectReference Include="..\LL.MDE.Components.Qvt.CodeGenerator\LL.MDE.Components.Qvt.CodeGenerator-dev.csproj">
-      <Project>{bf8f9083-4ba8-4120-9641-788779c3181e}</Project>
+    <ProjectReference Include="..\LL.MDE.Components.Qvt.CodeGenerator\src\LL.MDE.Components.QVT.CodeGenerator\LL.MDE.Components.Qvt.CodeGenerator-dev.csproj">
+      <Project>{eecf9b4b-039a-e8ae-847f-fbf64fa0ccd1}</Project>
       <Name>LL.MDE.Components.Qvt.CodeGenerator-dev</Name>
     </ProjectReference>
-    <ProjectReference Include="..\LL.MDE.Components.Qvt.Common\LL.MDE.Components.Qvt.Common-dev.csproj">
-      <Project>{4720eeca-90f6-48a5-b664-798c39e8b9b9}</Project>
+    <ProjectReference Include="..\LL.MDE.Components.Qvt.Common\src\LL.MDE.Components.Qvt.Common-dev.csproj">
+      <Project>{e590ad0b-e443-7ea4-e991-493e35f443ff}</Project>
       <Name>LL.MDE.Components.Qvt.Common-dev</Name>
     </ProjectReference>
     <ProjectReference Include="..\LL.MDE.Components.Qvt.EnArImport\LL.MDE.Components.Qvt.EnArImport-dev.csproj">

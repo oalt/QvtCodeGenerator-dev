@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?define ReleasePath = "..\MDD4All.QvtCodeGenerator.Apps.EaPlugin\bin\Release" ?>
+
+<Wix xmlns="http://wixtoolset.org/schemas/v4/wxs">
+
+  <Package Scope="perUser"
+      Name="QVT Code Generator EA Addin"
+      Manufacturer="MDD4All.de"
+      Version="$(var.ProductVersion)"
+      UpgradeCode="EB6B82A1-0E62-4101-A859-AFE6A4D4FFE6">
+
+    <MajorUpgrade DowngradeErrorMessage="A newer version of QVT Code Generator EA Addin is already installed." />
+    <Media Id="1" Cabinet="QvtCodeGeneratorEaPlugin.cab" EmbedCab="yes" />
+
+    <StandardDirectory Id="CommonAppDataFolder">
+      <Directory Id="VendorFolder" Name="MDD4All">
+        <Directory Id="PRODUCTFOLDER" Name="QvtCodeGeneratorEaPlugin">
+          <!-- INSTALLDIR must match the CodeBase paths in ComRegistration.wxi -->
+          <Directory Id="INSTALLDIR" Name="bin" />
+        </Directory>
+      </Directory>
+    </StandardDirectory>
+
+    <Feature Id="MainFeature" Title="QVT Code Generator EA Addin Setup" Level="1">
+      <ComponentGroupRef Id="AddinFiles" />
+      <ComponentRef Id="Cmp_ComRegistration" />
+      <ComponentRef Id="RegisterAddin" />
+    </Feature>
+
+  </Package>
+
+  <Fragment>
+
+    <ComponentGroup Id="AddinFiles" Directory="INSTALLDIR">
+
+        <!-- WiX v4+ glob-harvests the whole Release output; no heat.exe needed -->
+        <Files Include="$(var.ReleasePath)\**">
+            <Exclude Files="$(var.ReleasePath)\**\*.pdb;$(var.ReleasePath)\**\*.xml;$(var.ReleasePath)\**\*.reg;" />
+        </Files>
+
+        <!--
+          EA-specific registration: this is what EA itself reads at startup
+          to discover the addin. Separate from — and just as required as —
+          the COM registration in ComRegistration.wxi.
+        -->
+        <Component Id="RegisterAddin" Guid="9D9B4C7A-2F94-4DD7-815D-4BCD520365E9">
+            <RegistryKey Root="HKCU" Key="Software\Sparx Systems\EAAddins\QVT Code Generator">
+                <RegistryValue Value="MDD4All.QvtCodeGenerator.Apps.EaPlugin.QvtCodeGeneratorAddin" Type="string" />
+            </RegistryKey>
+        </Component>
+
+        <?include ComRegistration.wxi ?>
+
+    </ComponentGroup>
+
+  </Fragment>
+
+</Wix>
