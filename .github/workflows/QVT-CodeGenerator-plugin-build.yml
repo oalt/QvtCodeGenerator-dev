@@ -76,7 +76,7 @@ jobs:
             }
 
       - name: Build EA Plugin (and its project references)
-        run: msbuild.exe /restore /p:configuration=Release /p:platform="Any CPU" ${{env.PROJECT_NAME}}
+        run: msbuild.exe /restore /p:RestorePackagesConfig=true /p:SolutionDir="${{github.workspace}}\src\" /p:configuration=Release /p:platform="AnyCPU" ${{env.PROJECT_NAME}}
 
       - name: Create MSI installer file
         shell: pwsh
