@@ -1,6 +1,7 @@
 ﻿using EA;
 using GalaSoft.MvvmLight.Command;
 using LL.MDE.Components.Qvt.EnArIntegration;
+using MDD4All.QvtCodeGenerator.Apps.EaPlugin.Views;
 using System.Collections.Generic;
 using System.Windows.Input;
 using MDD4All.EnterpriseArchitect.Manipulations;
@@ -20,6 +21,7 @@ namespace MDD4All.QvtCodeGenerator.Apps.EaPlugin.ViewModels
             GenerateCodeCommand = new RelayCommand<bool>(ExecuteGenerateCode);
             ConvertPropertyMethodsToAttributes = new RelayCommand(ExecuteConvertPropertyMethodsToAttributes);
             GenerateMetamodelFromEmofCommand = new RelayCommand(ExecuteGenerateMetamodelFromEMOF);
+            ShowAboutDialogCommand = new RelayCommand(ExecuteShowAboutDialog);
         }
 
         public EA.Repository Repository { get; set; }
@@ -29,6 +31,8 @@ namespace MDD4All.QvtCodeGenerator.Apps.EaPlugin.ViewModels
         public ICommand ConvertPropertyMethodsToAttributes { get; private set; }
 
         public ICommand GenerateMetamodelFromEmofCommand { get; private set; }
+
+        public ICommand ShowAboutDialogCommand { get; private set; }
 
 
         private void ExecuteGenerateCode(bool generateMicroservice)
@@ -138,5 +142,11 @@ namespace MDD4All.QvtCodeGenerator.Apps.EaPlugin.ViewModels
                 //generator.ConvertEmofToMetamodel();
             }
         }
-    } 
+
+        private void ExecuteShowAboutDialog()
+        {
+            AboutDialog aboutDialog = new AboutDialog();
+            aboutDialog.ShowDialog();
+        }
+    }
 }

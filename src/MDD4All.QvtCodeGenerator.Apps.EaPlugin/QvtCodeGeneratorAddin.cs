@@ -12,15 +12,13 @@ namespace MDD4All.QvtCodeGenerator.Apps.EaPlugin
         private const string MENU_GENERATE_CODE_WITH_MICROSERVICE = "Generate Code with Microservice";
         private const string MENU_CONVERT_PROPERTY_METHODS = "Convert Property Methods to Attributes";
         private const string MENU_GENERATE_METAMODEL_FROM_JSON_SCHEMA = "Generate Metamodel from EMOF";
+        private const string MENU_ABOUT = "About...";
 
-        private MainViewModel MainViewModel { get; set; }
+        private MainViewModel MainViewModel { get; set; } = new MainViewModel();
 
         public void EA_FileOpen(EA.Repository repository)
         {
-            MainViewModel = new MainViewModel
-            {
-                Repository = repository
-            };
+            MainViewModel.Repository = repository;
         }
 
         public object EA_GetMenuItems(EA.Repository repository, string location, string menuName)
@@ -31,10 +29,11 @@ namespace MDD4All.QvtCodeGenerator.Apps.EaPlugin
                     return "-&" + MAIN_MENUNAME;
 
                 case "-&" + MAIN_MENUNAME:
-                    string[] menuItems = { MENU_GENERATE_CODE, 
+                    string[] menuItems = { MENU_GENERATE_CODE,
                                            MENU_GENERATE_CODE_WITH_MICROSERVICE,
                                            //MENU_CONVERT_PROPERTY_METHODS,
                                            //MENU_GENERATE_METAMODEL_FROM_JSON_SCHEMA
+                                           MENU_ABOUT
                                           };
                     return menuItems;
             }
@@ -58,7 +57,11 @@ namespace MDD4All.QvtCodeGenerator.Apps.EaPlugin
                                     string menuName, string itemName,
                                     ref bool isEnabled, ref bool isChecked)
         {
-            if (IsProjectOpen(repository))
+            if (itemName == MENU_ABOUT)
+            {
+                isEnabled = true;
+            }
+            else if (IsProjectOpen(repository))
             {
                 isEnabled = true;
             }
@@ -91,6 +94,10 @@ namespace MDD4All.QvtCodeGenerator.Apps.EaPlugin
 
                     case MENU_GENERATE_METAMODEL_FROM_JSON_SCHEMA:
                         MainViewModel.GenerateMetamodelFromEmofCommand.Execute(null);
+                        break;
+
+                    case MENU_ABOUT:
+                        MainViewModel.ShowAboutDialogCommand.Execute(null);
                         break;
                 }
             }
