@@ -7,13 +7,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "5_DataModels", "5_DataModel
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3_QVT", "3_QVT", "{B66D3FFC-C6AF-4B15-9973-3F01AE622FC5}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LL.MDE.Components.Qvt.EnArImport-dev", "LL.MDE.Components.Qvt.EnArImport\LL.MDE.Components.Qvt.EnArImport-dev.csproj", "{4A8B9937-5FE9-445A-84A8-E7DD26B62A6D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LL.MDE.Components.Qvt.EnArImport-dev", "LL.MDE.Components.Qvt.EnArImport\src\LL.MDE.Components.Qvt.EnArImport\LL.MDE.Components.Qvt.EnArImport-dev.csproj", "{4A8B9937-5FE9-445A-84A8-E7DD26B62A6D}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LL.MDE.Components.Qvt.EnArIntegration-dev", "LL.MDE.Components.Qvt.EnArIntegration\LL.MDE.Components.Qvt.EnArIntegration-dev.csproj", "{D1A7392A-3165-4613-8DA2-406688633D46}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LL.MDE.Components.Qvt.EnArIntegration-dev", "LL.MDE.Components.Qvt.EnArIntegration\src\LL.MDE.Components.Qvt.EnArIntegration\LL.MDE.Components.Qvt.EnArIntegration-dev.csproj", "{D1A7392A-3165-4613-8DA2-406688633D46}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LL.MDE.Components.Qvt.EnArInterface-dev", "LL.MDE.Components.Qvt.EnArInterface\LL.MDE.Components.Qvt.EnArInterface-dev.csproj", "{B7F225A9-E958-4EDB-8F71-8CA95860E5A5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LL.MDE.Components.Qvt.EnArInterface-dev", "LL.MDE.Components.Qvt.EnArInterface\src\LL.MDE.Components.Qvt.EnArInterface\LL.MDE.Components.Qvt.EnArInterface-dev.csproj", "{B7F225A9-E958-4EDB-8F71-8CA95860E5A5}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LL.MDE.Components.Qvt.Metamodel-dev", "LL.MDE.Components.Qvt.Metamodel\LL.MDE.Components.Qvt.Metamodel-dev.csproj", "{9E4AD66A-C4F5-4AAC-BAE2-0E39E6858985}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LL.MDE.Components.Qvt.Metamodel-dev", "LL.MDE.Components.Qvt.Metamodel\src\LL.MDE.Components.Qvt.Metamodel\LL.MDE.Components.Qvt.Metamodel-dev.csproj", "{9E4AD66A-C4F5-4AAC-BAE2-0E39E6858985}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MDD4All.EAFacade.DataModels.Contracts-dev", "MDD4All.EAFacade.DataModels.Contracts\src\MDD4All.EAFacade.DataModels.Contracts\MDD4All.EAFacade.DataModels.Contracts-dev.csproj", "{FC5284B3-A130-4B5E-A852-ED74B590B607}"
 EndProject
@@ -23,17 +23,17 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MDD4All.EAFacade.DataAccess
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3_EA", "3_EA", "{8B025947-5E3B-4A29-B26F-B7C1008CF598}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LL.MDE.Components.Common.EnArLoader-dev", "LL.MDE.Components.Common.EnArLoader\LL.MDE.Components.Common.EnArLoader-dev.csproj", "{219CA47B-2392-42EF-97EE-3790288BEEC6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LL.MDE.Components.Common.EnArLoader-dev", "LL.MDE.Components.Common.EnArLoader\src\LL.MDE.Components.Common.EnArLoader\LL.MDE.Components.Common.EnArLoader-dev.csproj", "{219CA47B-2392-42EF-97EE-3790288BEEC6}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LL.MDE.Components.Common.Util-dev", "LL.MDE.Components.Common.Util\LL.MDE.Components.Common.Util-dev.csproj", "{30E7C342-9479-4FCF-9EF9-E33C826EF603}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LL.MDE.Components.Common.Util-dev", "LL.MDE.Components.Common.Util\src\LL.MDE.Components.Common.Util\LL.MDE.Components.Common.Util-dev.csproj", "{30E7C342-9479-4FCF-9EF9-E33C826EF603}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "6_Util", "6_Util", "{0B3889B6-DF97-4DD0-A786-C6776B5F3200}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LL.MDE.Components.Qvt.TextConcreteSyntaxGen-dev", "LL.MDE.Components.Qvt.TextConcreteSyntaxGen\LL.MDE.Components.Qvt.TextConcreteSyntaxGen-dev.csproj", "{13204F4A-650C-47CD-AB98-6D9E651C5640}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LL.MDE.Components.Qvt.TextConcreteSyntaxGen-dev", "LL.MDE.Components.Qvt.TextConcreteSyntaxGen\src\LL.MDE.Components.Qvt.TextConcreteSyntaxGen\LL.MDE.Components.Qvt.TextConcreteSyntaxGen-dev.csproj", "{13204F4A-650C-47CD-AB98-6D9E651C5640}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Metamodel", "Metamodel", "{428283AF-3BC1-40DC-AD84-3A3B5D6820F3}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LL.MDE.Components.Qvt.Metamodel.Generator-dev", "QvtMetamodelCodeGeneration\LL.MDE.Components.Qvt.Metamodel.Generator\LL.MDE.Components.Qvt.Metamodel.Generator-dev.csproj", "{6CDAB474-F022-4A1B-934E-6A816DB4CF66}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LL.MDE.Components.Qvt.Metamodel.Generator-dev", "LL.MDE.Components.Qvt.Metamodel.Generator\src\LL.MDE.Components.Qvt.Metamodel.Generator\LL.MDE.Components.Qvt.Metamodel.Generator-dev.csproj", "{6CDAB474-F022-4A1B-934E-6A816DB4CF66}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1_Apps", "1_Apps", "{0BF6DE27-3444-4110-A2F3-46B62FC41F89}"
 EndProject
@@ -51,7 +51,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MDD4All.QvtEditor.EaPlugin-
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "GeneratorPlugin", "GeneratorPlugin", "{3123588F-D4D5-4063-9061-1A58EB57DA47}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MDD4All.QvtCodeGenerator.Apps.EaPlugin-dev", "MDD4All.QvtCodeGenerator.Apps.EaPlugin\MDD4All.QvtCodeGenerator.Apps.EaPlugin-dev.csproj", "{01840FF1-5FA4-4685-AB42-F214A32E4057}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MDD4All.QvtCodeGenerator.Apps.EaPlugin-dev", "MDD4All.QvtCodeGenerator.Apps.EaPlugin\src\MDD4All.QvtCodeGenerator.Apps.EaPlugin\MDD4All.QvtCodeGenerator.Apps.EaPlugin-dev.csproj", "{01840FF1-5FA4-4685-AB42-F214A32E4057}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MetamodelGenerator", "MetamodelGenerator", "{71A475EE-EB4D-4B5C-887F-5F6F9A1FC17E}"
 EndProject
