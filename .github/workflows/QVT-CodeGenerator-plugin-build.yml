@@ -10,8 +10,8 @@ jobs:
   build:
     runs-on: windows-latest
     env:
-      PROJECT_NAME: src\MDD4All.QvtCodeGenerator.Apps.EaPlugin\MDD4All.QvtCodeGenerator.Apps.EaPlugin-dev.csproj
-      SETUP_DIR: src\MDD4All.QvtCodeGenerator.Apps.EaPlugin.Setup
+      PROJECT_NAME: src\MDD4All.QvtCodeGenerator.Apps.EaPlugin\src\MDD4All.QvtCodeGenerator.Apps.EaPlugin\MDD4All.QvtCodeGenerator.Apps.EaPlugin-dev.csproj
+      SETUP_DIR: src\MDD4All.QvtCodeGenerator.Apps.EaPlugin\src\MDD4All.QvtCodeGenerator.Apps.EaPlugin.Setup
 
     steps:
       - name: Checkout source code
