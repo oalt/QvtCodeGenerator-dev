@@ -55,7 +55,7 @@ The codebase is split into several independently versioned components (see [`.gi
 
 Each component lives in its own repository and is included here as a git submodule under `src/<ComponentName>`.
 
-## References
+## Resources
 
 * [LieberLieber Software GmbH](https://lieberlieber.com)
 * [SpecIFicator - Dr. Oliver Alt](https://specificator.com)
