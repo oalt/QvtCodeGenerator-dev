@@ -26,3 +26,39 @@
 	path = src/LL.MDE.Components.Qvt.CodeGenerator
 	url = https://github.com/oalt/LL.MDE.Components.Qvt.CodeGenerator.git
 	branch = dev
+[submodule "src/LL.MDE.Components.Qvt.Metamodel.Generator"]
+	path = src/LL.MDE.Components.Qvt.Metamodel.Generator
+	url = https://github.com/oalt/LL.MDE.Components.Qvt.Metamodel.Generator.git
+	branch = dev
+[submodule "src/LL.MDE.Components.Qvt.EnArImport"]
+	path = src/LL.MDE.Components.Qvt.EnArImport
+	url = https://github.com/oalt/LL.MDE.Components.Qvt.EnArImport.git
+	branch = dev
+[submodule "src/LL.MDE.Components.Qvt.EnArIntegration"]
+	path = src/LL.MDE.Components.Qvt.EnArIntegration
+	url = https://github.com/oalt/LL.MDE.Components.Qvt.EnArIntegration.git
+	branch = dev
+[submodule "src/LL.MDE.Components.Qvt.EnArInterface"]
+	path = src/LL.MDE.Components.Qvt.EnArInterface
+	url = https://github.com/oalt/LL.MDE.Components.Qvt.EnArInterface.git
+	branch = dev
+[submodule "src/LL.MDE.Components.Qvt.Metamodel"]
+	path = src/LL.MDE.Components.Qvt.Metamodel
+	url = https://github.com/oalt/LL.MDE.Components.Qvt.Metamodel.git
+	branch = dev
+[submodule "src/LL.MDE.Components.Common.EnArLoader"]
+	path = src/LL.MDE.Components.Common.EnArLoader
+	url = https://github.com/oalt/LL.MDE.Components.Common.EnArLoader.git
+	branch = dev
+[submodule "src/LL.MDE.Components.Common.Util"]
+	path = src/LL.MDE.Components.Common.Util
+	url = https://github.com/oalt/LL.MDE.Components.Common.Util.git
+	branch = dev
+[submodule "src/LL.MDE.Components.Qvt.TextConcreteSyntaxGen"]
+	path = src/LL.MDE.Components.Qvt.TextConcreteSyntaxGen
+	url = https://github.com/oalt/LL.MDE.Components.Qvt.TextConcreteSyntaxGen.git
+	branch = dev
+[submodule "src/MDD4All.QvtCodeGenerator.Apps.EaPlugin"]
+	path = src/MDD4All.QvtCodeGenerator.Apps.EaPlugin
+	url = https://github.com/oalt/MDD4All.QvtCodeGenerator.Apps.EaPlugin.git
+	branch = dev
